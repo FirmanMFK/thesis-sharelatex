@@ -1,0 +1,164 @@
+% Chapter 1
+
+\chapter{Introduction} % Main chapter title
+
+\label{Chapter1} % For referencing the chapter elsewhere, use \ref{Chapter1}
+
+%----------------------------------------------------------------------------------------
+%	PROJECT BACKGROUND
+%----------------------------------------------------------------------------------------
+
+\lhead{Chapter 1. \emph{Introduction}} % This is for the header on each page - perhaps a shortened title
+
+This chapter introduces the research topic, argumentation theory and outlines it's potential as an alternative to machine learning in the implementation of decision support systems.
+The aims and reasoning of this research study are clarified.
+The research methodology is discussed along with the scope and limitations of the study.
+Finally the organisation of this document is presented to the reader.
+
+%----------------------------------------------------------------------------------------
+%	PROJECT BACKGROUND
+%----------------------------------------------------------------------------------------
+
+\section{Overview of Project Area}
+
+Modern organisations solve difficult problems that require complex decision making and involve partial and often conflicting information. Examples of such problems are found in many different contexts; in management at large companies, in medicine, in the command of military units or in investment banking.
+
+In companies, management must make decisions about next years products without knowing what products their competitors will release and without a full insight into why their current products are performing the way they are.
+
+Doctors may have to treat unconscious patients in emergency situations. Without access to a patient’s medical records or being able to talk to them a doctor cannot access critical information about patient; for example, what medication the patient may currently be taking which could interfere with certain treatments. Without this crucial information a doctor must make assumptions, apply a reasoning process and prescribe a treatment based solely on what she can observe, with incomplete information.
+
+In the context of modern warfare, military strikes may put the lives of civilians at risk. The decision to attack is a difficult one made by military commanders. It is made more difficult in the case of guerrilla warfare, in which information is often conflicting as enemy combatants are embedded amongst ordinary citizens.
+
+The rapid evolution of technology is increasing the amount of data that can be gathered about these problems. Product sentiment information can be gathered from social media; improved patient monitoring gives us better insight into a patient’s condition; government agencies gather information from emails and phone calls. The abundance of information associated with these problems make unaided decision making impossible. Decisions Support Systems attempt to aid decision makers in solving these problems by presenting information in a manner that makes it easier to reason about.
+In the context of the many definitions in the literature, Turban et al.\cite{turban2005decision} explain that the central purpose of Decision Support Systems is to support and improve decision making. Many DSS make use of intelligent components to provide an improved understanding of the problem at hand to decision makers. The purpose of this research study is to investigate two of the approaches used in the design of these intelligent components; learning based approaches and knowledge based ones.
+The goal of prediction in argumentation systems is reflected in the branch of ML known as supervised machine learning; learning that makes predictions based on a labeled training set of data. Machine learning techniques can provide reasonable predictions based on data, however, they often fall short in presenting their process to the user. ML is automatic and is unsuitable for the representation of complex constructs such as an expert's knowledge.
+An expert generally doesn't look at some variables and apply a function to them. She considers the information at hand and reasons about it. Within her reasoning process she may make assumptions that get changed as a result of the reasoning process. This reasoning process is modeled in Defeasible Reasoning which offers a solution to the automatic process of ML.
+
+
+%Artificial Intelligence is an applied science research domain, in that it takes knowledge from other domains such as Philosophy and Psychology and applies them to contribute to it’s development. 
+
+%----------------------------------------------------------------------------------------
+%	RESEARCH AIMS AND OBJECTIVES
+%----------------------------------------------------------------------------------------
+
+\section{Background}
+The process by which humans reason has typically been examined in the fields of Philosophy and Psychology but has been further investigated by the field of computer science in the last 30 years or so. Several mechanisms by which humans reason have identified.
+Deductive reasoning in which conclusions logically follow from a set of premises falls into a category known as monotonic reasoning. In monotonic reasoning proof of the conclusions is embedded in the premises.
+Defeasible Reasoning was defined by Pollock as reasoning in which ``the premises taken by themselves may justify accepting the conclusion, but when additional information is added, that conclusion is no longer justified.''\cite{pollock1987defeasible}
+It is possible to model defeasible reasoning using argumentation theory, in particular using abstract argumentation frameworks as described by Dung.\cite{dung1995acceptability} An Argumentation Framework is a directed graph in which arguments are modeled as nodes. Deasible relationships between those arguements are modeled as edges. An overview of this technique is given in Chapter 2.
+
+Argumentation systems have many other characteristics that make their use in decision support systems advantageous. Argumentation systems can reason based on incomplete or corrupt data and explain how an algorithm arrived at a conclusion. Through the process of visualising a knowledge base using an argumentation tool an expert may gain insight into his own ideas and refine them. 
+Knowledge based approaches accrue their insights and advantages by having a human expert interacting with the system. These benefits are lacking in machine learning based systems. However, ML provides us with an approach that is automatable and can provide us insights into data that it is unlikely any human would like to by going through large amounts of data by hand. ML is a better approach to solving problems such as natural language processing and image and handwriting recognition; tasks where it is difficult for a human to encode their understanding in a way that a machine can process.
+Research in the area suggests that that a knowledge-base paradigm can perform as well as state-of-the-art machine learning approaches with several additional benefits. These benefits can be summarised The literature does not often highlight the advantage of ML approaches over argumentation theory. 
+There is also little comparison between Argumentation theory and unsupervised machine learning methods. Unsupervised machine learning does not attempt to make make predictions based on labeled data. Instead it attempts to find patterns within the data.
+
+
+
+The literature in the domain suggests that argumentation theory can perform as well as, or in some cases perform better than, machine learning algorithms in predicting outcomes. 
+
+
+
+
+%-----------------------------------
+%	RESEARCH Project
+%-----------------------------------
+
+\section{Research Project}
+
+%highlight the problem and the research question.
+
+The designer of a software system that aims to unlock the full potential of this data needs to have an understanding of the different approaches to working with that data. These approaches classically remain in the domain of Data Science, however, as more systems require intelligent components software engineering professionals need to have an understanding of these techniques as well. This is no small task as many of these approaches have a steep learning curve and may involve years of training. While a software engineer may never implement a full intelligent component they still need an understanding of the techniques in order to select the correct library code and optimised it accordingly.
+This has motivated the publication of many books in recent years dedicated to machine learning. While many developers are becoming familiar with ML topics such as regression analysis or K-Means few are becoming familiar with argumentation theory. AT is a relative newcomer to the scene and it hasn’t yet made the same transition into the mainstream that ML has.
+This research project aims to provide a comparison between Argumentation Theory, Supervised Machine Learning and Unsupervised Machine Learning. The case is made for knowledge-base paradigms as practical alternatives to learning based ones. This research outlines the strengths of both techniques and provides guidelines on what problems a particular approach may be suited for.
+
+There have been comparisons made in the literature between argumentation theory and machine learning.
+
+
+The representation of a construct -MWL
+
+``To what extent can an implementation of Defeasible Reasoning enhance the representation of a construct and support prediction capacity in comparison with Machine Learning?''
+
+
+
+%-----------------------------------
+%	RESEARCH OBJECTIVES
+%-----------------------------------
+
+\section{Research Objectives}
+
+
+Provide a wider comparison than previously outlined in the literature by including unsupervised and supervised machine learning. Analysis of both regression and classification problems.
+
+To provide an overview of the differences and similarities in learning based and knowledge based approaches. To investigate the strengths and weaknesses of these approaches. To provide guidance to developers of which approach should be implemented in a system.
+
+The goals of the research project are outlined as follows:
+
+\begin{itemize}
+
+  \item To gain knowledge of Defeasible Reasoning and DR implementation techniques
+  \item To gain knowledge of and define relevant concepts in machine learning
+  \item To design a computable model of DR for knowledge representation
+  \item To design an experiment to compare machine learning and argumentation theory 
+
+\end{itemize}
+
+%-----------------------------------
+%	RESEARCH METHODOLOGY
+%-----------------------------------
+
+\section{Research Methodology}
+
+
+This project will use a mixed research methodology - a combination of both qualitative and quantitative methods. A literature review is carried out to outline the strengths and weaknesses of the techniques that have been identified in previous research. The output of the review is used to inform the design of an experiment that will utilise a software implementation of argumentation theory and machine learning tools. The output of this experiment is qualitatively analysed in the context of the information obtained in the literature review. Statistical methods are used on the data produced from the experiment analyse the predictive capacity of argumentation theory and supervised machine learning. 
+
+As part of the project the development of an argumentation systems inspired by the research of Dung and Longo and Hederman is developed to allow for a comparison with machine learning software. Weka. 
+
+
+In order to achieve the aforementioned aims the following experiments are conducted.
+
+\begin{itemize}
+
+  \item An argumentation system is developed in software and used to elicit a knowledge base from an expert.
+  \item A number of ML classifiers (using both classification and regression algorithms) are trained to using a partition of the experiment dataset.
+  \item The predictive ability of the classifiers and the knowledge based system are tested using a subset of tuples of the dataset.
+
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+%	SCOPE AND LIMITATIONS
+%----------------------------------------------------------------------------------------
+
+\section{Scope and Limitations}
+
+
+In this study we are restricted by several factors in the analysis of the techniques. There are several limiting factors in the experiments that are a barrier to the accurate assessment of argumentation theory. The argumentation system is limited in its predictive capacity by it’s knowledge based approach.
+
+The project scope is that of Mental Workload. Mental Workload has been modeled as a defeasible construct in previous work by Dr. Luca Longo. 
+
+
+In this study we are restricted by several factors in the analysis of the techniques.
+There are several limiting factors in the experiments that are a barrier to the accurate assessment of argumentation theory.
+The argumentation system is limited in it's predictive capacity by it's knowledge based approach.
+The system elicits a knowledge base from an ``expert'' and assumes that the expert's knowledge accurately reflects reality.
+There is no objective verification of that knowledge base. The performance of the AT system is based heavily on the knowledge of the expert and they ability of the system to model that knowledge accurately.
+We are similarly limited in our evaluation of the classifiers produced using the ML approach.
+Obtaining a data set of sufficient size to train classifiers to a level on par with the knowledge of an experienced professional is a challenge.
+
+%-----------------------------------
+%	DOCUMENT OUTLINE
+%-----------------------------------
+
+\section{Document Outline}
+
+This thesis is organised into the following sections:
+
+\begin{itemize}
+
+  \item Chapter 2 provides a review of the literature relevant to argumentation theory and machine learning including cutting-edge research in the area.
+  \item Chapter 3 outlines the design of the experiment and the justification of those design decisions in the context of previous research methodology
+  \item Chapter 4 details the implementation of the experiments; the implementation relevant software artifacts, their use and the overall execution of the experiments.
+  \item Chapter 5 the results of the experiments are presented and discussed.
+  \item Chapter 6 reviews the experiment and findings in the context of the relevant literature. Conclusions are then derived and future work suggested.
+
+\end{itemize}

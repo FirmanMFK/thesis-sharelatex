@@ -1,0 +1,119 @@
+% Chapter Template
+
+\chapter{Design} % Main chapter title
+
+\label{Chapter3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+\lhead{Chapter 3. \emph{Design}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+
+\section{Introduction}
+
+In order to answer the research question posed in Chapter 1, an experiment was designed. For convenience the research question is restated here:
+
+``To what extent can an implementation of Defeasible Reasoning enhance the representation of a construct and support prediction capacity in comparison with Machine Learning?''
+
+In order to answer this question an experiment demonstrating the ability of DR to enhance the representation of a construct and compare the prediction capacity of ML and DR.
+
+
+%----------------------------------------------------------------------------------------
+%	EXPERIMENT DESIGN
+%----------------------------------------------------------------------------------------
+
+\section{Experiment Design}
+
+Develop software that allows an expert to model their knowledge base as a defeasible phenomenon. From this knowledge base the software will return a numeric value that is a representation of the construct that the expert is modeling. This numeric value is a representation of the expert's opinion of what the construct should be.
+In the next phase of the experiment the same data set is used to evaluate machine learning. Machine learning's ability to represent a construct.
+
+With respect to predictive capacity we are trying to answer the following question: ``Given data associated with an individual undertaking a task can we predict their mental workload.''
+
+A data set was provided by Dr. Longo from his previous work in Usability. The data set has the following rows:
+
+\subsection{Defeasible Reasoning Experiment}
+
+
+1. DR Experiment: Input: an expert's knowledge base modeled with respect to a data set and a data set. Output: A numeric value that represents the construct being modeled.
+
+
+Software is designed and implemented in order to elicit a knowledge base from an expert.
+The expert uses the software to input their knowledge base.
+The knowledge based is verified using same rows in the data set. It is examined in order to determine whether or not the knowledge base is free from error.
+Once the knowledge base has been verified results can be determined. The results that are the value of the construct (MWL) and the degree of truth of the construct. These values are determined for the grounded semantic and for the preferred extension with the highest degree of truth. 
+
+\subsection{Machine Learning Experiment}
+
+
+2. ML Experiment: Input: the same data set as experiment 1.
+Output: The results of machine learning algorithms after running on the data set. Error rates.
+
+Comparison of predictive capacity.
+Task time is often taken as an objective value when looking at mental work load.
+
+
+
+%----------------------------------------------------------------------------------------
+%	SOFTWARE DESIGN
+%----------------------------------------------------------------------------------------
+
+\section{Software Design}
+
+In order to demonstrate how DR can model a complex construct software was designed that would allow an expert to input their knowledge base as directed graph.
+\subsection{Defeasible Knowledge Base}
+The expert must be able to model their knowledge base as a defeasible process using a directed graph. One approach that could be taken in designing is to have the user input their knowledge base as a list of nodes and attack relations. The system designer specifies a format that the user conforms to and this can be then parsed by the software. An example of such a format inspired by JSON would be the following:
+
+\begin{lstlisting}
+"knowledge_base" {
+    "arguments": [
+                    "Low Effort->Low MWL", 
+                    "High Effort->High MWL", 
+                    "Low Performance->High MWL", 
+                    "Low Effort & Low Performance->Low MWL"
+                ],
+    "attacks":  [
+        ["Low Effort & Low Performance->Low MWL", "Low Performance->High MWL"]
+    ]
+}
+\end{lstlisting}
+
+This approach is simple to implement at the expense of a less usable system. For a trivial knowledge base with few arguments and attacks this approach is fine, however, once the knowledge base grows to the size approaching that of a real expert problems emerge.
+
+It is time consuming and cumbersome for a user to have to type out an argument every time that they want to create an attack. It can be difficult for the user to keep track of the nodes and attacks. The format could be defined in such a way as to solve this problem, however, this would lead to a format that requires more parsing logic increasing the chances of errors and requiring the software to be more thoroughly tested.
+
+For this reason the software has been designed to utilise a Graphical User Interface that allows a user to draw the directed graph. A user defines a node by clicking on an empty space on the graph. The user can name this node in order to keep track of what it represents. Once nodes have been created the user can then model the attack relations between the arguments by dragging from one node to another.
+
+This approach has many advantages in comparison with the first approach. A non technical user will be more comfortable using a GUI than using the text based approach. When the knowledge base is input using text the user must take special care to ensure that the attack relations are correct.
+
+\subsection{Membership Functions}
+
+As the system is currently defined we will provide an expert with the ability to visualise their knowledge base in the form of a directed graph. As it stands the only information we have about an argument is it's attack relationship with other arguments and it's label (a natural language statement that allows the user to identify the argument and that may in some way describe the nature of the argument.) 
+
+In order that the argumentation framework can be used to compute results a number of other concepts need to be designed into the system. The notion of whether or not an argument is activated or not needs to be modeled. Argument activation allows us to consider which attack relations to take into consideration for that tuple in the data set. We also need to generate a value that models our assessment of the construct based on the knowledge base.
+
+In order to determine whether or not an argument is activated we will use fuzzy sets in a manner similar to Longo and Hederman. Fuzzy Sets were defined by Zadeh as ``a class of objects with a continuum of grades of membership.''\cite{zadeh1965fuzzy} These sets are characterised by membership functions; functions that take a value and map it to a number between 0 and 1 (where 0 indicates absence of the value in the set and 1 indicates it's presence.) This allows us to take a vague statement such as ``High Performance'' and determine to what extent a value of performance is considered to be high.
+
+Arguments are based on one or more premises. Each premise corresponds to one column in the data set. By taking the value in this column the degree of truth of the premise as applied to the row can be determined using the membership function. We can determine the overall degree of truth for an argument by computing the average of the degrees of truth of the premises. The degree of truth for the argument is then used as the input for an argument output function contributes to the overall value associated with the construct.
+
+If all associated values satisfy the membership functions of an argument, even with a very small degree of truth, then that argument is taken into consideration when evaluating the semantics of the AF for that row. If even one value associated with an arguments premise falls outside the membership function then the argument is disregarded.
+
+The following is an example of this process. Taking the argument labeled ``Low Effort & Low Performance->Low MWL''; two premises can be identified: ``Low Effort'' and ``Low Performance'' and an output function ``Low MWL''. The premises and output function could be modeled as follows:
+
+
+
+
+The most reliable way elicit membership and output functions from the user is to have them draw the functions by hand using the software. We can then use the data associated with this drawing to determine the appropriate output for a given tuple in the data set.
+
+\subsection{Additional Software Requirements}
+
+There are two additional requirements that need to be taken into consideration when allowing the user to develop an AF. The first is the concept of rebutting attacks. In order to model rebutting attacks the user must be able to draw edges in the graph with arrows on both ends. The second is modeling the concept of mitigating arguments. Some arguments weigh in on the final evaluation of the semantic without actually contributing to the value of the construct. These arguments must be taken into consideration but have their output ignored in the final value. 
+
+
+There are additional requirements of the software that are standard features in many software systems and are provided here for the convenience of the user and to allow the experiment to proceed smoothly. These include allowing the user to save a knowledge base, load a previously generated knowledge base, load a data set and compute the results of applying the knowledge base to a row in the dataset.
+
+
+\section{Conclusions}
+
+
+This chapter presented the experiment undertaken to evaluate the hypothesis of this research project. The experiment will consist of a test of machine learning methods and defeasible reasoning. A software design is outlined order to undertake the defeasible reasoning portion of the evaluation. The design of the software includes the requirements for the user to be able to draw an argumentation framework that models their knowledge base and determine activation of the arguments within that framework by drawing membership functions.

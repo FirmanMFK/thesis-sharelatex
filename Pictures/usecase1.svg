@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-family="Arial" font-size="13" width="420" height="267">
+	<desc>UML diagram model</desc>
+	<g id="_2-hzItbgEeS-UKCgVrbTiA">
+		<defs>
+			<linearGradient id="greyGradient" x1="0%" y1="0%" x2="0%" y2="100%" spreadMethod="pad">
+				<stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+				<stop offset="100%" stop-color="#E5E5E5" stop-opacity="1" />
+				
+			</linearGradient>
+			<linearGradient id="packageGradient" x1="0%" y1="0%" x2="0%" y2="100%" spreadMethod="pad">
+				<stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+				<stop offset="100%" stop-color="#EFE9DE" stop-opacity="1" />
+				
+			</linearGradient>
+			
+		</defs>
+		<g id="_4TdH8LkOEDKuC4xY9utmEg">
+			<ellipse cx="206" cy="60" rx="6" ry="6" fill="#FFF" stroke="#888" stroke-width="2.0" />
+			<line x1="206" y1="66" x2="206" y2="97" stroke-width="2.0" stroke="#888" />
+			<line x1="192" y1="78" x2="220" y2="78" stroke-width="2.0" stroke="#888" />
+			<line x1="206" y1="97" x2="195" y2="115" stroke-width="2.0" stroke="#888" />
+			<line x1="206" y1="97" x2="216" y2="115" stroke-width="2.0" stroke="#888" />
+			<text x="206" y="117" text-anchor="middle" font-style="normal" font-weight="normal" fill="black">
+				<tspan x="206" text-anchor="middle" dy="13">Expert</tspan>
+				
+			</text>
+			
+		</g>
+		<g id="_5SaqkLkOEDKuC4xY9utmEg">
+			<ellipse cx="320" cy="190" rx="50" ry="28" fill="url(#greyGradient)" stroke="#CCCCCC" stroke-width="1.0" />
+			<g transform="translate(270,170.0)">
+				<text x="50" y="0" text-anchor="middle" font-style="normal" font-weight="bold" fill="#033656">
+					<tspan x="50" text-anchor="middle" dy="13">Create</tspan>
+					<tspan x="50" text-anchor="middle" dy="13">Knowledge</tspan>
+					<tspan x="50" text-anchor="middle" dy="13">Base</tspan>
+					
+				</text>
+				
+			</g>
+			
+		</g>
+		<g id="_7guVMLkOEDKuC4xY9utmEg">
+			<ellipse cx="210" cy="190" rx="50" ry="28" fill="url(#greyGradient)" stroke="#CCCCCC" stroke-width="1.0" />
+			<g transform="translate(160,170.0)">
+				<text x="50" y="0" text-anchor="middle" font-style="normal" font-weight="bold" fill="#033656">
+					<tspan x="50" text-anchor="middle" dy="13">Save</tspan>
+					<tspan x="50" text-anchor="middle" dy="13">Knowledge</tspan>
+					<tspan x="50" text-anchor="middle" dy="13">Base</tspan>
+					
+				</text>
+				
+			</g>
+			
+		</g>
+		<g id="_9YGtkLkOEDKuC4xY9utmEg">
+			<ellipse cx="100" cy="190" rx="50" ry="28" fill="url(#greyGradient)" stroke="#CCCCCC" stroke-width="1.0" />
+			<g transform="translate(50,170.0)">
+				<text x="50" y="0" text-anchor="middle" font-style="normal" font-weight="bold" fill="#033656">
+					<tspan x="50" text-anchor="middle" dy="13">Load</tspan>
+					<tspan x="50" text-anchor="middle" dy="13">Knowledge</tspan>
+					<tspan x="50" text-anchor="middle" dy="13">Base</tspan>
+					
+				</text>
+				
+			</g>
+			
+		</g>
+		<g id="_BNHQQLkPEDKuC4xY9utmEg">
+			<ellipse cx="290" cy="30" rx="50" ry="28" fill="url(#greyGradient)" stroke="#CCCCCC" stroke-width="1.0" />
+			<g transform="translate(240,16.5)">
+				<text x="50" y="0" text-anchor="middle" font-style="normal" font-weight="bold" fill="#033656">
+					<tspan x="50" text-anchor="middle" dy="13">Load</tspan>
+					<tspan x="50" text-anchor="middle" dy="13">Dataset</tspan>
+					
+				</text>
+				
+			</g>
+			
+		</g>
+		<g id="_OTROMLkPEDKuC4xY9utmEg">
+			<ellipse cx="140" cy="30" rx="50" ry="28" fill="url(#greyGradient)" stroke="#CCCCCC" stroke-width="1.0" />
+			<g transform="translate(90,16.5)">
+				<text x="50" y="0" text-anchor="middle" font-style="normal" font-weight="bold" fill="#033656">
+					<tspan x="50" text-anchor="middle" dy="13">Evaluate</tspan>
+					<tspan x="50" text-anchor="middle" dy="13">Row</tspan>
+					
+				</text>
+				
+			</g>
+			
+		</g>
+		<g id="_HORhcLkPEDKuC4xY9utmEg">
+			<polyline fill="none" stroke-width="1" stroke="#000000" points="253,57 222,80" />
+			
+		</g>
+		<g id="_Hs3h8LkPEDKuC4xY9utmEg">
+			<polyline fill="none" stroke-width="1" stroke="#000000" points="287,162 222,105" />
+			
+		</g>
+		<g id="_IDstkLkPEDKuC4xY9utmEg">
+			<polyline fill="none" stroke-width="1" stroke="#000000" points="208,162 207,132" />
+			
+		</g>
+		<g id="_IdtwELkPEDKuC4xY9utmEg">
+			<polyline fill="none" stroke-width="1" stroke="#000000" points="130,162 190,106" />
+			
+		</g>
+		<g id="_VlQ1IbkPEDKuC4xY9utmEg">
+			<polyline fill="none" stroke-width="1" stroke="#000000" points="168,57 190,76" />
+			
+		</g>
+		
+	</g>
+	
+</svg>
