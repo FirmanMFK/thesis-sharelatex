@@ -25,7 +25,7 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[11pt, oneside]{Thesis} % The default font size and one-sided printing (no margin offsets)
+\documentclass[11pt, oneside, utf8,latin1]{Thesis} % The default font size and one-sided printing (no margin offsets)
 
 %LINK TO ASPARTIX: http://rull.dbai.tuwien.ac.at:8080/ASPARTIX/viewOutputGraph.faces
 %for checking validity of the results returned by our online framework
@@ -61,7 +61,6 @@
 \usepackage{verbatim}
 \usepackage{color}
 \usepackage{multirow}
-\usepackage[latin1]{inputenc}
 \usepackage[acronym,toc,nonumberlist]{glossaries}
 \usepackage{graphicx}
 \usepackage{pgf}
@@ -78,7 +77,7 @@
 \usepackage{natbib}
 \usepackage{bibentry}
 \usepackage{enumitem}
-
+\usetikzlibrary{arrows}
 
 
 
@@ -89,7 +88,7 @@
 \graphicspath{{Pictures/}} % Specifies the directory where pictures are stored
 
 \usepackage[square, numbers, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers'
-\hypersetup{urlcolor=blue, colorlinks=true} % Colors hyperlinks in blue - change to black if annoying
+\hypersetup{urlcolor=blue, colorlinks=trueutf8} % Colors hyperlinks in blue - change to black if annoying
 \title{\ttitle} % Defines the thesis title - don't touch this
 
 \begin{document}

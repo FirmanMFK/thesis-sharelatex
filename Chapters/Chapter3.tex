@@ -30,7 +30,24 @@ In the next phase of the experiment the same data set is used to evaluate machin
 
 With respect to predictive capacity we are trying to answer the following question: ``Given data associated with an individual undertaking a task can we predict their mental workload.''
 
-A data set was provided by Dr. Longo from his previous work in Usability. The data set has the following rows:
+A data set was provided by Dr. Longo from his previous work in usability. The data set has the following columns (shown with example rows):
+
+\begin{center}
+  \begin{tabular}{ | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l |}
+    \hline
+expID & user & userID & taskID & time & mental & temporal & psychological & performance & effort & central & response & visual & auditory & spatial & verbal & manual & speech & arousal & bias & intention & knowledge & parallelism & skill & difficulty \hline \hline
+4 & imac1@gabi.com & 1 & 8 & 251 & 4 & 1 & 1 & 50 & 50 & 32 & 14 & 3 & 23 & 34 & 3 & 6 & 37 & 21 & 66 & 37 & 71 & 1 & 82 & 19.0 \hline
+5 & imac1@gabi.com & 1 & 1 & 186 & 50 & 62 & 5 & 67 & 20 & 13 & 7 & 15 & 3 & 21 & 17 & 13 & 3 & 4 & 4 & 72 & 70 & 13 & 86 & 11.5 \hline
+6 & imac2@gabi.com & 2 & 8 & 114 & 30 & 30 & 30 & 68 & 34 & 33 & 67 & 60 & 60 & 20 & 33 & 20 & 20 & 60 & 34 & 50 & 80 & 60 & 25 & 39.125 \hline
+7 & imac2@gabi.com & 2 & 1 & 26 & 28 & 31 & 20 & 99 & 28 & 44 & 59 & 56 & 30 & 53 & 27 & 58 & 32 & 39 & 31 & 30 & 61 & 36 & 33 & 44.875 \hline
+    \hline
+  \end{tabular}
+\end{center}
+
+
+
+choice of construct...
+
 
 \subsection{Defeasible Reasoning Experiment}
 
@@ -43,7 +60,7 @@ The expert uses the software to input their knowledge base.
 The knowledge based is verified using same rows in the data set. It is examined in order to determine whether or not the knowledge base is free from error.
 Once the knowledge base has been verified results can be determined. The results that are the value of the construct (MWL) and the degree of truth of the construct. These values are determined for the grounded semantic and for the preferred extension with the highest degree of truth. 
 
-\subsection{Machine Learning Experiment}
+\subsection{Supervised Machine Learning Experiment}
 
 
 2. ML Experiment: Input: the same data set as experiment 1.
@@ -51,6 +68,10 @@ Output: The results of machine learning algorithms after running on the data set
 
 Comparison of predictive capacity.
 Task time is often taken as an objective value when looking at mental work load.
+
+The representation of an abstract construct as a regression problem. For many problems 
+
+
 
 
 
@@ -114,6 +135,5 @@ There are additional requirements of the software that are standard features in 
 
 
 \section{Conclusions}
-
 
 This chapter presented the experiment undertaken to evaluate the hypothesis of this research project. The experiment will consist of a test of machine learning methods and defeasible reasoning. A software design is outlined order to undertake the defeasible reasoning portion of the evaluation. The design of the software includes the requirements for the user to be able to draw an argumentation framework that models their knowledge base and determine activation of the arguments within that framework by drawing membership functions.

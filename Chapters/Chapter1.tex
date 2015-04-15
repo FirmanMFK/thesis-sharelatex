@@ -29,11 +29,13 @@ Doctors may have to treat unconscious patients in emergency situations. Without 
 
 In the context of modern warfare, military strikes may put the lives of civilians at risk. The decision to attack is a difficult one made by military commanders. It is made more difficult in the case of guerrilla warfare, in which information is often conflicting as enemy combatants are embedded amongst ordinary citizens.
 
-The rapid evolution of technology is increasing the amount of data that can be gathered about these problems. Product sentiment information can be gathered from social media; improved patient monitoring gives us better insight into a patient’s condition; government agencies gather information from emails and phone calls. The abundance of information associated with these problems make unaided decision making impossible. Decisions Support Systems attempt to aid decision makers in solving these problems by presenting information in a manner that makes it easier to reason about.
-In the context of the many definitions in the literature, Turban et al.\cite{turban2005decision} explain that the central purpose of Decision Support Systems is to support and improve decision making. Many DSS make use of intelligent components to provide an improved understanding of the problem at hand to decision makers. The purpose of this research study is to investigate two of the approaches used in the design of these intelligent components; learning based approaches and knowledge based ones.
-The goal of prediction in argumentation systems is reflected in the branch of ML known as supervised machine learning; learning that makes predictions based on a labeled training set of data. Machine learning techniques can provide reasonable predictions based on data, however, they often fall short in presenting their process to the user. ML is automatic and is unsuitable for the representation of complex constructs such as an expert's knowledge.
-An expert generally doesn't look at some variables and apply a function to them. She considers the information at hand and reasons about it. Within her reasoning process she may make assumptions that get changed as a result of the reasoning process. This reasoning process is modeled in Defeasible Reasoning which offers a solution to the automatic process of ML.
+The rapid evolution of technology is increasing the amount of data that can be gathered about these problems. Product sentiment information can be gathered from social media; improved patient monitoring gives us better insight into a patient’s condition; government agencies gather information from emails and phone calls. The abundance of information associated with these problems make unaided decision making impossible. 
 
+Decisions Support Systems attempt to aid decision makers in solving these problems by presenting information in a manner that makes it easier to reason about. In the context of the many definitions in the literature, Turban et al.\cite{turban2005decision} explain that the central purpose of Decision Support Systems is to support and improve decision making. Many DSS make use of intelligent components to provide an improved understanding of the problem at hand to decision makers. The purpose of this research study is to investigate two of the approaches used in the design of these intelligent components; learning based approaches and knowledge based ones.
+
+The goal of prediction in argumentation systems is reflected in the branch of ML known as supervised machine learning; learning that makes predictions based on a labeled training set of data. Machine learning techniques can provide reasonable predictions based on data, however, they often fall short in presenting their process to the user. ML is automatic and is unsuitable for the representation of complex constructs such as an expert's knowledge.
+
+An expert generally doesn't look at some variables and apply a function to them. She considers the information at hand and reasons about it. Within her reasoning process she may make assumptions that get changed as a result of the reasoning process. This reasoning process is modeled in Defeasible Reasoning which offers a solution to the automatic process of ML.
 
 %Artificial Intelligence is an applied science research domain, in that it takes knowledge from other domains such as Philosophy and Psychology and applies them to contribute to it’s development. 
 
@@ -42,9 +44,17 @@ An expert generally doesn't look at some variables and apply a function to them.
 %----------------------------------------------------------------------------------------
 
 \section{Background}
-The process by which humans reason has typically been examined in the fields of Philosophy and Psychology but has been further investigated by the field of computer science in the last 30 years or so. Several mechanisms by which humans reason have identified.
-Deductive reasoning in which conclusions logically follow from a set of premises falls into a category known as monotonic reasoning. In monotonic reasoning proof of the conclusions is embedded in the premises.
+
+The process by which humans reason has typically been examined in the fields of Philosophy and Psychology but has been further investigated by the field of computer science in the last 30 years or so. This investigation began in order to develop ``expert systems''; systems that attempt to model the reasoning of an expert in a computer.
+
+In an expert system a knowledge engineer typically uses a number of knowledge elicitation techniques to compile expertise in a particular domain. The knowledge engineer inputs this knowledge into the system in the form of rule sets. These rule sets can be used by an inference engine to produce useful output based on input data. 
+
+In order to build inference engines, computer scientists have looked to Psychology and Philosophy to develop a greater understanding of how reasoning works. Several mechanisms by which humans reason have identified.
+
+Deductive reasoning is reasoning in which conclusions logically follow from a set of premises falls into a category known as monotonic reasoning. In monotonic reasoning proof of the conclusions is embedded in the premises.
+
 Defeasible Reasoning was defined by Pollock as reasoning in which ``the premises taken by themselves may justify accepting the conclusion, but when additional information is added, that conclusion is no longer justified.''\cite{pollock1987defeasible}
+
 It is possible to model defeasible reasoning using argumentation theory, in particular using abstract argumentation frameworks as described by Dung.\cite{dung1995acceptability} An Argumentation Framework is a directed graph in which arguments are modeled as nodes. Deasible relationships between those arguements are modeled as edges. An overview of this technique is given in Chapter 2.
 
 Argumentation systems have many other characteristics that make their use in decision support systems advantageous. Argumentation systems can reason based on incomplete or corrupt data and explain how an algorithm arrived at a conclusion. Through the process of visualising a knowledge base using an argumentation tool an expert may gain insight into his own ideas and refine them. 
@@ -68,13 +78,12 @@ The literature in the domain suggests that argumentation theory can perform as w
 %highlight the problem and the research question.
 
 The designer of a software system that aims to unlock the full potential of this data needs to have an understanding of the different approaches to working with that data. These approaches classically remain in the domain of Data Science, however, as more systems require intelligent components software engineering professionals need to have an understanding of these techniques as well. This is no small task as many of these approaches have a steep learning curve and may involve years of training. While a software engineer may never implement a full intelligent component they still need an understanding of the techniques in order to select the correct library code and optimised it accordingly.
+
 This has motivated the publication of many books in recent years dedicated to machine learning. While many developers are becoming familiar with ML topics such as regression analysis or K-Means few are becoming familiar with argumentation theory. AT is a relative newcomer to the scene and it hasn’t yet made the same transition into the mainstream that ML has.
+
 This research project aims to provide a comparison between Argumentation Theory, Supervised Machine Learning and Unsupervised Machine Learning. The case is made for knowledge-base paradigms as practical alternatives to learning based ones. This research outlines the strengths of both techniques and provides guidelines on what problems a particular approach may be suited for.
 
 There have been comparisons made in the literature between argumentation theory and machine learning.
-
-
-The representation of a construct -MWL
 
 ``To what extent can an implementation of Defeasible Reasoning enhance the representation of a construct and support prediction capacity in comparison with Machine Learning?''
 
