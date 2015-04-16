@@ -73,14 +73,18 @@ It is with this in mind that an experiment is designed to compare these techniqu
   
 \end{itemize}
 
+\subsection{Choice of Construct}
 
-Develop software that allows an expert to model their knowledge base as a defeasible phenomenon. From this knowledge base the software will return a numeric value that is a representation of the construct that the expert is modeling. This numeric value is a representation of the expert's opinion of what the construct should be.
-In the next phase of the experiment the same data set is used to evaluate machine learning. Machine learning's ability to represent a construct.
+In order to perform the experiment a subject must be chosen. Access to an expert in the field of this subject needs to be secured as well as a data set that can be used to evaluate the representation of the construct. Suitable constructs don't have a conclusive easy to assess for of measurement such as  cancer, intelligence or personality. 
 
+For this experiment Human Mental Workload was chosen as the construct. Mental Workload can loosely defined as the amount of effort it takes a user to perform a task. Researchers across a wide variety of domains study MWL, particularly those with interests in human performance and machine usability. \cite{meshkati2011human} outlines the problems that are associated with defining, quantifying and measuring MWL. Generalising MWL is difficult as it is a multifaceted phenomenon that varies depending on context. \cite{meshkati2011human} defines MWL as ``the operator's evaluation of the attentional load margin (between their motivated capacity and the current task demands) while achieving task performance in a mission-relevant context.'' Possible ways of measuring MWL include objectively (using task time, physiological indicators or task success) or subjectively (by having the participant answer introspective questions about their perceived state while completing the task).
 
-With respect to predictive capacity we are trying to answer the following question: ``Given data associated with an individual undertaking a task can we predict their mental workload.''
+One possible way of measuring MWL is using the NASA-Task Load Index (TLX). NASA-TLX is an introspective questionnaire in which participants subjectively assess their mental demand, physical demand, temporal demand, performance, effort and frustration after completing the task. Participants are then asked to compare the importance of these factors in their completion of the task. 
 
-A data set was provided by Dr. Longo from his previous work in usability. The data set has the following columns (shown with example rows):
+Another possible way to determine that MWL was high for a given task is based on the task completion time. If all variables are equal then task time can help us determine which tasks were most difficult.
+
+Dr. Luca Longo from the DIT School of Computing is an expert in the area of MWL having completed his doctoral dissertation in formulating MWL as a defeasible construct. He has kindly volunteered his knowledge base to be used within the experiment. A data set was provided by Dr. Longo from previous research carried out in the field of web usability. The data set has the following columns (shown with example rows):
+
 \begin{table}[]
 \begin{center}
   \begin{tabular}{ | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l |}
@@ -97,43 +101,63 @@ expID & user & userID & taskID & time & mental & temporal & psychological & perf
 \label{tab:my_label}
 \end{table}
 
-\cite{longo2014formalising} describes the rows in the dataset as follows:
+\citep{longo2014formalising} describes the rows in the dataset as follows:
 
 \begin{table}[]
 \centering
-\begin{tabular}{l|p{8cm}}
+\begin{tabular}{|l|p{8cm}|}
+
+\\ \hline
  expID & An ID that uniquely identifies the experiment instance \\ \hline
  user & The participant's email address \\ \hline
  userID & The participant's unique ID \\ \hline
  taskID & The experiment task ID undertaken by the participant \\ \hline
  time & The time taken by the participant to complete the task \\ \hline
- mental & The mental demand of the task, based on the degree of difficulty of the designed task \\ \hline
- temporal & The temporal demand, based on the time spent on the task\\ \hline
- psychological & The user email address \\ \hline
- performance & The overall performance (degree of accomplishment) \\ \hline
- effort & The effort expended completing the task (measured by analysis of keyboard and mouse usage) \\ \hline
- central & The user email address \\ \hline
- response & The user email address \\ \hline
- visual & The user email address \\ \hline
- auditory & The user email address \\ \hline
- spatial & The user email address \\ \hline
- verbal & The user email address \\ \hline
- manual & The user email address \\ \hline
- manual & The user email address \\ \hline
- speech & The user email address \\ \hline
- arousal & The user email address \\ \hline
- bias & The user email address \\ \hline
- intention & The user email address \\ \hline
- knowledge & The user email address \\ \hline
- parallelism & The user email address \\ \hline
- skill & The user email address \\ \hline
- difficulty & The user email address \\ \hline
- 
+ mental & The mental demand of the task, the answer to the question ``How much mental and perceptual activity was required (e.g., thinking, deciding, calculating, remembering, looking, searching, etc.)? Was the task easy (low mental demand) or complex (high mental demand)?'' on a scale from 0 - 100 \\ \hline
+ temporal & The temporal demand, the answer to the question ``How much time pressure did you feel due to the rate or pace at which the tasks or task elements occurred? Was the pace slow and leisurely (low temporal demand) or rapid and frantic (high temporal demand)?'' on a scale from 0 - 100\\ \hline
+ psychological & The effort expended completing the task, the answer to the question ``How much conscious mental effort or concentration was required? Was the task almost automatic (low effort) or it required total attention (high effort)?'' \\ \hline
+ performance & The effort expended completing the task, the answer to the question ``How successful do you think you were in accomplishing the goal of the task? How satisfied were you with your performance in accomplishing the goal?'' on a scale from 0 - 100 \\ \hline
+ effort & The effort expended completing the task, the answer to the question ``How much conscious mental effort or concentration was required? Was the task almost automatic (low effort) or it required total attention (high effort)?''on a scale from 0 - 100 \\ \hline
+ central & The effort expended completing the task, the answer to the question ``'' on a scale from 0 - 100 \\ \hline
+ response & The effort expended completing the task, the answer to the question ``'' on a scale from 0 - 100 \\ \hline
+ visual & The effort expended completing the task, the answer to the question ``How much attention was required for executing the task based on the information visually received (through eyes)?'' on a scale from 0 - 100 \\ \hline
+ auditory & The effort expended completing the task, the answer to the question ``How much attention was required for executing the task based on the information auditorily received (ears)?'' on a scale from 0 - 100 \\ \hline
+ spatial & Spatial workload, the answer to the question ``How much attention was required for spatial processing (spatially pay attention around you)?'' on a scale from 0 - 100 \\ \hline
+ verbal & Verbal workload, the answer to the question ``How much attention was required for verbal material (eg. reading or processing linguistic material or listening to verbal conversations)?'' on a scale from 0 - 100 \\ \hline
+ manual & Manual effort, the answer to the question ``How much attention was required for manually respond to the task (eg. keyboard/mouse usage)?'' on a scale from 0 - 100 \\ \hline
+ speech & The effort expended through speech, the answer to the question ``How much attention was required for producing the speech response(eg. engaging in a conversation or talk or answering questions)?'' on a scale from 0 - 100 \\ \hline
+ arousal & The degree to which the participant was aroused, the answer to the question ``Were you aroused during the task? Were you sleepy, tired (low arousal) or fully awake and activated (high arousal)?'' on a scale from 0 - 100 \\ \hline
+ bias & The context bias, ``How often interruptions on the task occurred? Were distractions (mobile, questions, noise, etc.) not important (low context bias) or did they influence your task (high context bias)?'' on a scale from 0 - 100 \\ \hline
+ intention &  The effort expended completing the task, the answer to the question ``Were you motivated to complete the task?'' on a scale from 0 - 100 \\ \hline
+ knowledge & The knowledge of the user before the experiment, the answer to the question ``How much experience do you have in performing the task or similar tasks on the same website?'' on a scale from 0 - 100 \\ \hline
+ parallelism & The degree to which a user multi-tasked, the answer to the question ``Did you perform just this task (low parallelism) or were you doing other parallel tasks (high parallelism) (eg. multiple tabs/windows/programs)?'' on a scale from 0 - 100 \\ \hline
+ skill & The effect of the participants skill level on completing the task, the answer to the question ``Did your skills have no influence (low) or did they help to execute the task (high)?'' on a scale from 0 - 100 \\ \hline
+ difficulty & \( \frac{1}{8} \) ((solving/deciding) + (response) + (task/space) + (verbal material) + (visual resources) + (auditory resources) + (manual response) + (speech response)) \\ \hline
  
 \end{tabular}
 \caption{Caption}
 \label{tab:my_label}
 \end{table}
+
+
+  \item A system based on defeasible reasoning must be designed.
+  \item an experiment built on top of this must be chosen 
+
+\subsection{Machine Learning Software}
+
+In order to develop 
+
+
+
+
+
+Develop software that allows an expert to model their knowledge base as a defeasible phenomenon. From this knowledge base the software will return a numeric value that is a representation of the construct that the expert is modeling. This numeric value is a representation of the expert's opinion of what the construct should be.
+In the next phase of the experiment the same data set is used to evaluate machine learning. Machine learning's ability to represent a construct.
+
+
+With respect to predictive capacity we are trying to answer the following question: ``Given data associated with an individual undertaking a task can we predict their mental workload.''
+
+
 
 
 

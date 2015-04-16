@@ -41,6 +41,14 @@
 \end{center}
 
 
+Time to compute simple knowledge base on 440 rows of data: 1m4.041s
+Time to compute expert knowledge base on 440 rows of data: 1m44.001s
+
+
+Why is the implementation slow?
+
+PHP needs to spin up a new process for each row using exec and read the output.
+Computing semantics is an NP complete problem.
 
 %-----------------------------------
 %	SUBSECTION 2
