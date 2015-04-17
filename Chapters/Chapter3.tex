@@ -23,9 +23,7 @@ In order to answer this question an experiment demonstrating the ability of DR t
 %	EXPERIMENT DESIGN
 %----------------------------------------------------------------------------------------
 
-\section{Experiment Design}
-
-\subsection{Representation of a Construct}
+\section{Representation of a Construct}
 In order to answer the research question posed at the beginning of this dissertation the idea of a construct must be defined.
 \cite{price2013research} discusses measurement in the context of psychology. He explains that many variables are simple to determine such as height, age, sex. We can gather this information by simply observing it. By contrast, a construct can be considered to be as a non-physical thing that cannot be simply measured.\footnote{For the purpose of this experiment, time is not a construct. Time can be measured with a watch.} 
 
@@ -54,7 +52,7 @@ This method is problematic as it is time consuming and may not yield accurate re
 
 Alternatively, the output can be compared with columns already present in the data but not used in the final result. It might be determined that there is a strong correlation between the construct and some other variable. If this variable is not included in the determination of the construct then we can measure the accuracy of our construct by seeing how it correlates to this variable.
 
-\subsection{Implementing Construct Representation}
+\section{Implementing Construct Representation}
 
 Constructs are typically made up of interleaved ideas and variables which makes their representation in computer systems complex. The structure of constructs varies and as a result different models may be developed to measure them. Similarly, different computational techniques may be used to represent these models.
 
@@ -73,7 +71,7 @@ It is with this in mind that an experiment is designed to compare these techniqu
   
 \end{itemize}
 
-\subsection{Choice of Construct}
+\section{Choice of Construct}
 
 In order to perform the experiment a subject must be chosen. Access to an expert in the field of this subject needs to be secured as well as a data set that can be used to evaluate the representation of the construct. Suitable constructs don't have a conclusive easy to assess for of measurement such as  cancer, intelligence or personality. 
 
@@ -139,66 +137,40 @@ expID & user & userID & taskID & time & mental & temporal & psychological & perf
 \label{tab:my_label}
 \end{table}
 
+\section{Machine Learning Software}
 
-  \item A system based on defeasible reasoning must be designed.
-  \item an experiment built on top of this must be chosen 
+In order to implement the experiment a suite of machine learning software needed to be procured. Designing and implementing a suite of ML algorithms is a time consuming process. Moreover, a naive implementation of ML software will result in software that performs poorly. For these reasons, it was decided to use an existing ML tool set. Proprietary options include Oracle Data Miner or SAS Enterprise Miner while open source alternatives include the R programming languge or Rapid Miner. It was decided that WEKA would be a good fit for the project. 
 
-\subsection{Machine Learning Software}
-
-In order to develop 
-
-
-
-
-
-Develop software that allows an expert to model their knowledge base as a defeasible phenomenon. From this knowledge base the software will return a numeric value that is a representation of the construct that the expert is modeling. This numeric value is a representation of the expert's opinion of what the construct should be.
-In the next phase of the experiment the same data set is used to evaluate machine learning. Machine learning's ability to represent a construct.
-
-
-With respect to predictive capacity we are trying to answer the following question: ``Given data associated with an individual undertaking a task can we predict their mental workload.''
-
-
-
-
-
-
-
-
-\subsection{Defeasible Reasoning Experiment}
-
-
-1. DR Experiment: Input: an expert's knowledge base modeled with respect to a data set and a data set. Output: A numeric value that represents the construct being modeled.
-
-
-Software is designed and implemented in order to elicit a knowledge base from an expert.
-The expert uses the software to input their knowledge base.
-The knowledge based is verified using same rows in the data set. It is examined in order to determine whether or not the knowledge base is free from error.
-Once the knowledge base has been verified results can be determined. The results that are the value of the construct (MWL) and the degree of truth of the construct. These values are determined for the grounded semantic and for the preferred extension with the highest degree of truth. 
-
-\subsection{Supervised Machine Learning Experiment}
-
-
-2. ML Experiment: Input: the same data set as experiment 1.
-Output: The results of machine learning algorithms after running on the data set. Error rates.
-
-Comparison of predictive capacity.
-Task time is often taken as an objective value when looking at mental work load.
-
-The representation of an abstract construct as a regression problem. For many problems 
-
-
-
-
+WEKA (Waikato Environment for Knowledge Analysis) is an open source ML workbench developed at the University of Waiko. WEKA is widely used in both academia and business. It has a simple user interface which provides feedback related to model performance in a clear and concise format. It contains implementations of machine learning algorithms across a range of typologies which allows for a large comparison with defeasible reasoning. As it is an open-source project it is possible to investigate the source code to gain a greater understanding of the underlying techniques. WEKA has a low barrier to entry; this is important to save time as a significant portion of the project will involve the implementation of defeasible reasoning software.
 
 %----------------------------------------------------------------------------------------
 %	SOFTWARE DESIGN
 %----------------------------------------------------------------------------------------
 
-\section{Software Design}
+\section{Defeasible Reasoning Software Design}
 
-In order to demonstrate how DR can model a complex construct software was designed that would allow an expert to input their knowledge base as directed graph.
+In order to demonstrate how DR can model a complex construct, software was designed that would allow an expert to input their knowledge base as directed graph. There is no standard way to implement a system based on defeasible reasoning. Section ~\ref{sec:dr_implementations} outlines approaches taken by others in the past to implement such systems. By drawing on these designs and identifying use cases for this project a new DR implementation can be designed. 
+
+\subsection{Use cases}
+
+The users of the system are both the experiment administrator and the expert/knowledge engineer. In the context of the experiment the role of knowledge engineer is played by the experimenter.
+
+\begin{itemize}
+  \item ``As an expert/KE I want to input my/a knowledge base as a defeasible construct.''
+  \item ``As an expert/KE I want to model my/an expert's knowledge base in a way that will produce a numerical output given some numerical input.''
+  \item ``As a system user I want to be able to save my work and retrieve work I have done previously.''
+  \item ``As a system user, when I open the program what I was last working on should be displayed or a new project should open.''
+  \item ``As a system user I should be able to retrieve data to test my knowledge base with. I should be able to investigate that data and investigate the results of running my knowledge-base on that data.''
+  \item ``As an experimenter I should be able to collect results from running an experts knowledge-base on a full set of data.''
+\end{itemize}
+
+By investigating each of these user stories a system can be designed suitable for the purposes of the experiment.
+
 \subsection{Defeasible Knowledge Base}
-The expert must be able to model their knowledge base as a defeasible process using a directed graph. One approach that could be taken in designing is to have the user input their knowledge base as a list of nodes and attack relations. The system designer specifies a format that the user conforms to and this can be then parsed by the software. An example of such a format inspired by JSON would be the following:
+
+The expert or knowledge engineer must be able to model their knowledge base as a defeasible process. This process is being modeled as an Argumentation Framework as proposed by \cite{dung1995acceptability}. To reiterate, an argumentation framework is a set of arguments and attack relations between those arguments. In the case of MWL, an example of an argument is ``if the user's effort is low, this implies that the user's mental workload is low''. Another is ``if the user's performance is low, this implies that the user's mental workload is high''. It can be said that the former attacks the later since if the user doesn't make any effort the performance will be low. The set of attacks contains attacks of this form. These arguments and attacks must be input into the system in a format that allows them to be processed.
+
+One approach that could be taken in designing is to have the user input their knowledge base as a list of nodes and attack relations. The system designer specifies a format that the user conforms to and this can be then parsed by the software. An example of such a format inspired by JSON would be the following:
 
 \begin{lstlisting}
 "knowledge_base" {
@@ -206,10 +178,10 @@ The expert must be able to model their knowledge base as a defeasible process us
                     "Low Effort->Low MWL", 
                     "High Effort->High MWL", 
                     "Low Performance->High MWL", 
-                    "Low Effort & Low Performance->Low MWL"
+                    "High Performance->Low MWL"
                 ],
     "attacks":  [
-        ["Low Effort & Low Performance->Low MWL", "Low Performance->High MWL"]
+        ["Low Effort->Low MWL", "Low Performance->High MWL"]
     ]
 }
 \end{lstlisting}
@@ -245,8 +217,38 @@ The most reliable way elicit membership and output functions from the user is to
 
 There are two additional requirements that need to be taken into consideration when allowing the user to develop an AF. The first is the concept of rebutting attacks. In order to model rebutting attacks the user must be able to draw edges in the graph with arrows on both ends. The second is modeling the concept of mitigating arguments. Some arguments weigh in on the final evaluation of the semantic without actually contributing to the value of the construct. These arguments must be taken into consideration but have their output ignored in the final value. 
 
-
 There are additional requirements of the software that are standard features in many software systems and are provided here for the convenience of the user and to allow the experiment to proceed smoothly. These include allowing the user to save a knowledge base, load a previously generated knowledge base, load a data set and compute the results of applying the knowledge base to a row in the dataset.
+
+
+\section{Experiment}
+
+From this knowledge base the software will return a numeric value that is a representation of the construct that the expert is modeling. This numeric value is a representation of the expert's opinion of what the construct should be.
+In the next phase of the experiment the same data set is used to evaluate machine learning. Machine learning's ability to represent a construct.
+
+With respect to predictive capacity we are trying to answer the following question: ``Given data associated with an individual undertaking a task can we predict their mental workload.''
+
+\subsection{Defeasible Reasoning Experiment}
+
+
+1. DR Experiment: Input: an expert's knowledge base modeled with respect to a data set and a data set. Output: A numeric value that represents the construct being modeled.
+
+
+Software is designed and implemented in order to elicit a knowledge base from an expert.
+The expert uses the software to input their knowledge base.
+The knowledge based is verified using same rows in the data set. It is examined in order to determine whether or not the knowledge base is free from error.
+Once the knowledge base has been verified results can be determined. The results that are the value of the construct (MWL) and the degree of truth of the construct. These values are determined for the grounded semantic and for the preferred extension with the highest degree of truth. 
+
+\subsection{Supervised Machine Learning Experiment}
+
+
+2. ML Experiment: Input: the same data set as experiment 1.
+Output: The results of machine learning algorithms after running on the data set. Error rates.
+
+Comparison of predictive capacity.
+Task time is often taken as an objective value when looking at mental work load.
+
+The representation of an abstract construct as a regression problem. For many problems 
+
 
 
 \section{Conclusions}
