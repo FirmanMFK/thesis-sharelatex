@@ -4,7 +4,7 @@
 
 \label{Chapter4} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-\lhead{Chapter X. \emph{Chapter Title Here}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+\lhead{Chapter 4. \emph{Implementation}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
@@ -12,304 +12,207 @@
 
 \section{Introduction}
 
-In order to perform the experiment it was necessary to implement the defeasible reasoning software as designed in the previous chapter.  
-%   \begin{figure}[h!]
-% \begin{center}
-% \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm, semithick, scale=0.95, ,transform shape, align=left] 
-% \tikzstyle{every state}=[fill=white,draw=black,text=black, font=\tiny, minimum size=5mm] 
-%  \tikzstyle{EdgeStyle}=[bend left, font=\tiny] 
- 
-%  %central
-% \node[state] at(-8,1) (SD1) {SD1}; 
-% \node[state] at(-7,0) (SD2) {SD2};
-% \node[state] at(-6,0) (SD3) {SD3};
-% \node[state] at(-5,1) (SD4) {SD4};
+This chapter describes the implementation of an experiment undertaken to answer the research question proposed by this thesis. A critical first step in performing that experiment is the implementation of a defeasible reasoning system. This is taken as a starting point for this chapter. 
 
-% %mental demand
-% \node[state] at(-8,2) (MD1) {MD1};
-% \node[state] at(-7,3) (MD2) {MD2};
-% \node[state] at(-6,3) (MD3) {MD3};
-% \node[state] at(-5,2) (MD4) {MD4};
+The application architecture and programming decisions that were made are explained and justified with respect to how they support the experiment. The challenges associated with implementing a system of this nature are presented along with the solutions pursued to overcome those challenges.
 
-% %context bias
-% \node[state] at(-8,4.5) (CB1) {CB1};
-% \node[state] at(-7,4) (CB2) {CB2};
-% \node[state] at(-6,4) (CB3) {CB3};
-% \node[state] at(-5,4.5) (CB4) {CB4};
+The implementation of the experiment is then discussed. Specific details of how events unfolded are mentioned where they are relevant to discussion in the evaluation section.
 
-% %stress
-% \node[state] at(-7,5.5) (PS1) {PS1};
-% \node[state] at(-6,5.5) (PS2) {PS2};
+\section{Defeasible Reasoning Software Implementation}
 
-% %effort
-% \node[state] at(-8,8) (EF1) {EF1};
-% \node[state] at(-7,8) (EF2) {EF2};
-% \node[state] at(-6,8) (EF3) {EF3};
-% \node[state] at(-5,8) (EF4) {EF4};
+The research question of this dissertation deals specifically with an implementation of defeasible reasoning. The design of the system was outlined in chapter ~\ref{Chapter3} without any specific implementation details discussed. 
 
-% %
-% \node[state] at(-4,7) (DS1) [double] {DS1};
+It was decided to implement the software as a web application. In the last 10 years web browser technology has improved vastly. Advances such as HTML5 APIs, powerful Javascript engines and mobile technology allows fully featured applications to be developed and run in the browser. 
 
-
-% %motivation mitigating
-% \node[state] at(-8,6.5) (MV3) [double] {MV3};
-% \node[state] at(-7,6.5) (MV5) [double] {MV5};
-% \node[state] at(-5,6.5) (MV2) [double] {MV2};
-% \node[state] at(-6,6.5) (MV4) [double] {MV4};
-
-
-% %motivation forecast
-% \node[state] at(-6,9.5) (MV1) {MV1};
-
-
-% %past knowledge
-% \node[state] at(-7,9.5) (PK1) {PK1};
-% \node[state] at(-5.5,11.5) (PK2) {PK2};
-
-% %skills
-% \node[state] at(-8,10) (SK1) {SK1};
-% \node[state] at(-7.0,11.5) (SK2) {SK2};
-
-% \node[state] at(4,11.5) (SR1) {SR1};
-% \node[state] at(3,11.5) (SR2) {SR2};
-% \node[state] at(2,11.5) (SR3) {SR3};
-% \node[state] at(1,11.5) (SR4) {SR4};
-
-% \node[state] at(-1,11.5) (TS1) {TS1};
-% \node[state] at(-2,11.5) (TS2) {TS2};
-% \node[state] at(-3,11.5) (TS3) {TS3};
-% \node[state] at(-4,11.5) (TS4) {TS4};
-
-% \node[state] at(3.8,0) (VM1) {VM1};
-% \node[state] at(2.8,0) (VM2) {VM2};
-% \node[state] at(1.8,0) (VM3) {VM3};
-% \node[state] at(0.8,0) (VM4) {VM4};
-
-% \node[state] at(-1,0) (VR1) {VR1};
-% \node[state] at(-2,0) (VR2) {VR2};
-% \node[state] at(-3,0) (VR3) {VR3};
-% \node[state] at(-4,0) (VR4) {VR4};
-
-% \node[state] at(-3.8,2.5) (AR1) {AR1};
-% \node[state] at(-2.8,2.5) (AR2) {AR2};
-% \node[state] at(-1.8,2.5) (AR3) {AR3};
-% \node[state] at(-0.8,2.5) (AR4) {AR4};
-
-% \node[state] at(4,1.5) (MR1) {MR1};
-% \node[state] at(3,1.5) (MR2) {MR2};
-% \node[state] at(2,1.5) (MR3) {MR3};
-% \node[state] at(1,1.5) (MR4) {MR4};
-
-% %
-% \node[state] at(-0.5,1.3) (SP1) {SP1};
-% \node[state] at(-1.5,1.3) (SP2) {SP2};
-% \node[state] at(-2.5,1.3) (SP3) {SP3};
-% \node[state] at(-3.5,1.3) (SP4) {SP4};
-
-
-% %
-% \node[state] at(-3.5,10.5) (TD1) {TD1};
-% \node[state] at(-2.5,10.5) (TD2) {TD2};
-% \node[state] at(-1.5,10.5) (TD3) {TD3};
-% \node[state] at(-0.5,10.5) (TD4) {TD4};
-
-% %
-% \node[state] at(-2,6) (PF1) {PF1};
-% \node[state] at(-2,9.3) (PF2) {PF2};
-% \node[state] at(2,10) (PF3) {PF3};
-% \node[state] at(2,6) (PF4) {PF4};
-
-% %
-% \node[state] at(3.8,2.8) (PA1) {PA1};
-% \node[state] at(2.8,2.8) (PA2) {PA2};
-% \node[state] at(1.8,2.8) (PA3) {PA3};
-% \node[state] at(0.8,2.8) (PA4) {PA4};
-
-% \node[state] at(4,6) (AD1a) [double] {AD1a};
-% \node[state] at(4,5) (AD2a) [double] {AD2a};
-% \node[state] at(3.0,4) (AD6c) [double] {AD6c};
-% \node[state] at(1,4) (AD5c) [double] {AD5c};
-% \node[state] at(0.5,6.3) (AD3b) [double] {AD3b};
-% \node[state] at(3.5,7) (AD4f) [double] {AD4f};
-% \node[state] at(1.2,7.5) (AD4c) [double] {AD4c};
-
-
-
-% \node[state] at(-4.2,5.5) (AD3a) [double] {AD3a};
-% \node[state] at(-3.6,4) (AD4a) [double] {AD4a};
-% \node[state] at(-1.8,4) (AD5a) [double] {AD5a};
-% \node[state] at(-0.3,4) (AD5d) [double] {AD5d};
-% \node[state] at(-0.1,5) (AD4d) [double] {AD4d};
-
-% \node[state] at(-3,7) (DS2) [double] {DS2};
-% \node[state] at(-1,7) (DS3) [double] {DS3};
-% \node[state] at(-0.5,6) (DS4) [double] {DS4};
-
-
-% \node[state] at(4,9) (AD5f) [double] {AD5f};
-% \node[state] at(4,10.5) (AD4e) [double] {AD4e};
-% \node[state] at(1,10.5) (AD6b) [double] {AD6b};
-% \node[state] at(1,9) (AD1b) [double] {AD1b};
-
-
-
-% \node[state] at(-3.5,8) (AD5b) [double] {AD5b};
-% \node[state] at(-2,8) (AD5e) [double] {AD5e};
-% \node[state] at(2.3,8) (AD2b) [double] {AD2b};
-% \node[state] at(3.5,8) (AD4b) [double] {AD4b};
-% \node[state] at(-4,9) (AD6a) [double] {AD6a};
-% \node[state] at(-0,9) (AD1c) [double] {AD1c};
-% \node[state] at(0,7.5) (AD2c) [double] {AD2c};
-
-% %\path
-% %(MV3) [bend left, ->,  dashed] edge  node {uc3} (EF1)
-% %(MV5) [bend left, ->,  dashed] edge node {uc4}  (EF2)
-% %(MV4) [bend left, ->,  dashed] edge node {uc1}  (EF3)
-% %(MV2) [bend left, ->,  dashed] edge node {uc2} (EF4)
-% %(AD3a) [bend left, ->,  dashed] edge node {um7} (PF1)
-% %(AD4a) [bend left, ->,  dashed] edge node {um9} (PF1)
-% %(AD5a) [bend left, ->,  dashed] edge node {um15} (PF1)
-% %(AD4d) [bend left, ->,  dashed] edge node {um12} (PF1)
-% %(AD5d) [bend left, ->,  dashed] edge node {um18} (PF1)
-% %(AD1c) [bend left, ->,  dashed] edge node {um3} (PF2)
-% %(AD2c) [bend left, ->,  dashed] edge node {um6} (PF2)
-% %(AD5b) [bend left, ->,  dashed] edge node {um16} (PF2)
-% %(AD5e) [bend left, ->,  dashed] edge node {um19} (PF2)
-% %(AD6a) [bend left, ->,  dashed] edge node {um21} (PF2)
-% %(AD1b) [bend left, ->,  dashed] edge node {um2} (PF3)
-% %(AD2b) [bend left, ->,  dashed] edge node {um4} (PF3)
-% %(AD4b) [bend left, ->,  dashed] edge node {um10} (PF3)
-% %(AD5f) [bend left, ->,  dashed] edge node {um20} (PF3)
-% %(AD6b) [bend left, ->,  dashed] edge node {um22} (PF3)
-% %(AD5c) [bend left, ->,  dashed] edge node {um17} (PF4)
-% %(AD4e) [bend left, ->,  dashed] edge node {um13} (PF3)
-% %(AD1a) [bend left, ->,  dashed] edge node {um1} (PF4)
-% %(AD2a) [bend left, ->,  dashed] edge node {um4} (PF4)
-% %(AD3b) [bend left, ->,  dashed] edge node {um8} (PF4)
-% %(AD4c) [bend left, ->,  dashed] edge node {um11} (PF4)
-% %(AD4f) [bend left, ->,  dashed] edge node {um14} (PF4)
-% %(AD6c) [bend left, ->,  dashed] edge node {um23} (PF4)
-% %(DS2) [bend left, ->,  dashed] edge node {uc6} (PF1)
-% %(DS3) [bend left, ->,  dashed] edge node {uc7} (PF1)
-% %(DS4) [bend left, ->,  dashed] edge node {uc8} (PF1)
-% %(DS1) [bend left, ->,  dashed] edge node {uc5} (EF4)
-% %(MD1) [bend left, <->, solid] edge node {r1} (SD4)
-% %(MD4) [bend left, <->] edge node {r2} (SD1)
-% %(PK1) [bend left, <->] edge node {r3} (SK2)
-% %(PK2) [bend left, <->] edge node {r4} (SK1)
-% %(PK1) [bend right, <->] edge node {r5} (EF1)
-% %(PK2) [bend left, <->] edge node {r6} (EF4)
-% %(SK1) [bend right, <->] edge node {r7} (EF1)
-% %(SK2) [bend left, <->] edge node {r8} (EF4)
-% %(CB4) [bend left, <->] edge node {r9} (PS1)
-% %; 
-
-% \path
-% (MV3) [bend left, ->,  dashed] edge  node {} (EF1)
-% (MV5) [bend left, ->,  dashed] edge node {}  (EF2)
-% (MV4) [bend left, ->,  dashed] edge node {}  (EF3)
-% (MV2) [bend left, ->,  dashed] edge node {} (EF4)
-% (AD3a) [bend left, ->,  dashed] edge node {} (PF1)
-% (AD4a) [bend left, ->,  dashed] edge node {} (PF1)
-% (AD5a) [bend left, ->,  dashed] edge node {} (PF1)
-% (AD4d) [bend left, ->,  dashed] edge node {} (PF1)
-% (AD5d) [bend left, ->,  dashed] edge node {} (PF1)
-% (AD1c) [bend left, ->,  dashed] edge node {} (PF2)
-% (AD2c) [bend left, ->,  dashed] edge node {} (PF2)
-% (AD5b) [bend left, ->,  dashed] edge node {} (PF2)
-% (AD5e) [bend left, ->,  dashed] edge node {} (PF2)
-% (AD6a) [bend left, ->,  dashed] edge node {} (PF2)
-% (AD1b) [bend left, ->,  dashed] edge node {} (PF3)
-% (AD2b) [bend left, ->,  dashed] edge node {} (PF3)
-% (AD4b) [bend left, ->,  dashed] edge node {} (PF3)
-% (AD5f) [bend left, ->,  dashed] edge node {} (PF3)
-% (AD6b) [bend left, ->,  dashed] edge node {} (PF3)
-% (AD5c) [bend left, ->,  dashed] edge node {} (PF4)
-% (AD4e) [bend left, ->,  dashed] edge node {} (PF3)
-% (AD1a) [bend left, ->,  dashed] edge node {} (PF4)
-% (AD2a) [bend left, ->,  dashed] edge node {} (PF4)
-% (AD3b) [bend left, ->,  dashed] edge node {} (PF4)
-% (AD4c) [bend left, ->,  dashed] edge node {} (PF4)
-% (AD4f) [bend left, ->,  dashed] edge node {} (PF4)
-% (AD6c) [bend left, ->,  dashed] edge node {} (PF4)
-% (DS2) [bend left, ->,  dashed] edge node {} (PF1)
-% (DS3) [bend left, ->,  dashed] edge node {} (PF1)
-% (DS4) [bend left, ->,  dashed] edge node {} (PF1)
-% (DS1) [bend left, ->,  dashed] edge node {} (EF4)
-% ;
-
-% \path
-% (MD1) [bend left, <->, solid] edge node {} (SD4)
-% (MD4) [bend left, <->] edge node {} (SD1)
-% (PK1) [bend left, <->] edge node {} (SK2)
-% (PK2) [bend left, <->] edge node {} (SK1)
-% (PK1) [bend right, <->] edge node {} (EF1)
-% (PK2) [bend left, <->] edge node {} (EF4)
-% (SK1) [bend right, <->] edge node {} (EF1)
-% (SK2) [bend left, <->] edge node {} (EF4)
-% (CB4) [bend left, <->] edge node {} (PS1)
-% ; 
-
-% \end{tikzpicture} 
- 
-% \caption{The brand new instance: Knowledge-base translated into an argumentation graph}
-% \label{fig:knowledgebaseargframework}
-% \end{center}
-% \end{figure}
-
-%-----------------------------------
-%	SUBSECTION 1
-%-----------------------------------
-\subsection{Subsection 1}
-
-
-
-%-----------------------------------
-%	SUBSECTION 2
-%-----------------------------------
-
-\subsection{Subsection 2}
-
-%----------------------------------------------------------------------------------------
-%	SOFTWARE IMPLEMENTATION
-%----------------------------------------------------------------------------------------
-
-\section{Software Implementation}
-
-It was decided that the software would be implemented as a web application. This meant that the software could be accessed remotely from a number of different devices and would allow the expert to develop their knowledge base without having the software installed on their local machine. It also meant that the experimenter had access to the experts knowledge bases that had been saved to the system.
+Developing the application as a web based one offers a number of practical advantages to the experiment. Participants in the experiment can access the application remotely from anywhere. The software is platform independent and can run on any web browser with Javascript enabled. No software needs to be installed on different machines. No software needs to be updated locally, just once on the application server. All of the data associated with the DR experiment is all located and stored on the server allowing it to be retrieved easily for analysis.
 
 %-----------------------------------
 %	SYSTEM ARCHITECTURE
 %-----------------------------------
 \subsection{System Architecture}
 
-The implementation of the application uses a Javascript based front end with a RESTful Web Service based back-end written in PHP (using the Slim framework) and Java. 
+In chapter~\ref{Chapter3} the required system functionality was designed and relevant components identified. The functionality of eliciting the knowledge base (the AF and membership functions) and the verification of this knowledge base is implemented as a Javascript client application. This communicates with a back-end server that provides a RESTful Web service written in PHP (using the Slim Framework\footnote{\url{www.slimframework.com}}).
 
-The RESTful Web Service back-end provides a number of basic functions for the application. The back-end saves a knowledge base to disk as a JSON file and can similarly retrieve a list of knowledge bases and an individual knowledge base for the user. Knowledge bases were saved as JSON on disk rather than in a database as it eased the development process and would allow a knowledge base to be examined in it's complete form without needing assemble it with queries from the database. The back-end also allows the expert to load a small number of rows from the experiment data-set in order to evaluate the correctness of their knowledge-base.
+The Web Service back-end provides the basic functions outlined for the application. The back-end saves a knowledge base to disk as a JSON file. The Javascript client can request a  list of knowledge bases and from this list retrieve a knowledge base previously created by the user. Knowledge bases were saved as JSON files on disk rather than in a database. This allowed structure of the application to change more fluently during development. It also supports knowledge bases to be examined and serialized in their complete form without needing to assemble it with queries from the database. The server allows the client to access data stored as CSV files so that an expert can evaluate their knowledge base against the data. 
+The last critical component of the server application is to take a row from the data set and compute the value of the construct using the knowledge-base.
 
-The most important function of the back-end is to take a row from the data set and compute the value of the construct using the knowledge-base. The details of how this occurs are outlined later in this chapter.
+The application is served from an apache server running on a virualised Ubuntu instance provided by the Okeanos project \footnote{\url{okeanos-global.grnet.gr}}.
+
+In order to speed up the development process a number of open source frameworks and libraries have been utilised in the software implementation. The CSS framework Bootstrap\footnote{\url{getbootstrap.com}} and the Javascript library JQuery\footnote{\url{jquery.com}} have been used for presentational aspects of the site. Bootstrap provides a number of useful components such as modal boxes tjat allow the software to present information to the user in a clear manner. JQuery provides wrappers arround native browser functionality such as DOM manipulation and AJAX networking facilities that abstract away the inconsistencies between browser implementations.
+
+The graphical input of argumentation frameworks and membership functions is achieved using the  D3 library\footnote{\url{d3js.org}} developed by Bostock et al.\cite{2011-d3} D3.js is a data visualisation library that allows developers and designers to interact with data in the browser. Data can be loaded from urls in multiple formats such as JSON and CSV. Data points can be ``attached'' to DOM elements which provides useful functions. The styling of the DOM element can be linked to the value of the data and the data can be manipulated by user interactions. D3 is most commonly used with SVG\footnote{\url{www.w3.org/Graphics/SVG/}} (Scalable Vector Graphics) a markup language for implementing vector graphics. SVG has been an open standard for more than 10 years now, as a result it has been widely implemented and there is currently more support for it than other graphics alternatives such as HTML5 Canvas. Two key features of D3 that are used in the implementation of the experiment software are it's implementation of Bezier curves and it's force directed graph implementation.
+
+The server implementation requires Argumentation semantics to be computed based on the input of a Dung Argumentation Framework. Computing these semantics efficiently requires a deep understanding of argumentation theory, graph theory and algorithms. An efficient implementation of these algorithms has been made available by the University of Dundee under the Apache License, Version 2.0. The Dung-o-matic\footnote{\url{www.arg-tech.org/index.php/projects/dung-o-matic/}} is an efficient Java implementation of a Dung argumentation framework. 
+
+The technologies outlined in this section are manifested in the application architecture in figure~\ref{fig:AppArch}. With these underlying technologies established a number of implementation challenges remain. The solutions to these challenges are the focus of the following chapters.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{apparchitecture}
+    \caption{Application Architecture}
+    \label{fig:AppArch}
+\end{figure}
 
 %-----------------------------------
 %	SYSTEM ARCHITECTURE
 %-----------------------------------
 \subsection{Application Front End}
 
-A number of frameworks and libraries have been utilised in the development of the front-end. Bootstrap and JQuery have been used for presentational aspects of the site. Bootstrap provides a number of different useful components such as modal boxes allow the software to present information to the user in a clear manner. JQuery provides functionality such as DOM manipulation and AJAX networking facilities. 
-A crucial component of the software is the development of argumentation frameworks and membership functions. This is achieved using the D3 library developed by Bostock et al.\cite{2011-d3} D3.js is a data visualisation library that allows developers and designer to load data and interact with the DOM using the data. Two key functionalities of D3 that are used in the implementation of the software are it's implementation of Bezier curves and it's force directed graph implementation.
+The two crucial features of the application front-end are the interface for drawing argumentation frameworks and the interface for drawing membership functions. The implementation of these features is discussed here.
 
-Force directed graphs attempt to solve the problems posed when visualising graph data structures. Typical data visualisation techniques take values and parse them one by one, drawing some value in a position, drawing the next value next to it and so forth. This is not the case in graph data structures as generally it is prefered to have vertices that have common edges close together and to have those without common edges far apart. D3 provides a solution to this problem in the form of it's force directed techniques. The techniques take list of vertices and edges and generate positions for vertices using simulation inspired by physics. Similarly to sub-atomic particles, nodes are given a charge that repel other nodes in the graph. Nodes are from drifting apart by the links in the graph. There is also a force at the center of the visualisation that any of the nodes from drifting outside the viewport. 
+The implementation leverages D3's force-directed layout\footnote{\url{https://github.com/mbostock/d3/wiki/Force-Layout}}, a built in layout that solves the problems posed when visualising graph data structures. Typical data visualisation techniques take values and parse them one by one, drawing a marker in a position based on each value. This is not the case with graph data structures. With graph data structures, it is generally preferable to have vertices that have common edges close together and to have those without common edges far apart. D3's force directed layout takes list of vertices and edges and generates positions for vertices using simulation inspired by physics. Similarly to sub-atomic particles, nodes are given charges that repel other nodes in the graph and are kept from drifting apart by the links in the graph. There is also a force at the center of the visualisation that prevents any of the nodes from drifting outside the view port. 
 
-The algorithms for generating the positions of the nodes are implemented in the D3 `force' layout. By utilising this layout and D3's event helpers (listeners for mouse actions such as click and drag) an interface can be implemented that allows a user to input a directed graph. This is the implementation that allows an expert to input an abstract argumentation framework.
+By utilising this layout and D3's event helpers (listeners for mouse actions such as click and drag) an interface can be implemented that allows a user to input a directed graph, or in the case of the experiment, an argumentation framework. The user can create a node by clicking on an empty space on the graph and can create links between two nodes by dragging from one node to another. When the user creates a node they are prompted to give the node a label. This results in a knowledge base being represented as in listing~\ref{lst:kbds}.
 
-By selecting a node in the graph representing an argument a user can then define membership functions representing premises and an output function. They do this by manipulating control points on a Bezier curve. D3 allows us to draw these curves and control points using SVG, which defines it's `paths' (Bezier curves) using control points. The membership functions and output function are defined simply as control points in the data model. The server uses algorithms to compute an output given an input value and a set of control points. In order to make these algorithms accessible to the reader a brief explanation of Bezier curves follows.
 
-%-----------------------------------
-%	BEZIER CURVES
-%-----------------------------------
+\begin{lstlisting}[caption={JSON data structure for argumentation framework},label={lst:kbds}]
+knowledge_base {
+  nodes : [
+    {
+      id: 0
+    },
+    {
+      id: 1
+    },
+    {
+      id: 2
+    }
+  ],
+    lastNodeId : 2,
+    links : [
+      {source: nodes[0], target: nodes[1], left: false, right: true },
+      {source: nodes[1], target: nodes[2], left: false, right: true }
+  ]
+}
+\end{lstlisting}
 
-\subsection{Bezier Curves}
+D3 expects the data as an array of node objects and an array of links which contain references to the nodes. It adds x and y values to the nodes to track their position in the viewport and updates theses values at a fixed interval in order to animate the graph. The id of the last node added to the viewport is stored in the lastNodeId variable. This is important for creating new nodes as nodes are tracked based on their IDs, not their array indexes. 
 
-A Bezier Curve is a curve produced by a parameterised equation that produces a 
+Three types of attack relation must be modeled by the interface for correct implementation of the system. These attacks are undercutting attacks, rebutting attacks and mitigating arguments. Undercutting attacks are implemented simply as an arrow from the attacking node to the attacked node. In the data structure this is modeled as a link with the value for either `right' or `left' equal to true. In a rebuttal attack both arguments attack each other. This link is visualised as an arrow with two ends. In the data structure this is represented by setting both `right' and `left' equal to true. Examples of these arguments visualised using the tool are shown in figure~\ref{fig:undercutting} and figure~\ref{fig:rebuttal}. Mitigating arguments are modeled the same as undercutting arguments but are represented in the system by labeling their output functions as ``mitigating arguments''.
+
+\begin{figure}
+\subfloat[An undercutting attack\label{fig:undercutting}]
+  {\includegraphics[width=.49\linewidth]{undercutting}}\hfill
+\subfloat[A rebuttal attack\label{fig:rebuttal}]
+  {\includegraphics[width=.49\linewidth]{rebuttal}}\hfill
+\caption{Examples of different attacks drawn using the interface}
+\end{figure}
+
+By selecting a node in the graph a user can then define membership functions representing the internal premises of the argument and an output function representing the contribution of the truth of this argument to the overall value of the construct. It was decided in the system design phase that the user should be able to draw these functions using the interface. It was decided to utilise Bezier curves to achieve this in a manner that is simple to implement, usable and that would facitiate easy representation, storage and serialisation of membership functions. 
+
+According to \cite{farin2002handbook}, Bezier curves provide a ``geometric-based method for describing and manipulating polynomial curves and surfaces.'' Bezier curves are parametric curves in which each point on the curve is a function of the parameter \textit{t}. Bezier curves are defined by a number of control point that they interpolate. The curves begin at their first control point x(0) and end at their last control point x(1).
+
+Bezier curves may be defined recursively is draw on for their implementation in the system. Given a Bezier curve $\mathbf{B}_{\mathbf{P}_0\mathbf{P}_1\ldots\mathbf{P}_n}$ with points $\mathbf{P}_0\mathbf{P}_1\ldots\mathbf{P}_n$ the recursive definition of a curve is:
+
+\begin{equation}
+\label{math:recursivedef}
+
+\mathbf{B}(t) = \mathbf{B}_{\mathbf{P}_0\mathbf{P}_1\ldots\mathbf{P}_n}(t)
+= (1-t)\mathbf{B}_{\mathbf{P}_0\mathbf{P}_1\ldots\mathbf{P}_{n-1}}(t) + t\mathbf{B}_{\mathbf{P}_1\mathbf{P}_2\ldots\mathbf{P}_n}(t)
+
+\end{equation}
+
+where $\mathbf{B}_{\mathbf{P}_0}(t) = \mathbf{P}_0}$ and $\mathbf{B}_{\mathbf{P}_n}(t) = \mathbf{P}_n}$.
+
+D3 provides methods for manipulating SVG, which defines it's `paths' (Bezier curves) using control points. By providing the user with a collection of control point the can drag it is possible for them to define curves however they please. It also provides the advantage of allowing membership functions and output functions to be  defined simply as control points in the data model. As bezier curves exist within the range 0 and 1 on the x and y axis the associated values must be scaled to the users desires. Users can input minimum and maximum values that are used to scale the graph. These are stored with the membership function in the JSON data structure for later processing. From this a single argument can be defined in JSON as in listing~\ref{lst:arg_memfunc}. In order to allow users to create membership functions quickly functionality was implemented to allow the user to save previously used functions as template functions as can be seen in figure~\ref{fig:membfunc}.
+
+\begin{figure}[!h]
+\label{fig:membfunc}
+\centering
+\includegraphics[width=1\textwidth]{membershipfunction}
+\caption{An interface that allows a user to `draw' a membership function using Bezier curves}
+\end{figure}
+
+
+\begin{lstlisting}[caption={JSON data structure a node including it's fuzzy membership functions},label={lst:arg_memfunc}]
+    {
+      id: 0,
+      "name": "MD1",
+      membership_functions: [{
+      title: "Low Effort->Low MWL",
+      points: [{x: 1, y: 25}, {x: 0, y: 0}, {x: 10, y: 0}, 
+                {x: 20, y: 25}, {x: 22, y: 12}],
+      xLabel: "X Label",
+      yLabel: "Y Label",
+      xMin: 0,
+      xMax: 50,
+      yMin: 0,
+      yMax: 50,
+    },
+    {
+      title: "Low Performance->High MWL",
+      points: [{x: 10, y: 140}, {x: 30, y: 0}, {x: 140, y: 0},
+                {x: 200, y: 150}, {x: 125, y: 125}],
+      xLabel: "X Label",
+      yLabel: "Y Label",
+      xMin: 0,
+      xMax: 250,
+      yMin: 0,
+      yMax: 300,
+    }
+    ],
+    "output_function": {
+        "title": "Underload",
+        "xLabel": "Degree of Truth",
+        "yLabel": "Y Label",
+        "xMin": 0,
+        "xMax": 1,
+        "yMin": 0,
+        "yMax": 33,
+        "points": [
+          {"x": 0.00454,"y": 33},{"x": 0.222,"y": 24.849},
+          {"x": 0.46136,"y": 16.954},{"x": 0.65681,"y": 10.3458},{"x": 1,"y": 0}]
+      },
+    }
+\end{lstlisting}
+
+There is a flaw in this approach that should be noted. In order to compute the users beliefs accurately the membership function should follow the strict mathematical definition of a function; that it should only output a single value for any input. Bezier curves do not obey this rule as they are parametrised by \textit{t} and as a result it is possible for users to draw functions like in figure~\ref{fig:badness}. It is also possible for users to define functions with no corresponding output for a given figure. If a user does the system will compute an incorrect value for the premise and the result will be compromised. Participants in the experiment are made aware of this before undertaking the experiment.
+
+\begin{figure}[h]
+\label{fig:badness}
+  {\includegraphics[width=.3\linewidth]{badness1}}\hfill
+  {\includegraphics[width=.3\linewidth]{badness2}}\hfill
+  {\includegraphics[width=.3\linewidth]{badness3}}\hfill
+\caption{Examples of Bezier curves that can be drawn that are not functions}
+\end{figure}
+
+With the argumentation framework and membership function finally implemented the web interface appears as in figure~\ref{fig:finalUI}.
+
+\begin{figure}[!h]
+\label{fig:finalUI}
+\centering
+\includegraphics[width=1\textwidth]{Fullscreen}
+\caption{The fully developed tool for eliciting knowledge bases}
+\end{figure}
+
+Once a knowledge base has been elicited from a user they can test their with the system by computing results. They can download a sample data set which is displayed as in figure~\cite{fig:sampleData}.
+
+\begin{figure}[!h]
+\label{fig:sampleData}
+\centering
+\includegraphics[width=1\textwidth]{data}
+\caption{A selection of data for the user to test their knowledge base with}
+\end{figure}
+
+For a single row in the data the user can choose from a selection of semantics to run on the data (see figure~\cite{fig:semantics}).
+
+\begin{figure}[!h]
+\label{fig:semantics}
+\centering
+\includegraphics[width=1\textwidth]{options}
+\caption{A list of options for semantics that can be computed by the system}
+\end{figure}
+
+The results of running the semantics are then presented to the user in the form given in figure~\cite{fig:semantics_results}. The results present an overall value for the construct as well as the total degree of truth of the semantic. Each argument that contribute to the semantic is returned as well as a degree of truth value and the value of the construct computed for that value. This extra information allows the user to scrutinise their knowledge base further.
+
+\begin{figure}[!h]
+\label{fig:semantics_results}
+\centering
+\includegraphics[width=1\textwidth]{results}
+\caption{Results of computing the semantics on the framework. (Undefined values belong to mitigating arguments)}
+\end{figure}
+
+
 
 \subsection{Backend Implementation}
 
@@ -331,7 +234,7 @@ Once this request is parsed by the backend, irrelevant arguments and their assoc
 \end{algorithmic}
 \end{algorithm}
 
-The sub-graph of activated arguments and their relationships produced by this step is then formatted and passed into a Java program that computes the semantics. The main functionality of this code is known as the Dung-o-matic and is released under the Apache License, Version 2.0. The Dung-o-matic is an efficient implementation of a Dung argumentation framework that is used in this project to compute the semantics of the graph. The Dung-o-matic is wrapped in a main function that takes three command line arguments: an array of nodes, and array of links between nodes and a list of semantics to be computed. This program has been exported as a JAR file which is then called from PHP using the \lstinline{exec()} function. The Java code returns JSON object with the semantic names as keys and the sub-graphs as an array of arrays associated with those keys.
+The sub-graph of activated arguments and their relationships produced by this step is then formatted and passed into a Java program that computes the semantics. The Dung-o-matic is wrapped in a main function that takes three command line arguments: an array of nodes, and array of links between nodes and a list of semantics to be computed. This program has been exported as a JAR file which is then called from PHP using the \lstinline{exec()} function. The Java code returns JSON object with the semantic names as keys and the sub-graphs as an array of arrays associated with those keys.
 
 Once the semantics have been computed for an Argumentation Framework the values associated with each argument can be computed. For a given row in the data set, the results for an argument remain the same no mater what the configuration of the framework is. This allows us to cache the output value of an argument in memory rather than having to recompute the same values for each semantic. The results are computed on the server using a bBzier curve implementation.
 
@@ -369,23 +272,9 @@ As computing the semantics for an AF is an NP complete problem it is not yet pos
 
 \subsection{Knowledge Base Elicitation}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=1\textwidth]{Fullscreen}
-\caption{The fully developed tool for eliciting knowledge bases}
-\end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=1\textwidth]{data}
-\caption{A selection of data for the user to test their knowledge base with}
-\end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=1\textwidth]{membershipfunction}
-\caption{An interface that allows a user to `draw' a membership function}
-\end{figure}
+
 
 \begin{figure}[H]
 \centering
@@ -393,21 +282,15 @@ As computing the semantics for an AF is an NP complete problem it is not yet pos
 \caption{The Argumentation Framework developed by the expert using the tool}
 \end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=1\textwidth]{options}
-\caption{A list of options for semantics that can be computed by the system}
-\end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=1\textwidth]{results}
-\caption{Results of computing the semantics on the framework}
-\end{figure}
+
+
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
 %----------------------------------------------------------------------------------------
+
+\subsection{Program Validation}
 
 \subsection{Generation of Results}
 
