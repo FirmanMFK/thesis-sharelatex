@@ -86,7 +86,7 @@ knowledge_base {
 }
 \end{lstlisting}
 
-D3 expects the data as an array of node objects and an array of links which contain references to the nodes. It adds x and y values to the nodes to track their position in the viewport and updates theses values at a fixed interval in order to animate the graph. The id of the last node added to the viewport is stored in the lastNodeId variable. This is important for creating new nodes as nodes are tracked based on their IDs, not their array indexes. 
+D3 expects the data as an array of node objects and an array of links which contain references to the nodes. It adds x and y values to the nodes to track their position in the viewport and updates theses values at a fixed interval in order to animate the graph. The id of the last node added to the viewport is stored in the \lstinline{lastNodeId} variable. This is important for creating new nodes as nodes are tracked based on their IDs, not their array indexes. 
 
 Three types of attack relation must be modeled by the interface for correct implementation of the system. These attacks are undercutting attacks, rebutting attacks and mitigating arguments. Undercutting attacks are implemented simply as an arrow from the attacking node to the attacked node. In the data structure this is modeled as a link with the value for either `right' or `left' equal to true. In a rebuttal attack both arguments attack each other. This link is visualised as an arrow with two ends. In the data structure this is represented by setting both `right' and `left' equal to true. Examples of these arguments visualised using the tool are shown in figure~\ref{fig:undercutting} and figure~\ref{fig:rebuttal}. Mitigating arguments are modeled the same as undercutting arguments but are represented in the system by labeling their output functions as ``mitigating arguments''.
 
@@ -106,10 +106,10 @@ Bezier curves may be defined recursively is draw on for their implementation in 
 
 \begin{equation}
 \label{math:recursivedef}
-
+$$
 \mathbf{B}(t) = \mathbf{B}_{\mathbf{P}_0\mathbf{P}_1\ldots\mathbf{P}_n}(t)
 = (1-t)\mathbf{B}_{\mathbf{P}_0\mathbf{P}_1\ldots\mathbf{P}_{n-1}}(t) + t\mathbf{B}_{\mathbf{P}_1\mathbf{P}_2\ldots\mathbf{P}_n}(t)
-
+$$
 \end{equation}
 
 where $\mathbf{B}_{\mathbf{P}_0}(t) = \mathbf{P}_0}$ and $\mathbf{B}_{\mathbf{P}_n}(t) = \mathbf{P}_n}$.
@@ -132,8 +132,8 @@ D3 provides methods for manipulating SVG, which defines it's `paths' (Bezier cur
       title: "Low Effort->Low MWL",
       points: [{x: 1, y: 25}, {x: 0, y: 0}, {x: 10, y: 0}, 
                 {x: 20, y: 25}, {x: 22, y: 12}],
-      xLabel: "X Label",
-      yLabel: "Y Label",
+      xLabel: "Effort",
+      yLabel: "Degree of Truth",
       xMin: 0,
       xMax: 50,
       yMin: 0,
@@ -143,8 +143,8 @@ D3 provides methods for manipulating SVG, which defines it's `paths' (Bezier cur
       title: "Low Performance->High MWL",
       points: [{x: 10, y: 140}, {x: 30, y: 0}, {x: 140, y: 0},
                 {x: 200, y: 150}, {x: 125, y: 125}],
-      xLabel: "X Label",
-      yLabel: "Y Label",
+      xLabel: "Performance",
+      yLabel: "Degree of Truth",
       xMin: 0,
       xMax: 250,
       yMin: 0,
@@ -154,7 +154,7 @@ D3 provides methods for manipulating SVG, which defines it's `paths' (Bezier cur
     "output_function": {
         "title": "Underload",
         "xLabel": "Degree of Truth",
-        "yLabel": "Y Label",
+        "yLabel": "Mental Workload",
         "xMin": 0,
         "xMax": 1,
         "yMin": 0,
@@ -203,7 +203,7 @@ For a single row in the data the user can choose from a selection of semantics t
 \caption{A list of options for semantics that can be computed by the system}
 \end{figure}
 
-The results of running the semantics are then presented to the user in the form given in figure~\cite{fig:semantics_results}. The results present an overall value for the construct as well as the total degree of truth of the semantic. Each argument that contribute to the semantic is returned as well as a degree of truth value and the value of the construct computed for that value. This extra information allows the user to scrutinise their knowledge base further.
+The results of running the semantics are then presented to the user in the form given in figure~\cite{fig:semantics_results}. The results present an overall value for the construct as well as the total degree of truth of the semantic. Each argument that contribute to the semantic is returned as well as a degree of truth value and the value of the construct computed for that value. This extra information allows the user to scrutinise their knowledge base and it's associated results further.
 
 \begin{figure}[!h]
 \label{fig:semantics_results}
@@ -212,41 +212,93 @@ The results of running the semantics are then presented to the user in the form 
 \caption{Results of computing the semantics on the framework. (Undefined values belong to mitigating arguments)}
 \end{figure}
 
+\subsection{Application Back-End Implementation}
 
+The application back-end implements a REST architecture that allows the front-end to retrieve data via AJAX requests. A summary of the REST API is outlined in table~\ref{tab:rest_routes}.
 
-\subsection{Backend Implementation}
+\begin{table}[]
+\centering
+\begin{tabular}{|l|l|L{5cm}|}
+ URL & Request Method & Functionality \hline \\
+ \lstinline{/} & POST & Compute the Knowledge Base result for a given row of data
+ \lstinline{/knowledgebases/} & GET & Return a list of Knowledge Bases saved on the server
+ \lstinline{/knowledgebases/:filename} & GET & Retrieve a specific knowledge base named \lstinline{:filename}
+ \lstinline{/knowledgebases/:filename} & POST & Save a knowledge base in a JSON file named \lstinline{:filename}
+ \lstinline{/datasets/} & GET & Return a list of data sets saved on the server
+ \lstinline{/datasets/:filename} & GET & Retrieve a specific data set csv file named \lstinline{:filename}
+\end{tabular}
+\caption{Caption}
+\label{tab:rest_routes}
+\end{table}
 
-The basic functions of the backend such as storage and retrieval of data have been explained in section 1 of this chapter. The most crucial function of the back end is to take a row in the dataset and determine what a value for the construct associated with that row based on the knowledge base. In order to do this the javascript client makes a HTTP Post request to the base URL of the backend. This post request contains a JSON object which includes the expert's knowledge base, the row in the dataset and a list of semantics that are to be computed.
+In order to compute the result for a single row in the data set the front end sends a POST request containing the knowledge base nodes and links, the row in the data and a list of semantics to be computed. A PHP class \lstinline{FrameworkRunner} copies these values into a local list of arguments and attacks.
 
-Once this request is parsed by the backend, irrelevant arguments and their associated links are removed from the graph. This is achieved by looking at an arguments membership functions. If the row in the dataset doesn't have a value between the minimum and maximum value of all premises in the argument then this argument is not activated and can be removed.
+The first step in the process is to determine which arguments are activated. This is done by looking at each argument and determining if each of it's premises are satisfied by the data in the row. For an individual premise the value of data associate with it's x label is retrieved. If this value is between the premise's \lstinline{xMin} and \lstinline{xMax} values then the premise is relevant. If the value falls outside these bounds then the parent argument and it's associated attack relations are discarded. 
 
-\begin{algorithm}
-\caption{Determine activated arguments}
-\begin{algorithmic} 
-\FOR{each argument $arg$ \Pisymbol $N$ }
-    % \FOR{each membership function $prem$ \Pisymbol{psy}{206} $arg$}
-    %     $Val$ \leftarrow the column in the data corresponding to the premise
-    %     \IF{$Val$ < $prem$\rightarrow$min$ OR $Val$ > $prem$\rightarrow$max$}
-    %         Remove($arg$)
-    %     \ENDIF
-    % \ENDFOR
-\ENDFOR
-\end{algorithmic}
+The sub-graph of activated arguments and their attack relations remains in the class to compute semantics for. In order to compute the semantics the Dung-o-matic Java class is wrapped in another class that allows it to read a list of arguments and attacks as a string and return the results in a similar format. The \lstinline{FrameworkRunner} class produces a string containing the IDs of the nodes in the format expected by this Java class. The Java class has been exported as an executable JAR file which is then called from PHP using the \lstinline{exec()} function and passing this simple string as an argument. The Java code returns JSON object with the name of the computed semantic as keys and the sub-graphs as an array of arrays associated with those keys.
+
+Once the semantics have been computed for an Argumentation Framework the values associated with each argument can be computed. For a given row in the data set, the results for an argument remain the same no mater what the configuration of the framework is. This allows us to cache the output value of an argument in memory rather than having to recompute the same values for each semantic. The results are computed on the server using a Bezier curve implementation. 
+
+The Bezier curve computation is implemented in a PHP class \lstinline{Bezier}. This class contains methods to compute the X and Y values for a point on the line given a list of control points and a value for \textit{t}. It provides two other methods \lstinline{yFromX} and \lstinline{xFromY} that compute a value for Y given X and vice versa. The Bezier curve implementation is based on the recursive definition given in equation~\ref{math:recursivedef}. It's implementation is given in Algorithm~\ref{alg:recursive}.
+
+\begin{algorithm}[H]
+\label{alg:recursive}
+\SetAlgoLined
+\KwData{A list of control points $L = \mathbf{P}_0\mathbf{P}_1\ldots\mathbf{P}_n$ and a value $t$}
+\KwResult{A point $P = (X,Y)$ corresponding to \textit{t}}
+  \SetKwFunction{bezier}{bezier}
+  \SetKwProg{myalg}{Algorithm}{}{}
+  \myalg{\bezier{$L$, \textit{t}}}{
+    \eIf{there is only one control point in $L$}{
+        \KwRet $\mathbf{P}_0$\;
+        }{
+        
+        $\mathbf{P}_0 \leftarrow$ \bezier{$\mathbf{P}_0\mathbf{P}_1\ldots\mathbf{P}_n-1$,  \textit{t} }
+        
+        $\mathbf{P}_1 \leftarrow$ \bezier{$\mathbf{P}_1\mathbf{P}_2\ldots\mathbf{P}_n$,  \textit{t} }
+        
+        $X \leftarrow (1 - t)\mathbf{P}_0_X + t\mathbf{P}_1_X $
+        
+        $Y \leftarrow (1 - t)\mathbf{P}_0_Y + t\mathbf{P}_1_Y $
+        
+        \KwRet $(X, Y)$\;}{}
+        }
+\caption{Computing a point on the curve for a given value of \textit{t}}
 \end{algorithm}
 
-The sub-graph of activated arguments and their relationships produced by this step is then formatted and passed into a Java program that computes the semantics. The Dung-o-matic is wrapped in a main function that takes three command line arguments: an array of nodes, and array of links between nodes and a list of semantics to be computed. This program has been exported as a JAR file which is then called from PHP using the \lstinline{exec()} function. The Java code returns JSON object with the semantic names as keys and the sub-graphs as an array of arrays associated with those keys.
+For a given membership function with fixed values for it's control points any point on the curve can be described by a value t between 0 and 1. By passing t into the function we obtain a value for x and y. As it is not possible to simply pass in an x value and obtain a corresponding y value we must search for y by varying the parameter t. This is done efficiently using a binary search algorithm. For each iteration we pass in two values of t to get two values of x and compare them with our target x value. We continue to search a space closer and smaller to x until we arrive at a value that is within a threshold we consider to be satisfactory. From this point we can obtain the Y value. The pseudocode for this algorithm is given in Algorithm~\ref{alg:bin_search}.
 
-Once the semantics have been computed for an Argumentation Framework the values associated with each argument can be computed. For a given row in the data set, the results for an argument remain the same no mater what the configuration of the framework is. This allows us to cache the output value of an argument in memory rather than having to recompute the same values for each semantic. The results are computed on the server using a bBzier curve implementation.
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{A list of control points $L = \mathbf{P}_0\mathbf{P}_1\ldots\mathbf{P}_n$, a tolerance $T$ and a value $X$}
+\KwResult{A value for $Y$ corresponding to the input $X$}
+\SetKwFunction{bezier}{bezier}
 
-If the output function of an argument is labeled as a mitigating argument then that argument is ignored.
+$t_{lower} \leftarrow 0$
 
-%scaling of bezier curves
+$t_{upper} \leftarrow 1$
 
-For a given membership function with fixed values for it's control points any point on the curve can be described by a value t between 0 and 1. By passing t into the function we obtain a value for x and y. As it is not possible to simply pass in an x value and obtain a corresponding y value we must search for y by varying the parameter t. This is done efficiently using a binary search algorithm. For each iteration we pass in two values of t to get two values of x and compare them with our target x value. We continue to search a space closer and smaller to x until we arrive at a value that is within a threshold we consider to be satisfactory. The value of t at this point gives the y value.
+\While{The computed $X$ values are outside the tolerance $T$ of $X$}{
+  
+  $P_{lower} \leftarrow$\bezier{$L$, $t_{lower}$}
+  
+  $P_{upper} \leftarrow$\bezier{$L$, $t_{upper}$}
+  
+  \eIf{$P_{lower X}$ is closer to $X$ than $P_{upper X}$}{
+  $t_{upper} \leftarrow t_{upper} + t_{lower} $
+   }{
+  $t_{lower} \leftarrow t_{upper} + t_{lower} $
+  }
+ }
+\caption{Obtaining a value for $Y$ given an $X$ value}
+\label{alg:bin_search}
+\end{algorithm}
 
-This calculation is performed for each membership function in the node and an average of the values of the output is produced. This corresponds to the overall degree of truth for the argument. This value is then used as the input to the output function which computes an overall construct value for that argument. 
+This calculation is performed for each membership function in the node and an average of the values of the output is produced. This corresponds to the overall degree of truth for the argument. This value is then used as the input to the output function which computes an overall construct value for that argument. If the output function of an argument is labeled as a mitigating argument then that argument is ignored.
 
-Once the all of the construct values and degrees of truth are taken the averages of both values are taken. These are considered to be the Degree of Truth of that semantic and the construct value for that semantic. This is returned along with a list of the arguments for that semantic to the client. The client presents this to the user so that the user can evaluate whether or not their knowledge base is behaving in a manner that they expect it to or not.
+Once the all of the argument construct values and degrees of truth are taken the overall results for the semantic can be computed. An overall construct value and degree of truth for the semantic is computed by taking the average of these values for each argument in the semantic. The client presents this information to the user in the evaluation interface previously presented.
+
+The software was manually validated in order to determine that it was functioning correctly. Initially simple test cases were developed using the ASPARTIX online interface\footnote{\url{http://rull.dbai.tuwien.ac.at:8080/ASPARTIX/index.faces}} in order to validate that the argument evaluation was working correctly. Once the interface was working for small test cases it was evaluated by hand using an existing knowledge base. A number of bugs were discovered and fixed at this stage. The process continued iteratively until the implementation was considered to be of a quality appropriate to the experiment.
 
 % Semantic algorithms
 
@@ -255,26 +307,7 @@ Once the all of the construct values and degrees of truth are taken the averages
 %-----------------------------------
 \section{Experiment Implementation}
 
-The software implemented as above was used by both an expert in mental work load and a lay person. Both were asked to describe their knowledge of mental workload as a defeasible knowledge base and the knowledge bases were collected on the server.
-
-As computing the semantics for an AF is an NP complete problem it is not yet possible to compute the results for a whole data set in the time that it would take to complete a typical HTTP request-response cycle. For the purposes of the experiment the functionality to compute the results for a whole data set using a given knowledge base was wrapped in a command line tool written in PHP. In order to reduce the time taken to compute the results and so as to focus the analysis of the experiment only the grounded and preferred extensions were computed. These overall degree of truth for the semantic and the value of MWL for the row in the dataset were stored for later analysis.
-
-%-----------------------------------
-%	SUBSECTION 1
-%-----------------------------------
-\subsection{Weka}
-
-
-
-%-----------------------------------
-%	SUBSECTION 2
-%-----------------------------------
-
-\subsection{Knowledge Base Elicitation}
-
-
-
-
+In order two provide a comparison of the ability of the defeasible approach to model a construct the knowledge bases of both an expert and a lay person were modeled using the tool developed in this chapter. The two knowledge bases provide a contrasting result and it is expected that the knowledge base of the expert will perform better than that of the lay person. These knowledge bases were saved on the server and evaluated in order to determine that they matched the expert's expectations.
 
 \begin{figure}[H]
 \centering
@@ -283,19 +316,22 @@ As computing the semantics for an AF is an NP complete problem it is not yet pos
 \end{figure}
 
 
+As computing the semantics for an AF is an NP complete problem computing the results for a whole data set carries a large overhead for time. The time is considerably larger than the time of a typical HTTP request-response cycle so it was not feasible to compute all of the results for the data set in the web application format. 
 
+In order to generate the results of running a knowledge base on a whole data set the \lstinline{FrameworkRunner} tool was wrapped in a command line tool written in PHP. Results were computed for the `grounded' and `preferred' extensions of the argumentation frameworks. The overall values for MWL for the extensions were collected for each row in the data. The time taken to compute these results was also collected in order to have an objective measure of the performance of the technique.
 
+The second part of the research question was then answered by running machine learning algorithms on the experiment data using Weka. In order to assess regression algorithms task time was chosen as the dependant variable. Classification algorithms were testing using task ID as the dependent variable.
 
-%----------------------------------------------------------------------------------------
-%	SECTION 2
-%----------------------------------------------------------------------------------------
+The regression algorithms used were additive regression, decision stump, k-star, linear regression, multilayer perceptron, regression by discretization, simple linear regression and zero r.
+These results were collected for each regression algorithm: correlation coefficient, mean absolute error, root means squared error, relative absolute error and root relative squared error.
 
-\subsection{Program Validation}
+In order to run classification algorithms on data, Weka requires the dependent variable to be in a string format. A simple python script was written to create a new column in the data set that would have the task numbers represented as letters (1 \leftarrow A, 2 \leftarrow B, \ldots).
+The classification algorithms used were bayes net, decision table, k-star, linear regression, logistic regression, naive bayes, random forest, random tree and zero r. The following metrics for these algorithms were collected: percentage of correctly classified instances, percentage of incorrectly classified instances, Kappa statistic, mean absolute error, root mean squared error, relative absolute error and root relative squared error. Confusion Matrices and a breakdown of accuracy by class (including TP Rate, FP Rate, Precision, Recall, F-Measure and ROC Area) was also collected for each model.
 
-\subsection{Generation of Results}
-
-
+In order to determine the concurrent validity of the defeasible MWL models two regressions needed to be run on each model. The first regression is a linear regression using the values for MWL against time. The second is a logistic regression using the values for MWL against task number. Lastly in order to determine the convergent validity of the MWL values the Pearson co-relation of the values with other measured of MWL was determined.
 
 \section{Conclusions}
 
+This chapter outlined the implementation of an experiment and software to answer the research question posed by this project. The process of realising a tool used to elicit and perform computations on a defeasible knowledge base was described. Additional steps that needed to be taken in order that the software could be used to answer the question were explained.
 
+The chapter briefly discussed the implementation of an experiment using the software and the machine learning work-bench Weka. Finally, the collection of extra data to analyse the experiment results was briefly discussed. The analyses of the information that has been gathered is the subject of the next chapter.

@@ -23,27 +23,138 @@
 
 
 % These results are wrong. Fix them.
-% dat = read.csv("texperimentnewer.csv", header = TRUE)
+% dat = read.csv("alldataallresults.csv", header = TRUE)
 % threshold <- 0
 % subset(dat, dat["time"] < threshold)
 % colnames(dat[5:37])
 % cor(dat[4:37])
+% cor(dat[,c(5,7,9,10,34,36,40,42)])
 
-\begin{center}
-    \begin{tabular}{ | l | l | }
-    \hline
-    Technique & Correlation with time\\ \hline
-    Amateur Knowledge Base Grounded Extension & 0.124536\\ \hline
-    Amateur Knowledge Base Preferred Extension & 0.124536\\ \hline
-    Expert Knowledge Base Grounded Extension & 0.2928288\\ \hline
-    Expert Knowledge Base Preferred Extension & 0.2882237\\ \hline
-    \end{tabular}
-\end{center}
+\begin{table}[]
+\centering
+\begin{tabular}{c|c|c|c|c}
+                            &  lucaGrounded & lucaPref  & peterGrounded  & peterPref \\ \hline
+Correlation coefficient     & 0.3362        & 0.3414    & 0.2046         & 0.2046  \\
+Mean absolute error         & 80.6007       & 80.4185   & 81.5565        & 81.5565  \\
+Root mean squared error     & 110.3579      & 110.1416  & 114.6813       & 114.6813  \\
+Relative absolute error     & 95.9998\%     & 95.7829\% & 97.1383\%      & 97.1383\%  \\
+Root relative squared error & 94.0706\%     & 93.8863\% & 97.756\%       & 97.756\%  \\
+\end{tabular}
+\caption{Caption}
+\label{tab:my_label}
+\end{table}
+
+\begin{table}[]
+\centering
+\begin{tabular}{c|c|c|c|c}
+                            & Simple Linear Regression & Linear Regression  & decisionTable  & kstar & additiveregression \\ \hline
+Correlation coefficient     & 0.1783        & 0.4201    & 0.2788         & 0.2428   & 0.3358 \\
+Mean absolute error         & 84.839        & 80.8231   & 83.8164        & 93.6672  & 85.8072 \\
+Root mean squared error     & 115.9599      & 107.0807  & 115.7615       & 130.8713 & 116.8993 \\
+Relative absolute error     & 101.0479\%    & 96.2647\% & 99.83\%        & 111.5627\% & 102.201 \%\\
+Root relative squared error & 98.8458\%     & 91.2771\% & 98.6767\%      & 111.5565\% & 99.6466\%\\
+\end{tabular}
+\caption{Caption}
+\label{tab:my_label}
+\end{table}
 
 
-Time to compute simple knowledge base on 440 rows of data: 1m4.041s
-Time to compute expert knowledge base on 440 rows of data: 1m44.001s
 
+
+\begin{table}[]
+\centering
+\begin{tabular}{c|c|c|c|c}
+                                 & lucaGrounded  & lucaPref  & peterGrounded  & peterPref \\ \hline
+Correctly Classified Instances   & 8.8319\%      & 9.4017\%  & 7.4074\%         & 7.4074\%  \\
+Incorrectly Classified Instances & 91.1681\%     & 90.5983\% & 92.5926\%        & 92.5926\%  \\
+Kappa statistic                  & 0.034         & 0.0401    & 0.0206       & 0.0206  \\
+Mean absolute error              & 0.0856        & 0.0856    & 0.086      & 0.086   \\
+Root mean squared error          & 0.2069        & 0.2069    & 0.2075       & 0.2075  \\
+Relative absolute error          & 98.9565\%     & 98.9251\% & 99.4773\%       & 99.4773\%  \\
+Root relative squared error      & 99.478\%      & 99.4743\% & 99.7922\%       & 99.7922\%  \\
+\end{tabular}
+\caption{Caption}
+\label{tab:my_label}
+\end{table}
+
+
+\begin{table}[]
+\centering
+\begin{tabular}{c|c|c|c|c|c}
+                                 & Bayes Net  & Decision Table  & Logistic Regression  & Naive Bayes & Random Tree\\ \hline
+Correctly Classified Instances   & 11.3636\%      & 11.8182\%  & 23.6364\%              & 25\%      &  14.7727\%\\
+Incorrectly Classified Instances & 88.6364\%      & 88.1818\% & 76.3636\%               & 75\%      &  85.2273\%\\
+Kappa statistic                  & 0.0714         & 0.0762    & 0.2                     & 0.2143    & 0.1071\\
+Mean absolute error              & 0.083          & 0.0838    & 0.0709                  & 0.07      & 0.0775\\
+Root mean squared error          & 0.2041         & 0.2042    & 0.22                    & 0.2262    & 0.2784\\
+Relative absolute error          & 95.6447\%      & 96.5821\% & 81.6907\%               & 80.6802\% & 89.2857\%\\
+Root relative squared error      & 97.9663\%      & 98.0531\% & 105.6358\%              & 108.5826\% & 133.6306\%\\
+\end{tabular}
+\caption{Caption}
+\label{tab:my_label}
+\end{table}
+
+
+
+
+
+
+\begin{table}[]
+\centering
+\begin{tabular}{c|c|c|c|c|c}
+                 &  time     & NASA      &  WP       & defLuca         & LucaGroundedExt \\ \hline
+time             & 1.0000000 & 0.2174278 & 0.2036869 & 0.2877883       & 0.2928288 \\
+NASA             & 0.2174278 & 1.0000000 & 0.5836784 & 0.7778743       & 0.7233711 \\
+WP               & 0.2036869 & 0.5836784 & 1.0000000 & 0.8589005       & 0.8593995 \\
+defLuca          & 0.2877883 & 0.7778743 & 0.8589005 & 1.0000000       & 0.9509517 \\
+LucaGroundedExt  & 0.2928288 & 0.7233711 & 0.8593995 & 0.9509517       & 1.0000000 \\
+LucaPref1        & 0.2882237 & 0.7247067 & 0.8499664 & 0.9559585       & 0.9860579 \\
+PeterGroundedExt & 0.1245360 & 0.5518035 & 0.5648483 & 0.6117755       & 0.6243195 \\
+PeterPref1       & 0.1245360 & 0.5518035 & 0.5648483 & 0.6117755       & 0.6243195 \\
+\end{tabular}
+\caption{Caption}
+\label{tab:my_label}
+\end{table}
+
+\begin{table}[]
+\centering
+\begin{tabular}{c|c|c|c}
+                 & LucaPref1        & PeterGroundedExt & PeterPref1 \\ \hline
+time             & 0.2882237        & 0.1245360  & 0.1245360 \\
+NASA             & 0.7247067        & 0.5518035  & 0.5518035 \\
+WP               & 0.8499664        & 0.5648483  & 0.5648483 \\
+defLuca          & 0.9559585        & 0.6117755  & 0.6117755 \\
+LucaGroundedExt  & 0.9860579        & 0.6243195  & 0.6243195 \\
+LucaPref1        & 1.0000000        & 0.6304207  & 0.6304207 \\
+PeterGroundedExt & 0.6304207        & 1.0000000  & 1.0000000 \\
+PeterPref1       & 0.6304207        & 1.0000000  & 1.0000000 \\
+\end{tabular}
+\caption{Caption}
+\label{tab:my_label}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%Time to compute simple knowledge base on 440 rows of data: 1m4.041s
+%Time to compute expert knowledge base on 440 rows of data: 1m44.001s
 
 Why is the implementation slow?
 
@@ -55,19 +166,6 @@ Computing semantics is an NP complete problem.
 %-----------------------------------
 
 \subsection{Classification}
-
-
-%THIS IS STUPID, DON'T DO STUPID THINGS:
-\begin{center}
-    \begin{tabular}{ | l | l | l |}
-    \hline
-    Technique & Correlation with task ID \\ \hline
-    Amateur Knowledge Base Grounded Extension & 0.09921536\\ \hline
-    Amateur Knowledge Base Preferred Extension & 0.09921536\\ \hline
-    Expert Knowledge Base Grounded Extension & 0.2056966\\ \hline
-    Expert Knowledge Base Preferred Extension & 0.1986422\\ \hline
-    \end{tabular}
-\end{center}
 
 \subsection{Minimum Description Length}
 

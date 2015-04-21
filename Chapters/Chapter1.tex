@@ -10,10 +10,7 @@
 
 \lhead{Chapter 1. \emph{Introduction}} % This is for the header on each page - perhaps a shortened title
 
-This chapter introduces the research topic, argumentation theory and outlines it's potential as an alternative to machine learning in the implementation of decision support systems.
-The aims and reasoning of this research study are clarified.
-The research methodology is discussed along with the scope and limitations of the study.
-Finally the organisation of this document is presented to the reader.
+This chapter introduces the research topic, defeasible reasoning and outlines it's potential as an alternative to machine learning in predicting constructs. The aims and reasoning of this research study are clarified. The research methodology is discussed along with the scope and limitations of the study. Finally the organisation of this document is presented to the reader.
 
 %----------------------------------------------------------------------------------------
 %	PROJECT BACKGROUND
@@ -29,18 +26,16 @@ Doctors may have to treat unconscious patients in emergency situations. Without 
 
 In the context of modern warfare, military strikes may put the lives of civilians at risk. The decision to attack is a difficult one made by military commanders. It is made more difficult in the case of guerrilla warfare, in which information is often conflicting as enemy combatants are embedded amongst ordinary citizens.
 
-The rapid evolution of technology is increasing the amount of data that can be gathered about these problems. Product sentiment information can be gathered from social media; improved patient monitoring gives us better insight into a patient’s condition; government agencies gather information from emails and phone calls. The abundance of information associated with these problems make unaided decision making impossible. 
+The rapid evolution of technology is increasing the amount of data that can be gathered about these problems. Product sentiment information can be gathered from social media; improved patient monitoring gives doctors better insight into a patient’s condition; government agencies gather information from emails and phone calls. The abundance of information associated with these problems make unaided decision making impossible. 
 
-Decisions Support Systems attempt to aid decision makers in solving these problems by presenting information in a manner that makes it easier to reason about. In the context of the many definitions in the literature, Turban et al.\cite{turban2005decision} explain that the central purpose of Decision Support Systems is to support and improve decision making. Many DSS make use of intelligent components to provide an improved understanding of the problem at hand to decision makers. The purpose of this research study is to investigate two of the approaches used in the design of these intelligent components; learning based approaches and knowledge based ones.
+Decisions Support Systems attempt to aid decision makers in solving these problems by presenting information in a manner that makes it easier to reason about. \cite{turban2005decision} explain that the central purpose of Decision Support Systems is to support and improve decision making. Many Decision Support Systems make use of intelligent components to provide an improved understanding of the problem at hand to decision makers. The purpose of this research study is to investigate two of the approaches used in the design of these intelligent components; learning based approaches and knowledge based ones.
 
-The goal of prediction in argumentation systems is reflected in the branch of ML known as supervised machine learning; learning that makes predictions based on a labeled training set of data. Machine learning techniques can provide reasonable predictions based on data, however, they often fall short in presenting their process to the user. ML is automatic and is unsuitable for the representation of complex constructs such as an expert's knowledge.
+Learning based approaches modify their underlying models for data based on experience. Supervised machine learning makes predictions based on a labeled training set of data. Machine learning techniques can provide reasonable predictions based on data, however, they often fall short in presenting their process to the user. As machine learning is automatic it is unsuitable for the representation of complex constructs such as an expert's knowledge.
 
-An expert generally doesn't look at some variables and apply a function to them. She considers the information at hand and reasons about it. Within her reasoning process she may make assumptions that get changed as a result of the reasoning process. This reasoning process is modeled in Defeasible Reasoning which offers a solution to the automatic process of ML.
-
-%Artificial Intelligence is an applied science research domain, in that it takes knowledge from other domains such as Philosophy and Psychology and applies them to contribute to it’s development. 
+Knowledge based approaches focus on the acquisition and representation of knowledge as well as the modeling of processes of reasoning about that knowledge. Defeasible reasoning is one such approach. An expert in a field typically doesn't look at some variables and apply a function to them. She considers the information at hand and reasons about it in the context of what she already knows. Within her reasoning process she may make assumptions that get changed as a result of the reasoning process. This reasoning process is better reflected in Defeasible Reasoning which offers a solution to the short comings of the automatic process of ML.
 
 %----------------------------------------------------------------------------------------
-%	RESEARCH AIMS AND OBJECTIVES
+%	BACKGROUND
 %----------------------------------------------------------------------------------------
 
 \section{Background}
@@ -58,16 +53,10 @@ Defeasible Reasoning was defined by Pollock as reasoning in which ``the premises
 It is possible to model defeasible reasoning using argumentation theory, in particular using abstract argumentation frameworks as described by Dung.\cite{dung1995acceptability} An Argumentation Framework is a directed graph in which arguments are modeled as nodes. Deasible relationships between those arguements are modeled as edges. An overview of this technique is given in Chapter 2.
 
 Argumentation systems have many other characteristics that make their use in decision support systems advantageous. Argumentation systems can reason based on incomplete or corrupt data and explain how an algorithm arrived at a conclusion. Through the process of visualising a knowledge base using an argumentation tool an expert may gain insight into his own ideas and refine them. 
+
 Knowledge based approaches accrue their insights and advantages by having a human expert interacting with the system. These benefits are lacking in machine learning based systems. However, ML provides us with an approach that is automatable and can provide us insights into data that it is unlikely any human would like to by going through large amounts of data by hand. ML is a better approach to solving problems such as natural language processing and image and handwriting recognition; tasks where it is difficult for a human to encode their understanding in a way that a machine can process.
-Research in the area suggests that that a knowledge-base paradigm can perform as well as state-of-the-art machine learning approaches with several additional benefits. These benefits can be summarised The literature does not often highlight the advantage of ML approaches over argumentation theory. 
-There is also little comparison between Argumentation theory and unsupervised machine learning methods. Unsupervised machine learning does not attempt to make make predictions based on labeled data. Instead it attempts to find patterns within the data.
 
-
-
-The literature in the domain suggests that argumentation theory can perform as well as, or in some cases perform better than, machine learning algorithms in predicting outcomes. 
-
-
-
+Research in the area suggests that that defeasible reasoning approaches can perform as well as state-of-the-art machine learning approaches in the prediction of breast cancer recurrence with several additional benefits. However, there is no comparison of the ability of the techniques to model a construct; a value that is not present in the data to begin with.
 
 %-----------------------------------
 %	RESEARCH Project
@@ -77,16 +66,11 @@ The literature in the domain suggests that argumentation theory can perform as w
 
 %highlight the problem and the research question.
 
-The designer of a software system that aims to unlock the full potential of this data needs to have an understanding of the different approaches to working with that data. These approaches classically remain in the domain of Data Science, however, as more systems require intelligent components software engineering professionals need to have an understanding of these techniques as well. This is no small task as many of these approaches have a steep learning curve and may involve years of training. While a software engineer may never implement a full intelligent component they still need an understanding of the techniques in order to select the correct library code and optimised it accordingly.
+This research project aims to provide a comparison between Argumentation Theory and Supervised Machine Learning. The case is made for knowledge-base paradigms as practical alternatives to learning based ones. This research aims to outlines the strengths of both techniques and provide guidelines on what problems a particular approach may be suited for. 
 
-This has motivated the publication of many books in recent years dedicated to machine learning. While many developers are becoming familiar with ML topics such as regression analysis or K-Means few are becoming familiar with argumentation theory. AT is a relative newcomer to the scene and it hasn’t yet made the same transition into the mainstream that ML has.
-
-This research project aims to provide a comparison between Argumentation Theory, Supervised Machine Learning and Unsupervised Machine Learning. The case is made for knowledge-base paradigms as practical alternatives to learning based ones. This research outlines the strengths of both techniques and provides guidelines on what problems a particular approach may be suited for.
-
-There have been comparisons made in the literature between argumentation theory and machine learning.
+The comparison will build on previous research by evaluating the ability of the approaches to model a construct, rather than labels already present in the data. The research question is formally defined:
 
 ``To what extent can an implementation of Defeasible Reasoning enhance the representation of a construct and support prediction capacity in comparison with Machine Learning?''
-
 
 
 %-----------------------------------
@@ -95,20 +79,20 @@ There have been comparisons made in the literature between argumentation theory 
 
 \section{Research Objectives}
 
+ analysis of both regression and classification approaches.
 
-Provide a wider comparison than previously outlined in the literature by including unsupervised and supervised machine learning. Analysis of both regression and classification problems.
-
-To provide an overview of the differences and similarities in learning based and knowledge based approaches. To investigate the strengths and weaknesses of these approaches. To provide guidance to developers of which approach should be implemented in a system.
+To provide an overview of the differences and similarities in learning based and knowledge based approaches. To investigate the strengths and weaknesses of these approaches. 
 
 The goals of the research project are outlined as follows:
 
 \begin{itemize}
 
-  \item To gain knowledge of Defeasible Reasoning and DR implementation techniques
-  \item To gain knowledge of and define relevant concepts in machine learning
-  \item To design a computable model of DR for knowledge representation
-  \item To design an experiment to compare machine learning and argumentation theory 
-
+  \item To gain knowledge of Defeasible Reasoning and DR implementation techniques.
+  \item To gain knowledge of and define relevant concepts in machine learning.
+  \item To design a computable model of DR for knowledge representation.
+  \item To implement this model
+  \item To design an experiment to compare machine learning and argumentation theory.
+  
 \end{itemize}
 
 %-----------------------------------
@@ -149,7 +133,7 @@ The project scope is that of Mental Workload. Mental Workload has been modeled a
 In this study we are restricted by several factors in the analysis of the techniques.
 There are several limiting factors in the experiments that are a barrier to the accurate assessment of argumentation theory.
 The argumentation system is limited in it's predictive capacity by it's knowledge based approach.
-The system elicits a knowledge base from an ``expert'' and assumes that the expert's knowledge accurately reflects reality.
+The system elicits a knowledge base from an expert and assumes that the expert's knowledge accurately reflects reality.
 There is no objective verification of that knowledge base. The performance of the AT system is based heavily on the knowledge of the expert and they ability of the system to model that knowledge accurately.
 We are similarly limited in our evaluation of the classifiers produced using the ML approach.
 Obtaining a data set of sufficient size to train classifiers to a level on par with the knowledge of an experienced professional is a challenge.
