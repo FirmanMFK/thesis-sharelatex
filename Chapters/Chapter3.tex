@@ -84,29 +84,28 @@ Another possible way to determine that MWL was high for a given task is based on
 
 Dr. Luca Longo from the DIT School of Computing is an expert in the area of MWL having completed his doctoral dissertation in formulating MWL as a defeasible construct. He has kindly volunteered his knowledge base to be used within the experiment. A data set was provided by Dr. Longo from previous research carried out in the field of web usability. The data set has the following columns (shown with example rows):
 
-\begin{table}[]
-\begin{center}
-  \begin{tabular}{ | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l |}
-    \hline \\
-expID & user & userID & taskID & time & mental & temporal & psychological & performance & effort & central & response & visual & auditory & spatial & verbal & manual & speech & arousal & bias & intention & knowledge & parallelism & skill & difficulty \hline \\
-4 & imac1@gabi.com & 1 & 8 & 251 & 4 & 1 & 1 & 50 & 50 & 32 & 14 & 3 & 23 & 34 & 3 & 6 & 37 & 21 & 66 & 37 & 71 & 1 & 82 & 19.0 \hline \\
-5 & imac1@gabi.com & 1 & 1 & 186 & 50 & 62 & 5 & 67 & 20 & 13 & 7 & 15 & 3 & 21 & 17 & 13 & 3 & 4 & 4 & 72 & 70 & 13 & 86 & 11.5 \hline \\
-6 & imac2@gabi.com & 2 & 8 & 114 & 30 & 30 & 30 & 68 & 34 & 33 & 67 & 60 & 60 & 20 & 33 & 20 & 20 & 60 & 34 & 50 & 80 & 60 & 25 & 39.125 \hline \\
-7 & imac2@gabi.com & 2 & 1 & 26 & 28 & 31 & 20 & 99 & 28 & 44 & 59 & 56 & 30 & 53 & 27 & 58 & 32 & 39 & 31 & 30 & 61 & 36 & 33 & 44.875 \hline \\
-    \hline
-  \end{tabular}
-\end{center}
-\caption{Caption}
-\label{tab:my_label}
-\end{table}
+% \begin{table}[]
+% \begin{center}
+%   \begin{tabular}{ | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l |}
+%     \hline \\
+% expID & user & userID & taskID & time & mental & temporal & psychological & performance & effort & central & response & visual & auditory & spatial & verbal & manual & speech & arousal & bias & intention & knowledge & parallelism & skill & difficulty \hline \\
+% 4 & imac1@gabi.com & 1 & 8 & 251 & 4 & 1 & 1 & 50 & 50 & 32 & 14 & 3 & 23 & 34 & 3 & 6 & 37 & 21 & 66 & 37 & 71 & 1 & 82 & 19.0 \hline \\
+% 5 & imac1@gabi.com & 1 & 1 & 186 & 50 & 62 & 5 & 67 & 20 & 13 & 7 & 15 & 3 & 21 & 17 & 13 & 3 & 4 & 4 & 72 & 70 & 13 & 86 & 11.5 \hline \\
+% 6 & imac2@gabi.com & 2 & 8 & 114 & 30 & 30 & 30 & 68 & 34 & 33 & 67 & 60 & 60 & 20 & 33 & 20 & 20 & 60 & 34 & 50 & 80 & 60 & 25 & 39.125 \hline \\
+% 7 & imac2@gabi.com & 2 & 1 & 26 & 28 & 31 & 20 & 99 & 28 & 44 & 59 & 56 & 30 & 53 & 27 & 58 & 32 & 39 & 31 & 30 & 61 & 36 & 33 & 44.875 \hline \\
+%     \hline
+%   \end{tabular}
+% \end{center}
+% \caption{Caption}
+% \label{tab:my_label}
+% \end{table}
 
 \citep{longo2014formalising} describes the rows in the dataset as follows:
 
 \begin{table}[]
 \centering
 \begin{tabular}{|l|p{8cm}|}
-
-\\ \hline
+\hline
  expID & An ID that uniquely identifies the experiment instance \\ \hline
  user & The participant's email address \\ \hline
  userID & The participant's unique ID \\ \hline
@@ -121,6 +120,17 @@ expID & user & userID & taskID & time & mental & temporal & psychological & perf
  response & The effort expended completing the task, the answer to the question ``'' on a scale from 0 - 100 \\ \hline
  visual & The effort expended completing the task, the answer to the question ``How much attention was required for executing the task based on the information visually received (through eyes)?'' on a scale from 0 - 100 \\ \hline
  auditory & The effort expended completing the task, the answer to the question ``How much attention was required for executing the task based on the information auditorily received (ears)?'' on a scale from 0 - 100 \\ \hline
+\end{tabular}
+\caption{Caption}
+\label{tab:my_label}
+\end{table} 
+ 
+
+
+\begin{table}[]
+\centering
+\begin{tabular}{|l|p{8cm}|}
+\hline
  spatial & Spatial workload, the answer to the question ``How much attention was required for spatial processing (spatially pay attention around you)?'' on a scale from 0 - 100 \\ \hline
  verbal & Verbal workload, the answer to the question ``How much attention was required for verbal material (eg. reading or processing linguistic material or listening to verbal conversations)?'' on a scale from 0 - 100 \\ \hline
  manual & Manual effort, the answer to the question ``How much attention was required for manually respond to the task (eg. keyboard/mouse usage)?'' on a scale from 0 - 100 \\ \hline
@@ -132,11 +142,10 @@ expID & user & userID & taskID & time & mental & temporal & psychological & perf
  parallelism & The degree to which a user multi-tasked, the answer to the question ``Did you perform just this task (low parallelism) or were you doing other parallel tasks (high parallelism) (eg. multiple tabs/windows/programs)?'' on a scale from 0 - 100 \\ \hline
  skill & The effect of the participants skill level on completing the task, the answer to the question ``Did your skills have no influence (low) or did they help to execute the task (high)?'' on a scale from 0 - 100 \\ \hline
  difficulty & \( \frac{1}{8} \) ((solving/deciding) + (response) + (task/space) + (verbal material) + (visual resources) + (auditory resources) + (manual response) + (speech response)) \\ \hline
- 
 \end{tabular}
 \caption{Caption}
 \label{tab:my_label}
-\end{table}
+\end{table} 
 
 \section{Machine Learning Software}
 
@@ -169,7 +178,7 @@ By investigating each of these user stories a system can be designed suitable fo
 
 \subsection{Defeasible Knowledge Base}
 \label{sec:def_kb}
-The expert or knowledge engineer must be able to model their knowledge base as a defeasible process. This process is being modeled as an Argumentation Framework as proposed by \cite{dung1995acceptability}. To reiterate, an argumentation framework is a set of arguments and attack relations between those arguments. In the case of MWL, an example of an argument is ``if the user's effort is low, this implies that the user's mental workload is low''. Another is ``if the user's performance is low, this implies that the user's mental workload is high''. It can be said that the former attacks the later since if the user doesn't make any effort the performance will be low. In the argumentation framework S = \langle A , R \rangle A is the set of arguments A = \{ a , b , c , d \} and R is the set of attacks R = \{ (\, a , b )\, , (\, b , c )\, , (\, c , d )\, \}  These arguments and attacks relations must be input into the system in a format that allows them to be processed and that allows the user to easily modify and reason about what they have input.
+The expert or knowledge engineer must be able to model their knowledge base as a defeasible process. This process is being modeled as an Argumentation Framework as proposed by \cite{dung1995acceptability}. To reiterate, an argumentation framework is a set of arguments and attack relations between those arguments. In the case of MWL, an example of an argument is ``if the user's effort is low, this implies that the user's mental workload is low''. Another is ``if the user's performance is low, this implies that the user's mental workload is high''. It can be said that the former attacks the later since if the user doesn't make any effort the performance will be low. In the argumentation framework $S = \langle A , R \rangle A$ is the set of arguments $A = \{ a , b , c , d \}$ and R is the set of attacks $R = \{ (\, a , b )\, , (\, b , c )\, , (\, c , d )\, \}$  These arguments and attacks relations must be input into the system in a format that allows them to be processed and that allows the user to easily modify and reason about what they have input.
 
 One method that could be adopted in designing the interface is a text based approach. The user enters their knowledge base in a text editor as a list of nodes and attack relations according to a format specified by the system designer that can be parsed by the software. An example of a JSON based format would be the following:
 
@@ -228,37 +237,24 @@ For the purposes of the experiment we consider a premise to be relevant if the i
 
 By taking a value from a column the degree of truth of the premise as applied to the row can be determined using a membership function. We can then determine the overall degree of truth for an argument by computing the average of the degrees of truth of the premises. The degree of truth for the argument is then used as the input for an argument output function which determines value associated with the construct for that argument.
 
-The following is an example of this process. Taking the argument labeled ``Low Effort \& Low Performance->Low MWL''; two premises can be identified: ``Low Effort'' and ``Low Performance'' and an output function ``Low MWL''. The premises and output function could be modeled as in figure~\ref{fig:membership_functions}. Table~\ref{tab:memfunc_ex} shows example input and output for the function. 
+The following is an example of this process. Taking the argument labeled ``Low Effort \& Low Performance $\rightarrow$ Low MWL''; two premises can be identified: ``Low Effort'' and ``Low Performance'' and an output function ``Low MWL''. The premises and output function could be modeled as in figure~\ref{fig:membership_functions}. Table~\ref{tab:memfunc_ex} shows example input and output for the function. 
+
 
 \begin{figure}
-\centering
-\begin{subfigure}{.3\textwidth}
-  \centering
-  \includegraphics[width=.2\linewidth]{loweffort}
-  \caption{A subfigure}
-  \label{fig:sub1}
-\end{subfigure}%
-\begin{subfigure}{.3\textwidth}
-  \centering
-  \includegraphics[width=.2\linewidth]{performance}
-  \caption{A subfigure}
-  \label{fig:sub2}
-\end{subfigure}
-\begin{subfigure}{.3\textwidth}
-  \centering
-  \includegraphics[width=.2\linewidth]{outputfunction}
-  \caption{A subfigure}
-  \label{fig:sub3}
-\end{subfigure}
-\caption{A figure with two subfigures}
-\label{fig:membership_functions}
+    \centering
+        \subfigure[Low effort membership function]{\label{fig:a}\includegraphics[width=47mm]{loweffort}}
+        \subfigure[Low performance membership function]{\label{fig:b}\includegraphics[width=47mm]{performance}}
+         \subfigure[Output function]{\label{fig:b}\includegraphics[width=47mm]{outputfunction}}
+    \hfill
+    \caption{Example membership functions and output function}
+    \label{fig:membership_functions}
 \end{figure}
 
 \begin{table}[]
 \begin{center}
   \begin{tabular}{ | l | l | p{8cm} |}
-    \hline \\
-Effort & Performance & Result \\
+    \hline 
+Effort & Performance & Result \\ \hline
 0 & 0 & The argument's degree of truth is 1 overall, the value for MWL is 0. \\
 30 & 30 & The argument's degree of truth is 0 overall, it's output is considered since the input's are in range. It's value for MWL is 40. \\
 50 & 15 & The argument is discarded as the value for Effort is out of the range of the membership functions. \\
