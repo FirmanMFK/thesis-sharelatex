@@ -32,13 +32,15 @@ On one hand is deductive reasoning; reasoning in which conclusions logically fol
 
 On the other hand is defeasible reasoning (DR), defined by \cite{pollock1987defeasible} as reasoning in which ``the premises taken by themselves may justify accepting the conclusion, but when additional information is added, that conclusion is no longer justified.'' Non-monotonic reasoning is more suitable for modelling human reasoning, which is non-monotonic, and for implementation in DSS.
 
-As a result of recent advances, it is possible to model defeasible reasoning using argumentation theory, a computational technique to model non-monotonic reasoning. Deasible relationships between those arguements are modeled as edges. An overview of this technique is given in Chapter 2.
+As a result of recent advances, it is possible to model defeasible reasoning using argumentation theory, a computational technique to model non-monotonic reasoning. Argumentation theory allows us to model arguments and the interactions between them. An overview of this technique is given in Chapter 2.
 
-Argumentation systems have many other characteristics that make their use in decision support systems advantageous. Argumentation systems can reason based on incomplete or corrupt data and explain how an algorithm arrived at a conclusion. Through the process of visualising a knowledge base using an argumentation tool an expert may gain insight into his own ideas and refine them. 
+Knowledge based argumentation systems have many other characteristics that make their use in decision support systems advantageous. Argumentation systems can implement reasoning based on incomplete or corrupt data as well as conflicting information and explain how an algorithm arrived at a conclusion. Through the process of visualising a knowledge base using an argumentation tool an expert may gain insight into his own ideas and refine them. 
 
-Knowledge based approaches accrue their insights and advantages by having a human expert interacting with the system. These benefits are lacking in machine learning based systems. However, ML provides us with an approach that is automatable and can provide us insights into data that it is unlikely any human would like to by going through large amounts of data by hand. ML is a better approach to solving problems such as natural language processing and image and handwriting recognition; tasks where it is difficult for a human to encode their understanding in a way that a machine can process.
+Knowledge based approaches accrue their insights and advantages by having a human expert interacting with the system. These benefits are lacking in machine learning based systems. 
 
-Research in the area suggests that that defeasible reasoning approaches can perform as well as state-of-the-art machine learning approaches in the prediction of breast cancer recurrence with several additional benefits. However, there is no comparison of the ability of the techniques to model a construct; a value that is not present in the data to begin with.
+On one hand, ML provides us with an approach that is automatable and can provide insights into data that it is unlikely any human would find sifting through large amounts of data by hand. ML is a better approach to solving classification problems such as natural language processing as well as image and handwriting recognition; tasks where it is difficult for a human to encode their understanding in a way that a machine can process.
+
+On the other hand, ML is not always suited to modelling constructs, as human expertise is not accounted for. Knowledge based approaches are better suited to defining new measures for intelligence, depression, personality, or mental workload. These constructs are ill defined concepts that are difficult to measure and assess.
 
 %-----------------------------------
 %	RESEARCH Project
@@ -48,11 +50,13 @@ Research in the area suggests that that defeasible reasoning approaches can perf
 
 %highlight the problem and the research question.
 
-This research project aims to provide a comparison between Argumentation Theory and Supervised Machine Learning. The case is made for knowledge-base paradigms as practical alternatives to learning based ones. This research aims to outlines the strengths of both techniques and provide guidelines on what problems a particular approach may be suited for. 
+This research project aims to provide a comparison between an implementation of DR (argumentation theory) and a type of machine learning (supervised ML). The aim is to outline the strengths of both techniques and provide guidelines on what problems a particular approach may be suited for. 
 
-The comparison will build on previous research by evaluating the ability of the approaches to model a construct, rather than labels already present in the data. The research question is formally defined:
+The comparison will build on previous research by evaluating the ability of the approaches to model a construct, to measure and assess it and determine the capacity of these assessments to be used in prediction tasks. 
 
-``To what extent can an implementation of Defeasible Reasoning enhance the representation of a construct and support prediction capacity in comparison with Machine Learning?''
+The research question is formally defined:
+
+``To what extent can an implementation of Defeasible Reasoning enhance the representation of a construct (mental workload) and support prediction capacity in comparison with Machine Learning?''
 
 
 %-----------------------------------
@@ -61,19 +65,16 @@ The comparison will build on previous research by evaluating the ability of the 
 
 \section{Research Objectives}
 
-The objective of this project is to provide an overview of the differences and similarities in learning based and knowledge based approaches and to investigate the strengths and weaknesses of these approaches. 
+The objective of this project is to provide an overview of the differences and similarities in learning based and knowledge based approaches and to investigate the strengths and weaknesses of these approaches, in relation to construct modelling, assessment and prediction capacity.
 
 The goals of the research project are outlined as follows:
 
-\begin{itemize}
-
-  \item To gain knowledge of Defeasible Reasoning and DR implementation techniques.
-  \item To gain knowledge of and define relevant concepts in machine learning.
-  \item To design a computable model of DR for knowledge representation.
-  \item To implement this model.
-  \item To design an experiment to compare machine learning and argumentation theory.
-  
-\end{itemize}
+\begin{enumerate}
+  \item To gain knowledge of Defeasible Reasoning and it's implementation techniques and also to to gain knowledge of and define relevant concepts in machine learning.
+  \item To design a computable model of DR for construct representation as well as a structured experiment.
+  \item To implement this model in software and execute the experiments.
+  \item To evaluate the designed model.
+\end{enumerate}
 
 %-----------------------------------
 %	RESEARCH METHODOLOGY
@@ -82,20 +83,14 @@ The goals of the research project are outlined as follows:
 \section{Research Methodology}
 
 
-This project will use a mixed research methodology - a combination of both qualitative and quantitative methods. A literature review is carried out to outline the strengths and weaknesses of the techniques that have been identified in previous research. The output of the review is used to inform the design of an experiment that will utilise a software implementation of argumentation theory and machine learning tools. The output of this experiment is qualitatively analysed in the context of the information obtained in the literature review. Statistical methods are used on the data produced from the experiment analyse the predictive capacity of argumentation theory and supervised machine learning. 
+This project will use a mixed research methodology - a combination of both qualitative and quantitative methods. 
 
-As part of the project the development of an argumentation system inspired by the research of Dung and Longo and Hederman is developed to allow for a comparison with machine learning software, Weka. 
-
-In order to achieve the aforementioned aims the following experiments are conducted.
-
-\begin{itemize}
-
-  \item An argumentation system is developed in software and used to elicit a knowledge base from an expert.
-  \item A number of ML classifiers (using both classification and regression algorithms) are trained to using a partition of the experiment data set.
-  \item The predictive ability of the classifiers and the knowledge based system are tested using a subset of the data set.
-
-\end{itemize}
-
+\begin{enumerate}
+  \item A literature review is carried out to outline the strengths and weaknesses of the techniques.
+  \item The output of the review is used to inform the design of an experiment.
+  \item This will utilise a software implementation of argumentation theory and machine learning tools. 
+  \item  The output of this experiment is qualitatively analysed using evaluation metrics as emerged from the literature review. Statistical methods are used on the results produced in the experiment to analyse the predictive capacity of the designed model of DR against the one of selected supervised machine learning classifiers.
+\end{enumerate}
 
 %----------------------------------------------------------------------------------------
 %	SCOPE AND LIMITATIONS
@@ -103,9 +98,9 @@ In order to achieve the aforementioned aims the following experiments are conduc
 
 \section{Scope and Limitations}
 
-The project scope is that of Mental Workload. Mental Workload has been modeled as a defeasible construct in previous work by Dr. Longo who will provide his knowledge base for the purpose of the experiment. 
+The project scope is that of a single construct. Mental Workload has been modeled as a defeasible construct in previous work by Dr. Longo who has provided his knowledge base for the purpose of the experiment. 
 
-The project is limited by the size of the data set that will be used. As there are only 440 rows in the data set the training of the machine learning models will not be thorough. 
+The project is limited by the size of the data set that has been used and provided by Dr. Longo. As there are only 440 rows in the data set the training of the machine learning models will not be thorough. 
 
 \section{Document Outline}
 
@@ -114,9 +109,9 @@ This thesis is organised into the following sections:
 \begin{itemize}
 
   \item Chapter 2 provides a review of the literature relevant to argumentation theory and machine learning including cutting-edge research in the area.
-  \item Chapter 3 outlines the design of the experiment and the justification of those design decisions in the context of previous research methodology
-  \item Chapter 4 details the implementation of the experiments; the implementation relevant software artifacts, their use and the overall execution of the experiments.
-  \item Chapter 5 the results of the experiments are presented and discussed.
-  \item Chapter 6 reviews the experiment and findings in the context of the relevant literature. Conclusions are then derived and future work suggested.
+  \item Chapter 3 outlines the design of the DR implementation and the experiment and the justification of those design decisions in the context of the research methodology
+  \item Chapter 4 details the implementation of the software and the experiments; the implementation and deployment of relevant software artifacts, their use and the overall execution of the experiments.
+  \item Chapter 5 presents and discusses the results of the experiments.
+  \item Chapter 6 summarises the thesis, highlighting it's main contribution to the body of knowledge. Future work and recommendations are suggested.
 
 \end{itemize}
