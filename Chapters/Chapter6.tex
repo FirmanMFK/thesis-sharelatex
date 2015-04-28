@@ -2,131 +2,39 @@
 
 \chapter{Conclusions and Future Work} % Main chapter title
 
-\label{Chapter6} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+\label{Chapter6} 
 
-\lhead{Chapter X. \emph{Chapter Title Here}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+\lhead{Chapter 6. \emph{Conclusions and Future Work}} 
 
-%----------------------------------------------------------------------------------------
-%	SECTION 1
-%----------------------------------------------------------------------------------------
+This chapter revisits the aims of the projects. The key results of the research are summarised and their significance to answering the research question is discussed. The contribution of the research is made clear. Finally, areas for future research are outlined.
 
-\section{Introduction}
+\section{Summary of findings and conclusions}
 
+The central motive of this project is to compare and contrast machine learning with an implementation of defeasible reasoning. Specifically, the project examined the ability of the two techniques to measure a construct; in this case mental workload. Constructs by their nature are abstract and difficult to measure, so evaluating the performance of the techniques empirically is also a challenge. In order to determine that the techniques performed well two measures were taken which are widely used to assess the accuracy of measures; concurrent validity and convergent validity. Neither of these measures can conclusively tell us that the results are correct; they can only suggest to us that we are on the right path.
 
-%-----------------------------------
-%	SUBSECTION 1
-%-----------------------------------
-\subsection{Subsection 1}
+Although there was a limited amount of data to train and evaluate the techniques with, the results from the experiment can still provide us with some insight into the question posed at the start of the project. A core finding of this thesis is that supervised machine learning techniques are limited to learning to make predictions based on labeled training data. The only way to predict construct measures is to choose a field in the data and decide that this accurately measures the construct we are interested in. In the experiment, it was decided that MWL could be modeled using an objective performance measure, time. This approach was flawed, as it was shown that time had a poor convergent validity as a measure for MWL. From a practical point of view, this would suggest that if machine learning is to be used in an application to predict a construct, the data should be labeled or a column with a high convergent validity with other measures of the construct should be used. 
 
+The convergent validity of the experts knowledge base was very high with respect to an existing measure of MWL. The non-expert's knowledge base had a high convergent validity with the existing measure of MWL as well, however, it was not nearly as strong as the expert's. This suggests that the implementation was providing a good representation of the construct and demonstrates the strength of defeasible reasoning for use in this situation.
 
-%-----------------------------------
-%	SUBSECTION 2
-%-----------------------------------
+The concurrent validity of the approaches was measured by their ability to predict an objective performance measure, time, and another objective value, task membership. It was believed that MWL would vary consistently across tasks as some tasks were designed to be more difficult than others. Predictions of task time made based on the MWL values computed from the expert's knowledge base were better than those of the amature and all but one machine learning approach. Over all, linear regression performed best at predicting task time. Predictions of task membership based on values for MWL from the knowledge based approach were found to be inaccurate. In this case logistic regression and naive bayes performed best. It is possible that task membership has a weak relationships with MWL. Unfortunately, as the task IDs are discrete values it is not possible to determine their convergent validity with other MWL measures. 
 
-\subsection{Subsection 2}
+The performance of machine learning was likely hindered significantly by the limited amount of data available for training. It would be interesting to perform the experiments again with a larger data set. This highlights another strength of the defeasible reasoning approach, no training based on data is required. It is noted that the ability to verify a knowledge base against a data set is useful in the implementation of such a system as in this project. This requires a significantly smaller data set than that required to train a machine learning model. One criticism of knowledge based approaches is that they allow predictions to be made based on anecdotal evidence and not hard data. This is alleviated somewhat by the verification step in our approach. 
 
+It was noted that this implementation of defeasible reasoning was particularly slow; implementation reasons for this have been identified. This approach may not be ready for real world implementation today, however, a hybrid approach using AT for data set labeling could be adopted as outlined in Chapter 5. One of the main culprits of performance issues was the Dung-o-matic inference engine. It has been noted that other faster implementations exist but were not ready or available for integration in this project. It is this authors opinion that this highlights a greater need within this argumentation theory community for an open source implementation of a library for computing argument semantics. This sentiment is shared by other authors who's work has been highlighted in the literature review.
+
+The implementation of defeasible reasoning used in this project is (to my knowledge) the first implementation to adopt a graphical diagramming approach that is also used for computation of results. This has several possible advantages that could be investigated as the subject of future research. An expert could be trained in using the tool to elicit their knowledge base graphically which is likely more intuitive than inputting their knowledge base using some domain specific language. It is possible that in a similar fashion to the findings of \cite{twardy2004argument}, experts could improve their critical reasoning around their domain through interaction with the tool. It is also likely that through visualisation the comparison of knowledge bases will be made easier. 
 
 
-%----------------------------------------------------------------------------------------
-%	PROBLEM DEFINITION & RESEARCH OVERVIEW
-%----------------------------------------------------------------------------------------
+\section{Contribution to the body of knowledge}
 
-\section{Problem Definition `\&' Research Overview}
+This project has highlighted a shortcoming of machine learning, the measurement of constructs, that can be better accomplished using a DR based approach. A key strength of argumentation theory over machine learning has been highlighted; that AT can allow experts to develop and evaluate constructs in an intuitive way.
 
+The project provides a generalisable implementation of defeasible reasoning that is user friendly. It is the first implementation (to my knowledge) that integrates an argument diagramming approach with the computation of results. This implementation and it's design can provide guidance to engineers and academics that seek to integrate these approaches into applications or their research.
 
+\section{Future work and research}
 
-%-----------------------------------
-%	SUBSECTION 1
-%-----------------------------------
-\subsection{Subsection 1}
+In order to provide greater insight into the problem at hand the experiment could be carried out again with larger data sets across using different constructs. Further steps should be taken to optimised the DR implementation, including possible research into the efficient computation of argument semantics.
 
+This project focused exclusively on supervised machine learning. An exploration of construct representation with unsupervised machine learning might provide new insights that have been ignored in this research.
 
-
-%-----------------------------------
-%	SUBSECTION 2
-%-----------------------------------
-
-\subsection{Defeasible Reasoning as a technique for Labeling Data for Machine Learning}
-
-Labeling data is difficult and boring. In order to train classifiers large ammounts of data must be labeled by hand.
-
-
-
-
-
-
-%----------------------------------------------------------------------------------------
-%	CONTRIBUTIONS TO BODY OF KNOWLEDGE
-%----------------------------------------------------------------------------------------
-
-\section{Contributions to Body of Knowledge}
-
-
-
-%-----------------------------------
-%	SUBSECTION 1
-%-----------------------------------
-\subsection{Subsection 1}
-
-
-
-%-----------------------------------
-%	SUBSECTION 2
-%-----------------------------------
-
-\subsection{Subsection 2}
-
-
-
-
-%----------------------------------------------------------------------------------------
-%	EXPERIMENTATION, EVALUATION & LIMITATIONS
-%----------------------------------------------------------------------------------------
-
-\section{Experimentation, Evaluation `\&' Limitations}
-
-
-%-----------------------------------
-%	SUBSECTION 1
-%-----------------------------------
-\subsection{Subsection 1}
-
-%-----------------------------------
-%	SUBSECTION 2
-%-----------------------------------
-
-\subsection{Subsection 2}
-
-
-
-%----------------------------------------------------------------------------------------
-%	FUTURE WORK & RESEARCH
-%----------------------------------------------------------------------------------------
-
-\section{Future Work `\&' Research}
-
-Add changes to interface to minimise the resultant KB.
-%-----------------------------------
-%	SUBSECTION 1
-%-----------------------------------
-\subsection{Subsection 1}
-
-
-
-%-----------------------------------
-%	SUBSECTION 2
-%-----------------------------------
-
-\subsection{Subsection 2}
-
-
-
-
-%----------------------------------------------------------------------------------------
-%	SECTION 2
-%----------------------------------------------------------------------------------------
-
-\section{Conclusions}
-
-\section{Future Work}
-
+The application developed in this project could itself be the subject of further research. The usability of the interface could be examined and whether it provides advantages in the elicitation of knowledge bases. In a similar manner to the work conducted by \cite{twardy2004argument} it could be interesting to examine whether or not an expert's understanding of their domain was improved through the knowledge elicitation process.

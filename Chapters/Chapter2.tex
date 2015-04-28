@@ -1,14 +1,9 @@
-% Chapter Template
 
-\chapter{Literature Review} % Main chapter title
+\chapter{Literature Review} 
 
-\label{Chapter2} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+\label{Chapter2} 
 
-\lhead{Chapter 2. \emph{State of the Art}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
-
-%----------------------------------------------------------------------------------------
-%	SECTION 1
-%----------------------------------------------------------------------------------------
+\lhead{Chapter 2. \emph{State of the Art}} 
 
 \section{Introduction}
 
@@ -286,36 +281,43 @@ Motivated by the desire to apply argumentation in multi-agent systems \cite{podl
 
 Comparing the performance of programs to compute AF semantics is a challenging aspect of these new systems. \cite{cerutti2014generating} explains that the lack of a large set of challenging AFs makes benchmarking the algorithms difficult and offers a solution in the form of AFBenchGen.
 AFBenchGen is a C++ program designed to generate random a AFs for benchmarking.
-The program was able to efficiently generate large AFs with 5,000 nodes and 270,000 attacks.
-The authors explain that a more through test suite should contain AFs with different structures.
+The program was able to efficiently generate large AFs with 5,000 nodes and 270,000 attacks. The authors explain that a more through test suite should contain AFs with different structures and determining how to generate these test cases is a subject for further study.
 
-\cite{bistarelli2013first} provide a performance comparison of the computation of stable semantics in ASPARTIX, dynPARTIX, Dung-O-Matic, and ConArg2.
+Two studies have built upon this work and benchmarked implementations designed to compute the semantics of Dung's AFs. \cite{bistarelli2014benchmarking} provide a performance comparison of the computation of stable semantics in ASPARTIX, dynPARTIX, Dung-O-Matic, and ConArg2. The semantics were benchmarked across three different graph structures; the Erdős-Re ́nyi model, the Kleinberg small-world model, and the scale-free Barabasi-Albert model. By focusing on stable semantics they focus on one of the worst case scenarios as a stable semantic doesn't always exist and it's computation is NP-Hard. Out of all four Dung-o-matic performed least favourably, ASPARTIX performed well at solving Erdos-Renyi but overall ConArg2 was found to be the strongest implementation.
 
+\begin{figure}[!h]
+\centering
+\includegraphics[width=140mm]{benchmark2}
+\caption{Performance benchmarks taken from \cite{bistarelli2014benchmarking}}
+\label{fig:my_label}
+\end{figure}
+
+These findings are echoed in earlier work carried out by \cite{bistarelli2013first} that found ASPARTIX and ConArg to significantly out perform Dung-o-matic. Similarly in this work the authors attempted to compute the complete and stable extensions for the three random graphs given above and also for Watts-Strogatz graphs. 
 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=140mm]{benchmarking}
-\caption{Argument diagramming with Araucaria}
+\caption{Performance benchmarks taken from \cite{bistarelli2013first}}
 \label{fig:my_label}
 \end{figure}
 
+An alternative to Dung's argumentation framework has been proposed by \cite{gordon2007carneades}. Their model contrasts with Dung's AF by considering the internal structure of arguments in evaluating their feasibility. The model uses directed graphs to model the argumentation process as well, however, there are additional elements instead of simply arguments and attack relations. Nodes may be arguments or supporting information such as datum, claim, warrant, backing and exception. The relationships between nodes may be attack or support relations and are distinguish by using different arrow heads. An implementation of their framework exists known as Carneades.
 
-An alternative to Dung's argumentation framework has been proposed by \cite{gordon2007carneades}.
-Their model contrasts with Dung's AF by considering the internal structure of arguments in evaluating their feasibility. The model uses directed graphs to model the argumentation process as well, however, there are additional elements instead of simply arguments and attack relations. Nodes may be arguments or supporting information such as datum, claim, warrant, backing and exception. The relationships between nodes may be attack or support relations and are distinguish by using different arrow heads. An implementation of their framework exists known as Carneades.
+\begin{figure}[!h]
+\centering
+\includegraphics[width=140mm]{carnedes}
+\caption{A Carnedes argument graph showing more complex relations than considered in a Dung-style AF}
+\label{fig:my_label}
+\end{figure}
 
 \cite{van2014principled} provide techniques for translating Carneades argumentation frameworks into Dung style AFs in order to use the more efficient implementations.
 
 While the Carnedes approach may be overly complex for practical purposes, it does underline the importance of considering the internal structure of arguments. Most of the implementations considered so far evaluate the semantics of an AF with respect to the framework as it is defined. However, whether arguments are relevant varies depending on the instance of data being considered.
 
 % How do longo and hederman consider the activation of an argument
-\cite{longo2012argumentation} similarly investigated the role of argumentation theory in the implementation of decision support systems. Their work provides a comparison with machine learning. The authors developed an argumentation framework (similar to to those described by Dung) to model the breast cancer recurrence problem. The results of their experiment showed that argumentation based systems could perform as well and in some cases better than machine learning algorithms.
+A comparison between argumentation theory and machine learning was made by \cite{longo2012argumentation} in the domain of health informatics. The comparison specifically tackled the ability of both approach to solve a classification problem; the recurrence of breast cancer. The authors developed a Dung style argumentation framework based on the knowledge base of a single health-care practitioner. The authors used this knowledge based to determine results for rows in a classic breast cancer data-set. In order to determine whether or not an argument in the framework was activated the authors used fuzzy membership functions. The authors then compared the results of this experiment with the predictive capacity of several machine learning algorithms (decision tables, bayesian networks, best-first and alternating decision tree, regression and multilayer perceptron) varying percentage of split and the number of folds. The results of their experiment showed that argumentation based systems could perform as well and in some cases better than machine learning algorithms. Moreover, as there was no training involved the approach was likely to perform equally well on a different data set, unlike the machine learning approaches.
 
-\cite{matt2010combining} combined statistical methods with argumentation theory in order to compute trust.
-%how did they do this and evaluate it?
-
-%Discuss evaluation by longo and hederman
-Generally when argumentation approaches are evaluated researchers compare the ability of the implementation to predict a value already present in the dataset. 
-
+Overall the advantages outlined by the authors highlight the `human' element of the approach. AT is more intuitive and can provide users with greater understand of the problems they seek to solve. Experts can subjectively compare knowledge bases and obtain explanations for results computed on the basis of their knowledge. The lack of the same human element in machine learning is what provides it's advantages over AT; training is automatic and doesn't require a knowledge base to be elicited. 
 
 %----------------------------------------------------------------------------------------
 %	EVALUATION
@@ -358,8 +360,6 @@ $$S_{P} = \frac{\sum _{i}(p_i - \bar{p})^2}{n - 1}$$
 $$S_{A} = \frac{\sum _{i}(a_i - \bar{a})^2}{n - 1}$$
 
 
-\subsection{Classification Problems}
-
 \subsection{Minimum Description Length}
 
 \cite{grunwald2005tutorial} gives an overview of how the Minimum Description Length Principal is used to solve the problem of model selection. Overfitting is a problem that occurs frequently with ML techniques. Overfitting occurs when a learning technique puts too much emphasis on fitting the data exactly. As a result data points like outliers can skew the model and result in it classifying future instances of the data wrongly. A model that overfits the data will classify the data set used to train it with very little error, however, when used on a test set will perform poorly. A simpler model may not classify the training data perfectly but will perform better on test data.
@@ -375,12 +375,20 @@ with the help of the hypothesis.
 
 The underlying idea of that can be derived from the principle is that the simple representation of constructs should be considered favourable to one that is complex. An informal approach to computing the MDL of a model is to describe a model in terms of the number of lines of code it would take to output the data. The greater the number of lines of code, the greater the MDL.
 
+\subsection{Construct Validity}
 
-%----------------------------------------------------------------------------------------
-%	CONCLUSIONS
-%----------------------------------------------------------------------------------------
+As the aim of this project is to compare the ability of machine learning and argumentation theory to represent and predict the value of a construct, an investigation into construct validity is necessary. Constructs can be thought of as things that are not easy to observe. The are difficult to measure as they are often ambiguous, abstract and can be quite complex. Measuring constructs requires that they are defined precisely and a way to translate the construct from the abstract to the concrete is established.
+
+Construct validity refers to the accuracy of this translation. Construct validity is not refered to in absolute terms, however, we can say that over time a certain measure has shown strong construct validity\footnote{See \url{http://dissertation.laerd.com/construct-validity.php}}. Two measures used to determine construct validity are concurrent validity and convergent validity.
+
+Concurrent validity is used to establish that a particular measure may be used to predict some other outcome that is determined by the construct. The outcome to be verified against must be collected in the same experiment as the new measure being explored.\footnote{\url{https://explorable.com/concurrent-validity}} The ability of the new contruct to predict this outcome can then be determined by using a regression model. A notable flaw in concurrent validity is that the measure used to benchmark the new measure may itself be flawed. As a result of this it is rarely used alone but has been used with other measures to assess the validity of a wide variety of constructs such as social anxiety by \cite{la1993social}, martial satisfaction by \cite{schumm1986concurrent} and depression by \cite{storch2004factor}.
+
+Another means of determining the validity of a measure is the convergent validity of a measure. Concurrent validity was introduced by \cite{campbell1959convergent}. If there already exists some accurate measure for the construct that is being examined, the new measure can be evaluated by looking at it's relationship to the old measure (how the two converge). Convergent validity can be established by computing a correlation between the new measure and an old measure. This suffers from the same problems as concurrent validity since the measure used as a benchmark may be flawed. Convergent validity has also been widely used, for example in establishing measures for post traumatic stress disorder (\cite{neal1994convergent}), social desirability (\cite{stober2001social}) and social phobia(\cite{beidel1996assessment}).
 
 \section{Conclusions}
 
+This chapter began with an exploration of two broad domains; machine learning and knowledge base systems. Within machine learning several supervised learning techniques were explored; bayesian networks, naive bayes, artificial neural networks, kstar and various regression techniques. All of these techniques are advantageous as the can learn automatically from data. 
 
-% REMOVAL OF HUMAN ELEMENT
+Knowledge based techniques were explored and in particular argumentation theory and defeasible reasoning were introduced. In particular the fundamental work of \cite{dung1995acceptability} was introduced. This lays the foundation for the defeasible reasoning implementation of this experiment. Implementations for the computation of AF semantics have been reviewed in order to be integrated in this design. The results of other work using argumentation theory have been explored. These techniques are advantageous as they can provide greater understanding of the task at hand.
+
+Several techniques for assessing the predictive capacity of the techniques have been identified. Measures for establishing the validity of the construct measures have been determined. These measures will be valuable when assessing the techniques in a quantitative experiment.
