@@ -1,12 +1,12 @@
 % Chapter Template
 
-\chapter{Evaluation} % Main chapter title
+\chapter{Evaluation of Results and Discussion} % Main chapter title
 
 \label{Chapter5} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-\lhead{Chapter 5. \emph{Evaluation}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+\lhead{Chapter 5. \emph{Evaluation of Results and Discussion}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 
-This chapter discusses the ability of an implementation of defeasible reasoning to model a construct in comparison with machine learning. The chapter first discusses the results of the experiment performed in the previous chapter. A comparative analysis of both techniques is then performed in the context of the information gathered in the literature review.
+This chapter discusses the ability of an implementation of defeasible reasoning to model a construct in comparison with machine learning. The chapter presents and discusses the results of the experiment performed in the previous chapter. A comparative analysis of both techniques is performed using the evaluation techniques gathered literature review.
 
 \section{Results}
 
@@ -19,8 +19,49 @@ This chapter discusses the ability of an implementation of defeasible reasoning 
 
 The research question posed at the start of this project is focused on the ability of two techniques to represent and predict the value of a construct. In order to determine the ability of the techniques to measure the construct the concurrent and convergent validity of the results is determined.
 
+\subsection{Predictive Capacity}
 
-\subsection{Concurrent Validity}
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+                                &  10-fold & 20-fold & 40-fold \\ \hline
+Additive Regression             & 85.8072  & 83.5995  & 82.0641 \\
+ANN                             & 137.238 & 126.9808 & 141.3834 \\
+Regression                      & 80.8231 & 80.9963 & 80.2697 \\
+K Star                          & 93.6672 & 92.1658 & 91.1066 \\
+Expert (Grounded Extension)     & 80.6007 & 80.5986 & 80.5241 \\
+Expert (Prefered Extension)     & 80.4185 & 80.4475 &  80.3192 \\
+Non-Expert (Grounded Extension) & 81.5565 & 81.6743 & 81.7295 \\
+Non-Expert (Prefered Extension) & 81.5565 & 81.6743 & 81.7295 \\
+\hline
+\end{tabular}
+\caption{Mean Absolute Error}
+\label{tab:time_predictions}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+                                & 30\% Split  & 50\% Split  & 70\% Split \\ \hline
+Additive Regression             & 93.3442  & 81.2395  & 87.8533 \\
+ANN                             & 163.7684 & 152.5288 & 147.3721 \\
+Regression                      & 83.1717 & 80.868 & 83.589 \\
+K Star                          & 101.9482 & 93.8966 & 92.0756 \\
+Expert (Grounded Extension)     & 81.0625 & 78.0558 & 78.7381 \\
+Expert (Prefered Extension)     & 80.4185 & 80.4475 &  80.3192 \\
+Non-Expert (Grounded Extension) & 79.5426 & 77.2909 & 79.9484 \\
+Non-Expert (Prefered Extension) & 79.5426 & 77.2909 & 79.9484 \\
+\hline
+\end{tabular}
+\caption{Expert knowledge base concurrent validity against time}
+\label{tab:time_predictions}
+\end{table}
+
+
+
+\subsection{Concurrent Validity (Construct)}
 
 The concurrent validity of the defeasible constructs was measured by performing regressions against time (tables ~\ref{tab:eccurrent_time} and ~\ref{tab:neccurrent_time}). Time is an objective performance measure that is similar to MWL. For all knowledge bases the error rate is high. The error rate for the expert knowledge base is slightly lower than the non-expert knowledge base. As the values of time can be anywhere from 0 to a few hundred seconds predicting time exactly from the values of MWL is extremely error prone. Moreover, the precision required for the construct of MWL doesn't need to be as precise as seconds. Correlation provides a better understanding of the performance of the knowledge base in this case. The results show a much stronger correlation between the knowledge base of the expert and time than the knowledge base of the non-expert. This provides some confirmation that the implementation is modeling defeasible knowledge bases correctly as it is expected that the knowledge base of the expert should more accurately represent MWL that that of the non-expert. The preferred extension of the knowledge base of the expert performed better than the grounded extension. The preferred extension and the grounded extension of the non-expert were determined to be equivalent by the software and so show the same results.
 
@@ -169,7 +210,7 @@ Root relative squared error      & 108.5826\% & 133.6306\%\\
 
 It is interesting that the machine learning approach was more effective in determining task membership than the defeasible reasoning approach. This could be because the tasks don't vary MWL strongly enough. Whether this is true or not could be determined by taking some measure of the convergent validity of MWL and task number. Unfortunately this is not possible via a simple correlation. Another possibility is that the knowledge bases are failing to take into account some aspect of mental workload that could determine task membership better.
 
-\subsection{Convergent Validity}
+\subsection{Convergent Validity (Construct)}
 
 In order to determine how well the constructs actually modeled MWL the convergent validity of these measures was determined. The convergent validity was determined by computing the correlation of each measure with existing measures of MWL. 
 
@@ -185,7 +226,6 @@ Time does not correlate well with existing measures of MWL. This underlines one 
 time             & 1.0000000 & 0.2174278 & 0.2036869  \\
 NASA             & 0.2174278 & 1.0000000 & 0.5836784 \\
 WP               & 0.2036869 & 0.5836784 & 1.0000000 \\
-defLuca          & 0.2877883 & 0.7778743 & 0.8589005 \\
 expertGroundedExt  & 0.2928288 & 0.7233711 & 0.8593995 \\
 expertPref1        & 0.2882237 & 0.7247067 & 0.8499664 \\
 non-expertGroundedExt & 0.1245360 & 0.5518035 & 0.5648483 \\
@@ -204,7 +244,6 @@ non-expertPref1       & 0.1245360 & 0.5518035 & 0.5648483 \\
 time             & 0.2928288 & 0.2882237        \\
 NASA             & 0.7233711 & 0.7247067        \\
 WP               & 0.8593995 & 0.8499664        \\
-defLuca          & 0.9509517 & 0.9559585        \\
 expertGroundedExt  & 1.0000000 & 0.9860579         \\
 expertPref1        & 0.9860579 & 1.0000000        \\
 non-expertGroundedExt & 0.6243195 & 0.6304207        \\
@@ -223,7 +262,6 @@ non-expertPref1       & 0.6243195 & 0.6304207        \\
 time                & 0.1245360  & 0.1245360 \\
 NASA                & 0.5518035  & 0.5518035 \\
 WP                  & 0.5648483  & 0.5648483 \\
-defLuca             & 0.6117755  & 0.6117755 \\
 expertGroundedExt   & 0.6243195  & 0.6243195 \\
 expertPref1         & 0.6304207  & 0.6304207 \\
 non-expertGroundedExt & 1.0000000  & 1.0000000 \\
@@ -233,44 +271,6 @@ non-expertPref1       & 1.0000000  & 1.0000000 \\
 \caption{Pearson correlation of measures of MWL (3)}
 \label{tab:corrmwlthree}
 \end{table}
-
-\subsection{Time to Compute}
-
-The performance of the techniques can be evaluated by looking at the time taken to compute results for the whole data-set \ref{tab:timeperformance}.
-
-\begin{table}[!htbp]
-\centering
-\begin{tabular}{|c|c|}
-\hline
- & Time to compute results \\ \hline
-Regression Techniques & \\ \hline
-Simple Linear Regression & 0m0.001s\\
-Decision Table & 0m0.71s\\
-K Star & 0m0.001s\\
-Additive Regression & 0m0.05s\\
-Linear Regression & 0m0.01s\\ \hline
-Classification Techniques & \\ \hline
-Bayes Net &0m0.02s \\
-Decision Table & 0m0.08s\\  
-Logistic Regression & 0m01.37s\\ 
-Naive Bayes & 0m0.02s\\ 
-Random Tree & 0m0.03s\\ \hline
-Defeasible Reasoning & \\ \hline
-Peter KB & 1m4.041s\\
-Luca KB & 1m44.001s\\
-\hline
-\end{tabular}
-\caption{Time to compute results of techniques}
-\label{tab:timeperformance}
-\end{table}
-
-There are a number of contributing factors that explain the poor performance of the defeasible reasoning system that could be resolved in future implementations. 
-
-There are a number of performance issues specific to this implementation. In order to compute the semantics of an AF the PHP code uses exec to start a new Java process. Creating a new process for each iteration is resource consuming and has a costly overhead associated with it. This could be solved in future implementation by developing the whole server application in Java or by creating a separate long running Java service that can compute the semantics on demand. The implementation trades some performance for speed of development by using PHP as a server side language. The process of determining output values for membership and output functions also adds an overhead to the computation. This has been reduced somewhat by caching previously computed values for nodes. 
-
-The other culprit that is diminishing performance in the implementation is the Dung-o-matic. It has been highlighted by \cite{cerutti2014generating} that the Dung-o-matic implementation doesn't perform as well as other implementations. It is unfortunate that the other implementations are unavailable and it would be interesting to evaluate the performance of the system using a different argumentation engine. It is important to keep in mind that the computation of these semantics is an NP complete problem. The time to compute the results grows massively with the number of nodes in the knowledge base. It would be interesting to evaluate the performance and accuracy of the approach if the expert was instructed to restrain the size of their knowledge base by merging some arguments.
-
-While the above results demonstrate a trade off between machine learning techniques and defeasible reasoning ones, the defeasible reasoning system isn't obsolete as a result of the performance overhead. 
 
 One situation in which this approach might be advantageous is to use the defeasible reasoning system to `label' the data instead of an expert having to endure the labour of labeling the data by hand. The implementation can be used to elicit a knowledge base from the expert and then run on training data applying labels to each row. Machine learning can then be used to determine the values for a construct in future instances of the data. This hybrid approach offers the best of both worlds as the expert can still obtain feedback about his knowledge base while the implementation can benefit from the speed and automatic computation of machine learning. Tables ~\ref{tab:mlhybrid1} and ~\ref{tab:mlhybrid2} show that ML can predict values for MWL well when provided with a labeled training set of data.
 
@@ -303,10 +303,26 @@ Relative absolute error     & 55.0526\% & 28.6028\%\\
 Root relative squared error & 58.2429\%  & 34.3239\%\\
 \hline
 \end{tabular}
-\caption{Error and correlation results for prediciting MWL values according to expert's prefered extension (2)}
+\caption{Error and correlation results for predicting MWL values according to expert's prefered extension (2)}
 \label{tab:mlhybrid2}
 \end{table}
 
-\section{Conclusions}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{mae_time}
+\caption{Caption}
+\label{fig:my_label}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{classified_instances}
+\caption{Caption}
+\label{fig:my_label}
+\end{figure}
+
+\section{Summary and Final Recommendations}
 
 This chapter presented the results obtained in the experiment. Overall it is seen that linear regression performed best when presented with a prediction problem, however, it is limited to predicting features already present in the training data. This is a strong limitation of machine learning generally. In the case of MWL the value for time was chosen to represent the construct, however this was shown to have poor convergent validity with other measures of mental workload. The values for MWL developed from the experts knowledge base were found to have a strong convergent validity with another measure for MWL, NASA-TLX. It was noted that the DR implementation performed slowly and measures that could be taken in future implementations were described. Finally it was noted that the DR system could be used to label a training set used in machine learning in a hybrid approach. 

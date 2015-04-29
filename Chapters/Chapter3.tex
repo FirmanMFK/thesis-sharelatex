@@ -42,59 +42,6 @@ In order to answer this question an experiment demonstrating the ability of DR t
 \label{fig:chapter_overview}
 \end{figure}
 
-
-%----------------------------------------------------------------------------------------
-%	EXPERIMENT DESIGN
-%----------------------------------------------------------------------------------------
-
-\section{Representation of a Construct}
-In order to answer the research question posed at the beginning of this dissertation the idea of a construct must be defined.
-\cite{price2013research} discusses measurement in the context of psychology. He explains that many variables are simple to determine such as height, age, sex. We can gather this information by simply observing it. By contrast, a construct can be considered to be as a non-physical thing that cannot be simply measured.\footnote{For the purpose of this experiment, time is not a construct. Time can be measured with a watch.} 
-
-Constructs are ideas people have about things, they may be idealised or may not really exist. Constructs are useful in science for improving our understanding of difference phenomena and techniques are often established in an attempt to quantify them. Examples of such constructs include intelligence (measured using IQ tests), personality (measured using surveys) and evolution (measured using changing characteristics over generations).
-
-Representing constructs in a computable manner offers many potential benefits. By automating the representation of constructs we can free up the time of experts, for example, by automating diagnosis. We can reduce human error, for example in the case of reasoning. We can make predictions about certain situations and generally improve our understanding of phenomena. 
-
-Developing systems that can represent constructs accurately is not trivial. There are a number of underlying issues that make solving this problem hard. Evaluating the performance of such systems is challenging as we have have no external measurement to compare the construct with. The same issues of implementation that occur in regular systems occur in these systems as well. There are a number of areas errors could arise:
-
-\begin{itemize}
-
-  \item Problems could occur as a result of errors in the data set
-  \item the experts knowledge about the construct could be unsound
-  \item the entire school of thought about the construct could be unsound
-  \item the experts knowledge might be modeled incorrectly in the system
-  \item the design of the system may be flawed drawing incorrect conclusions
-  \item the implementation of the system may have underlying bugs that the software developer is unaware of.
-  
-\end{itemize}
-
-In order to mitigate against these kinds of problems special care should be taken in gathering data for experiments. Experts should be selected carefully for modeling knowledge bases. There isn't much that the designer of a system can do to ensure that the knowledge of an entire field of study is correct. However, by interacting with a system for the evaluation of constructs, experts may gain a deeper understanding of the phenomena that they study. To ensure that an expert's knowledge base is modeled correctly user interfaces to the system should provide clear feedback and knowledge engineers should be trained to use them appropriately. Special care should be taken in the design of the system and appropriate test cases determined.
-
-In order that a system can be evaluated using the techniques discussed in  section~\ref{sec:evaluation} the data set must contain some representation of the construct being studied. One method for evaluating the representation of the construct would be to have an expert manually determine labels for each row in a data set. These labels can then be compared with the output of an experiment to determine the accuracy of the output. 
-
-This method is problematic as it is time consuming and may not yield accurate results. In order that a label is applied correctly an expert will need to study each row the data individually and take the time to assess it accurately. As this would need to be done for thousands of rows it will take up a lot of time. On top of this, the work is tedious so many experts will apply less scrutiny to each row resulting in less accurate labels.
-
-Alternatively, the output can be compared with columns already present in the data but not used in the final result. It might be determined that there is a strong correlation between the construct and some other variable. If this variable is not included in the determination of the construct then we can measure the accuracy of our construct by seeing how it correlates to this variable.
-
-\section{Implementing Construct Representation}
-
-Constructs are typically made up of interleaved ideas and variables which makes their representation in computer systems complex. The structure of constructs varies and as a result different models may be developed to measure them. Similarly, different computational techniques may be used to represent these models.
-
-For example, if we take intelligence as a construct, there are a number of approaches we could use to measure it. Intelligence can be represented by IQ; by computing the sum of an individuals scores on questions across a number of domains. If intelligence is modeled in this manner then it is easy to derive the model using linear regression. If on the other hand a more complex scoring system was used then a different supervised machine learning technique could be used. Similarly an expert could communicate with a group of people in a room and give their opinion on which people they believe are intelligent. This opinion then be used as labels for a data set in which a (very bad) model of intelligence could be made by training a classifier based on age, weight, sex etc. In another case, we could run clustering algorithms on out data. If the algorithm returns two clusters and one cluster has all the Nobel prize winners we might conclude that is the intelligent cluster. An expert could model intelligence defeasibly. For example, if someone performs well on tests they are intelligent but if they cheat on tests they are not. We could run semantics on those defeasible representations to determine who is intelligent.
-
-None of the approaches outlined above can objectively say that they truly measure intelligence. However, if they are useful they will give some indication of how a person will perform on a task. The purpose of this example is to underline the differences in models and how these models can be represented using computational techniques.
-
-It is with this in mind that an experiment is designed to compare these techniques. To do an experiment this has to be done:
-
-\begin{itemize}
-
-  \item A suitable construct must be chosen and access to an expert secured.
-  \item Machine learning software must be procured and a number of machine learning techniques chosen for evaluation.
-  \item A system based on defeasible reasoning must be designed.
-  \item an experiment built on top of this must be chosen 
-  
-\end{itemize}
-
 \section{Choice of Construct}
 \label{sec:choicofc}
 
