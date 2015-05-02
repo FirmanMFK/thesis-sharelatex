@@ -1,24 +1,3 @@
-
-% Moved from chapter 1
-
-As part of the project the development of an argumentation system inspired by the research of Dung and Longo and Hederman is developed to allow for a comparison with machine learning software, Weka. 
-
-In order to achieve the aforementioned aims the following experiments are conducted.
-
-\begin{itemize}
-
-  \item An argumentation system is developed in software and used to elicit a knowledge base from an expert.
-  \item A number of ML classifiers (using both classification and regression algorithms) are trained to using a partition of the experiment data set.
-  \item The predictive ability of the classifiers and the knowledge based system are tested using a subset of the data set.
-
-\end{itemize}
-
-
-
-
-
-% Chapter Template
-
 \chapter{Design} % Main chapter title
 
 \label{Chapter3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
@@ -29,11 +8,17 @@ In order to achieve the aforementioned aims the following experiments are conduc
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
-In order to answer the research question posed in Chapter 1, an experiment was designed. For convenience the research question is restated here:
+In order to answer the research question posed in Chapter 1, an experiment was designed. The research question is restated here:
 
 ``To what extent can an implementation of Defeasible Reasoning enhance the representation of a construct and support prediction capacity in comparison with Machine Learning?''
 
-In order to answer this question an experiment demonstrating the ability of DR to enhance the representation of a construct and compare the prediction capacity of ML and DR was designed.
+In order to answer this question a number of hypotheses to be tested were defined as follows:
+
+\begin{itemize}
+  \item The defeasible measure of a construct created by an expert is better at predicting objective performance values than machine learning approaches.
+  \item The construct measure of an expert will have a high concurrent validity with objective measures related to the construct.
+  \item The construct measure of an expert will have a high convergent validity with existing measures for the construct.
+\end{itemize}
 
 \begin{figure}[!h]
 \centering
@@ -41,6 +26,18 @@ In order to answer this question an experiment demonstrating the ability of DR t
 \caption{Chapter Overview}
 \label{fig:chapter_overview}
 \end{figure}
+
+In order to test these hypotheses the following experiments are conducted.
+
+\begin{itemize}
+
+  \item An argumentation system is developed in software and used to elicit a knowledge base from an expert.
+  \item A number of ML classifiers (using both classification and regression algorithms) are trained to using a partition of the experiment data set.
+  \item The predictive ability of the classifiers and the knowledge based system are tested using a subset of the data set.
+
+\end{itemize}
+
+The rest of this chapter deals with the design associated with these experiments. The choice of construct to be examined is justified, the design of the software is outlined and the experiment procedure is defined.
 
 \section{Choice of Construct}
 \label{sec:choicofc}
@@ -53,70 +50,9 @@ One possible way of measuring MWL is using the NASA-Task Load Index (TLX). NASA-
 
 Another possible way to determine that MWL was high for a given task is based on the task completion time. If all variables are equal then task time can help us determine which tasks were most difficult.
 
-Dr. Luca Longo from the DIT School of Computing is an expert in the area of MWL having completed his doctoral dissertation in formulating MWL as a defeasible construct. He has kindly volunteered his knowledge base to be used within the experiment. A data set was provided by Dr. Longo from previous research carried out in the field of web usability. The data set has the following columns (shown with example rows):
+Dr. Luca Longo from the DIT School of Computing is an expert in the area of MWL having completed his doctoral dissertation in formulating MWL as a defeasible construct. He has kindly volunteered his knowledge base to be used within the experiment.
 
-% \begin{table}[]
-% \begin{center}
-%   \begin{tabular}{ | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l | l |}
-%     \hline \\
-% expID & user & userID & taskID & time & mental & temporal & psychological & performance & effort & central & response & visual & auditory & spatial & verbal & manual & speech & arousal & bias & intention & knowledge & parallelism & skill & difficulty \hline \\
-% 4 & imac1@gabi.com & 1 & 8 & 251 & 4 & 1 & 1 & 50 & 50 & 32 & 14 & 3 & 23 & 34 & 3 & 6 & 37 & 21 & 66 & 37 & 71 & 1 & 82 & 19.0 \hline \\
-% 5 & imac1@gabi.com & 1 & 1 & 186 & 50 & 62 & 5 & 67 & 20 & 13 & 7 & 15 & 3 & 21 & 17 & 13 & 3 & 4 & 4 & 72 & 70 & 13 & 86 & 11.5 \hline \\
-% 6 & imac2@gabi.com & 2 & 8 & 114 & 30 & 30 & 30 & 68 & 34 & 33 & 67 & 60 & 60 & 20 & 33 & 20 & 20 & 60 & 34 & 50 & 80 & 60 & 25 & 39.125 \hline \\
-% 7 & imac2@gabi.com & 2 & 1 & 26 & 28 & 31 & 20 & 99 & 28 & 44 & 59 & 56 & 30 & 53 & 27 & 58 & 32 & 39 & 31 & 30 & 61 & 36 & 33 & 44.875 \hline \\
-%     \hline
-%   \end{tabular}
-% \end{center}
-% \caption{Caption}
-% \label{tab:my_label}
-% \end{table}
-
-\citep{longo2014formalising} describes the rows in the dataset as follows:
-
-\begin{table}[]
-\centering
-\begin{tabular}{|l|p{8cm}|}
-\hline
- expID & An ID that uniquely identifies the experiment instance \\ \hline
- user & The participant's email address \\ \hline
- userID & The participant's unique ID \\ \hline
- taskID & The experiment task ID undertaken by the participant \\ \hline
- time & The time taken by the participant to complete the task \\ \hline
- mental & The mental demand of the task, the answer to the question ``How much mental and perceptual activity was required (e.g., thinking, deciding, calculating, remembering, looking, searching, etc.)? Was the task easy (low mental demand) or complex (high mental demand)?'' on a scale from 0 - 100 \\ \hline
- temporal & The temporal demand, the answer to the question ``How much time pressure did you feel due to the rate or pace at which the tasks or task elements occurred? Was the pace slow and leisurely (low temporal demand) or rapid and frantic (high temporal demand)?'' on a scale from 0 - 100\\ \hline
- psychological & The effort expended completing the task, the answer to the question ``How much conscious mental effort or concentration was required? Was the task almost automatic (low effort) or it required total attention (high effort)?'' \\ \hline
- performance & The effort expended completing the task, the answer to the question ``How successful do you think you were in accomplishing the goal of the task? How satisfied were you with your performance in accomplishing the goal?'' on a scale from 0 - 100 \\ \hline
- effort & The effort expended completing the task, the answer to the question ``How much conscious mental effort or concentration was required? Was the task almost automatic (low effort) or it required total attention (high effort)?''on a scale from 0 - 100 \\ \hline
- central & The effort expended completing the task, the answer to the question ``'' on a scale from 0 - 100 \\ \hline
- response & The effort expended completing the task, the answer to the question ``'' on a scale from 0 - 100 \\ \hline
- visual & The effort expended completing the task, the answer to the question ``How much attention was required for executing the task based on the information visually received (through eyes)?'' on a scale from 0 - 100 \\ \hline
- auditory & The effort expended completing the task, the answer to the question ``How much attention was required for executing the task based on the information auditorily received (ears)?'' on a scale from 0 - 100 \\ \hline
-\end{tabular}
-\caption{Caption}
-\label{tab:my_label}
-\end{table} 
- 
-
-
-\begin{table}[]
-\centering
-\begin{tabular}{|l|p{8cm}|}
-\hline
- spatial & Spatial workload, the answer to the question ``How much attention was required for spatial processing (spatially pay attention around you)?'' on a scale from 0 - 100 \\ \hline
- verbal & Verbal workload, the answer to the question ``How much attention was required for verbal material (eg. reading or processing linguistic material or listening to verbal conversations)?'' on a scale from 0 - 100 \\ \hline
- manual & Manual effort, the answer to the question ``How much attention was required for manually respond to the task (eg. keyboard/mouse usage)?'' on a scale from 0 - 100 \\ \hline
- speech & The effort expended through speech, the answer to the question ``How much attention was required for producing the speech response(e.g. engaging in a conversation or talk or answering questions)?'' on a scale from 0 - 100 \\ \hline
- arousal & The degree to which the participant was aroused, the answer to the question ``Were you aroused during the task? Were you sleepy, tired (low arousal) or fully awake and activated (high arousal)?'' on a scale from 0 - 100 \\ \hline
- bias & The context bias, ``How often interruptions on the task occurred? Were distractions (mobile, questions, noise, etc.) not important (low context bias) or did they influence your task (high context bias)?'' on a scale from 0 - 100 \\ \hline
- intention &  The effort expended completing the task, the answer to the question ``Were you motivated to complete the task?'' on a scale from 0 - 100 \\ \hline
- knowledge & The knowledge of the user before the experiment, the answer to the question ``How much experience do you have in performing the task or similar tasks on the same website?'' on a scale from 0 - 100 \\ \hline
- parallelism & The degree to which a user multi-tasked, the answer to the question ``Did you perform just this task (low parallelism) or were you doing other parallel tasks (high parallelism) (eg. multiple tabs/windows/programs)?'' on a scale from 0 - 100 \\ \hline
- skill & The effect of the participants skill level on completing the task, the answer to the question ``Did your skills have no influence (low) or did they help to execute the task (high)?'' on a scale from 0 - 100 \\ \hline
- difficulty & \( \frac{1}{8} \) ((solving/deciding) + (response) + (task/space) + (verbal material) + (visual resources) + (auditory resources) + (manual response) + (speech response)) \\ \hline
-\end{tabular}
-\caption{Caption}
-\label{tab:my_label}
-\end{table} 
+The data set was obtained in an experiment performed by Dr. Longo that aimed to gather MWL information from participants based on their used of different web based interfaces. The participants had to complete 11 web based tasks using popular web applications including Google Search, Youtube and Wikipedia. 40 participants between ages 20 and 35 were split into two groups. In a given task, one group used the original application interface while the other group received a version in which the presentation of the page had been altered. Which group received the original or modified interface varied by task. It was believe that the changes to the structure of the interface would impose a greater mental workload on the participants. After each task was completed the participants answered a questionnaire designed to assess their subjective mental workload. The data set contains the results of the experiment. Sample rows are available in the appendix along with the details of each column.(\citep{longo2014formalising})
 
 \section{Machine Learning Software}
 
@@ -186,12 +122,12 @@ There are additional requirements that need to be satisfied by the software in o
 
 \subsection{Membership Functions}
 
-As the system is currently defined it will provide an expert with the ability to visualise their knowledge base in the form of a directed graph. The only information that can be obtained about an argument is it's relationship with other arguments and it's label (a natural language statement that allows the user to identify the argument and that may in some way describe the nature of the argument). 
+As the system is currently defined it will provide an expert with the ability to visualise their knowledge base in the form of a directed graph. The only information that can be obtained about an argument is its relationship with other arguments and its label (a natural language statement that allows the user to identify the argument and that may in some way describe the nature of the argument). 
 
-In order that the argumentation framework can be used to compute results a number of other concepts need to be designed into the system. The notion of whether or not an argument is activated or not needs to be modeled. Argument activation allows us to consider which attack relations to take into consideration and which to discard for a particular tuple in the data set. Arguments are based on one or more premises and each premise corresponds to one column in the data set. An argument is activated if it all of it's premises are relevant to a particular instance in the data. 
+In order that the argumentation framework can be used to compute results a number of other concepts need to be designed into the system. The notion of whether or not an argument is activated or not needs to be modeled. Argument activation allows us to consider which attack relations to take into consideration and which to discard for a particular tuple in the data set. Arguments are based on one or more premises and each premise corresponds to one column in the data set. An argument is activated if it all of its premises are relevant to a particular instance in the data. 
 
 \begin{exmp}
-If an instance had a value of 0 for effort then an argument with the premise ``Low Effort'' would be activated and an argument with the premise ``High Effort'' would be discarded. For a value of 0 effort and 0 motivation an argument with two premises ``Low Effort and Low Motivation'' would be activated. Given this same input, the argument ``High Effort and Low Motivation'' would be discarded as only one of it's premises are satisfied.
+If an instance had a value of 0 for effort then an argument with the premise ``Low Effort'' would be activated and an argument with the premise ``High Effort'' would be discarded. For a value of 0 effort and 0 motivation an argument with two premises ``Low Effort and Low Motivation'' would be activated. Given this same input, the argument ``High Effort and Low Motivation'' would be discarded as only one of its premises are satisfied.
 \end{exmp}
 
 The process of activating and discarding arguments results in a sub-graph of arguments relevant to the row in the database. In order to further reduce the sub-graph argumentation semantics are run on it which take into account the attack relations between the arguments. This results in a set of possible sub-graphs that are applicable to that instance in the data-set.
@@ -202,9 +138,9 @@ From the remaining arguments in each sub-graph a value for the construct being m
 If the argument is ``low performance -> high MWL'' then for a simple mapping a performance value of 0 will result in a MWL value of 100. This can be repeated for every argument and averaged for a value of MWL.
 \end{exmp}
 
-In order to determine whether or not an argument is activated we will use fuzzy sets in a manner similar to Longo and Hederman. Fuzzy Sets were defined by \cite{zadeh1965fuzzy} as ``a class of objects with a continuum of grades of membership.'' These sets are characterised by membership functions; functions that take a value and map it to a number between 0 and 1 (where 0 indicates absence of the value in the set and 1 indicates it's presence.) This allows us to take a vague statement such as ``High Performance'' and determine to what extent a value of performance is considered to be high. 
+In order to determine whether or not an argument is activated we will use fuzzy sets in a manner similar to Longo and Hederman. Fuzzy Sets were defined by \cite{zadeh1965fuzzy} as ``a class of objects with a continuum of grades of membership.'' These sets are characterised by membership functions; functions that take a value and map it to a number between 0 and 1 (where 0 indicates absence of the value in the set and 1 indicates its presence.) This allows us to take a vague statement such as ``High Performance'' and determine to what extent a value of performance is considered to be high. 
 
-For the purposes of the experiment we consider a premise to be relevant if the input value falls between the bounds of it's membership function. If all associated values satisfy the membership functions of an argument, even with a very small degree of truth, then that argument is taken into consideration when evaluating the semantics of the AF for that row. If even one value associated with an arguments premise falls outside the membership function then the argument is disregarded.
+For the purposes of the experiment we consider a premise to be relevant if the input value falls between the bounds of its membership function. If all associated values satisfy the membership functions of an argument, even with a very small degree of truth, then that argument is taken into consideration when evaluating the semantics of the AF for that row. If even one value associated with an arguments premise falls outside the membership function then the argument is disregarded.
 
 By taking a value from a column the degree of truth of the premise as applied to the row can be determined using a membership function. We can then determine the overall degree of truth for an argument by computing the average of the degrees of truth of the premises. The degree of truth for the argument is then used as the input for an argument output function which determines value associated with the construct for that argument.
 
@@ -227,7 +163,7 @@ The following is an example of this process. Taking the argument labeled ``Low E
     \hline 
 Effort & Performance & Result \\ \hline
 0 & 0 & The argument's degree of truth is 1 overall, the value for MWL is 0. \\
-30 & 30 & The argument's degree of truth is 0 overall, it's output is considered since the input's are in range. It's value for MWL is 40. \\
+30 & 30 & The argument's degree of truth is 0 overall, its output is considered since the input's are in range. its value for MWL is 40. \\
 50 & 15 & The argument is discarded as the value for Effort is out of the range of the membership functions. \\
 20 & 15 & The argument's degree of truth is .5 overall, the value for MWL is 20. \\
     \hline

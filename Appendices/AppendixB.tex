@@ -1,0 +1,43 @@
+% Appendix Template
+
+\chapter{Appendix Title Here} % Main appendix title
+
+\label{AppendixB} % Change X to a consecutive letter; for referencing this appendix elsewhere, use \ref{AppendixX}
+
+\lhead{Appendix B. \emph{Note on Time to Compute}} 
+
+It should be noted that the implementation of the DR system has a significantly higher time to compute than the machine learning techniques as shown in table ~\ref{tab:timeperformance}.
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+ & Time to compute results \\ \hline
+Regression Techniques & \\ \hline
+Simple Linear Regression & 0m0.001s\\
+Decision Table & 0m0.71s\\
+K Star & 0m0.001s\\
+Additive Regression & 0m0.05s\\
+Linear Regression & 0m0.01s\\ \hline
+Classification Techniques & \\ \hline
+Bayes Net &0m0.02s \\
+Decision Table & 0m0.08s\\  
+Logistic Regression & 0m01.37s\\ 
+Naive Bayes & 0m0.02s\\ 
+Random Tree & 0m0.03s\\ \hline
+Defeasible Reasoning & \\ \hline
+Peter KB & 1m4.041s\\
+Luca KB & 1m44.001s\\
+\hline
+\end{tabular}
+\caption{Time to compute results of techniques}
+\label{tab:timeperformance}
+\end{table}
+
+There are a number of contributing factors that explain the poor performance of the defeasible reasoning system that could be resolved in future implementations. 
+
+There are a number of performance issues specific to this implementation. In order to compute the semantics of an AF the PHP code uses exec to start a new Java process. Creating a new process for each iteration is resource consuming and has a costly overhead associated with it. This could be solved in future implementation by developing the whole server application in Java or by creating a separate long running Java service that can compute the semantics on demand. The implementation trades some performance for speed of development by using PHP as a server side language. The process of determining output values for membership and output functions also adds an overhead to the computation. This has been reduced somewhat by caching previously computed values for nodes. 
+
+The other culprit that is diminishing performance in the implementation is the Dung-o-matic. It has been highlighted by \cite{cerutti2014generating} that the Dung-o-matic implementation doesn't perform as well as other implementations. It is unfortunate that the other implementations are unavailable and it would be interesting to evaluate the performance of the system using a different argumentation engine. It is important to keep in mind that the computation of these semantics is an NP complete problem. The time to compute the results grows massively with the number of nodes in the knowledge base. It would be interesting to evaluate the performance and accuracy of the approach if the expert was instructed to restrain the size of their knowledge base by merging some arguments.
+
+While the above results demonstrate a trade off between machine learning techniques and defeasible reasoning ones, the defeasible reasoning system isn't obsolete as a result of the performance overhead. This will be clarified in the next chapter.

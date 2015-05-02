@@ -40,9 +40,9 @@ The application is served from an apache server running on a virualised Ubuntu i
 
 In order to speed up the development process a number of open source frameworks and libraries have been utilised in the software implementation. The CSS framework Bootstrap\footnote{\url{getbootstrap.com}} and the Javascript library JQuery\footnote{\url{jquery.com}} have been used for presentational aspects of the site. Bootstrap provides a number of useful components such as modal boxes tjat allow the software to present information to the user in a clear manner. JQuery provides wrappers arround native browser functionality such as DOM manipulation and AJAX networking facilities that abstract away the inconsistencies between browser implementations.
 
-The graphical input of argumentation frameworks and membership functions is achieved using the  D3 library\footnote{\url{d3js.org}} developed by Bostock et al.\cite{2011-d3} D3.js is a data visualisation library that allows developers and designers to interact with data in the browser. Data can be loaded from urls in multiple formats such as JSON and CSV. Data points can be ``attached'' to DOM elements which provides useful functions. The styling of the DOM element can be linked to the value of the data and the data can be manipulated by user interactions. D3 is most commonly used with SVG\footnote{\url{www.w3.org/Graphics/SVG/}} (Scalable Vector Graphics) a markup language for implementing vector graphics. SVG has been an open standard for more than 10 years now, as a result it has been widely implemented and there is currently more support for it than other graphics alternatives such as HTML5 Canvas. Two key features of D3 that are used in the implementation of the experiment software are it's implementation of Bezier curves and it's force directed graph implementation.
+The graphical input of argumentation frameworks and membership functions is achieved using the  D3 library\footnote{\url{d3js.org}} developed by Bostock et al.\cite{2011-d3} D3.js is a data visualisation library that allows developers and designers to interact with data in the browser. Data can be loaded from urls in multiple formats such as JSON and CSV. Data points can be ``attached'' to DOM elements which provides useful functions. The styling of the DOM element can be linked to the value of the data and the data can be manipulated by user interactions. D3 is most commonly used with SVG\footnote{\url{www.w3.org/Graphics/SVG/}} (Scalable Vector Graphics) a markup language for implementing vector graphics. SVG has been an open standard for more than 10 years now, as a result it has been widely implemented and there is currently more support for it than other graphics alternatives such as HTML5 Canvas. Two key features of D3 that are used in the implementation of the experiment software are its implementation of Bezier curves and its force directed graph implementation.
 
-The server implementation requires Argumentation semantics to be computed based on the input of a Dung Argumentation Framework. Computing these semantics efficiently requires a deep understanding of argumentation theory, graph theory and algorithms. This implementation is specialised and a number of libraries have been explored in the literature review for it's implementation. Dung-o-matic, an implementation of these algorithms has been made available by the University of Dundee under the Apache License, Version 2.0. The Dung-o-matic\footnote{\url{www.arg-tech.org/index.php/projects/dung-o-matic/}} was found not to be the most efficient implementation for the computation of semantics by a number of studies (see \ref{sec:dr_implementations}). However, it's source code is freely available and can be run on any platform provided the platform has Java installed. Moreover, the advantage of using Java is that as one of the world's most popular programming languages there is abundant documentation available to assist in it's integration. The source code for both dynPARTIX and ConArg2 are unavailable and cannot be used for implementation in this project. It could be possible to integrate ASPARTIX for a more efficient implementation, however, this requires an answer set programming solver to be installed. It is anticipated that the integration of such a solver could be laborious and time consuming without adding much value to the project. For these reasons the Dung-o-matic was chosen despite performance concerns.
+The server implementation requires Argumentation semantics to be computed based on the input of a Dung Argumentation Framework. Computing these semantics efficiently requires a deep understanding of argumentation theory, graph theory and algorithms. This implementation is specialised and a number of libraries have been explored in the literature review for its implementation. Dung-o-matic, an implementation of these algorithms has been made available by the University of Dundee under the Apache License, Version 2.0. The Dung-o-matic\footnote{\url{www.arg-tech.org/index.php/projects/dung-o-matic/}} was found not to be the most efficient implementation for the computation of semantics by a number of studies (see \ref{sec:dr_implementations}). However, its source code is freely available and can be run on any platform provided the platform has Java installed. Moreover, the advantage of using Java is that as one of the world's most popular programming languages there is abundant documentation available to assist in its integration. The source code for both dynPARTIX and ConArg2 are unavailable and cannot be used for implementation in this project. It could be possible to integrate ASPARTIX for a more efficient implementation, however, this requires an answer set programming solver to be installed. It is anticipated that the integration of such a solver could be laborious and time consuming without adding much value to the project. For these reasons the Dung-o-matic was chosen despite performance concerns.
 
 The technologies outlined in this section are manifested in the application architecture in figure~\ref{fig:AppArch}. With these underlying technologies established a number of implementation challenges remain. The solutions to these challenges are the focus of the following chapters.
 
@@ -114,7 +114,7 @@ $$
 
 where $\mathbf{B}_{\mathbf{P}_0}(t) = \mathbf{P}_0}$ and $\mathbf{B}_{\mathbf{P}_n}(t) = \mathbf{P}_n}$.
 
-D3 provides methods for manipulating SVG, which defines it's `paths' (Bezier curves) using control points. By providing the user with a collection of control point the can drag it is possible for them to define curves however they please. It also provides the advantage of allowing membership functions and output functions to be  defined simply as control points in the data model. As bezier curves exist within the range 0 and 1 on the x and y axis the associated values must be scaled to the users desires. Users can input minimum and maximum values that are used to scale the graph. These are stored with the membership function in the JSON data structure for later processing. From this a single argument can be defined in JSON as in listing~\ref{lst:arg_memfunc}. In order to allow users to create membership functions quickly functionality was implemented to allow the user to save previously used functions as template functions as can be seen in figure~\ref{fig:membfunc}.
+D3 provides methods for manipulating SVG, which defines its `paths' (Bezier curves) using control points. By providing the user with a collection of control point the can drag it is possible for them to define curves however they please. It also provides the advantage of allowing membership functions and output functions to be  defined simply as control points in the data model. As bezier curves exist within the range 0 and 1 on the x and y axis the associated values must be scaled to the users desires. Users can input minimum and maximum values that are used to scale the graph. These are stored with the membership function in the JSON data structure for later processing. From this a single argument can be defined in JSON as in listing~\ref{lst:arg_memfunc}. In order to allow users to create membership functions quickly functionality was implemented to allow the user to save previously used functions as template functions as can be seen in figure~\ref{fig:membfunc}.
 
 \begin{figure}[!h]
 \label{fig:membfunc}
@@ -124,7 +124,7 @@ D3 provides methods for manipulating SVG, which defines it's `paths' (Bezier cur
 \end{figure}
 
 
-\begin{lstlisting}[caption={JSON data structure a node including it's fuzzy membership functions},label={lst:arg_memfunc}]
+\begin{lstlisting}[caption={JSON data structure a node including its fuzzy membership functions},label={lst:arg_memfunc}]
     {
       id: 0,
       "name": "MD1",
@@ -203,7 +203,7 @@ For a single row in the data the user can choose from a selection of semantics t
 \caption{A list of options for semantics that can be computed by the system}
 \end{figure}
 
-The results of running the semantics are then presented to the user in the form given in figure~\cite{fig:semantics_results}. The results present an overall value for the construct as well as the total degree of truth of the semantic. Each argument that contribute to the semantic is returned as well as a degree of truth value and the value of the construct computed for that value. This extra information allows the user to scrutinise their knowledge base and it's associated results further.
+The results of running the semantics are then presented to the user in the form given in figure~\cite{fig:semantics_results}. The results present an overall value for the construct as well as the total degree of truth of the semantic. Each argument that contribute to the semantic is returned as well as a degree of truth value and the value of the construct computed for that value. This extra information allows the user to scrutinise their knowledge base and its associated results further.
 
 \begin{figure}[!h]
 \label{fig:semantics_results}
@@ -233,13 +233,13 @@ The application back-end implements a REST architecture that allows the front-en
 
 In order to compute the result for a single row in the data set the front end sends a POST request containing the knowledge base nodes and links, the row in the data and a list of semantics to be computed. A PHP class \lstinline{FrameworkRunner} copies these values into a local list of arguments and attacks.
 
-The first step in the process is to determine which arguments are activated. This is done by looking at each argument and determining if each of it's premises are satisfied by the data in the row. For an individual premise the value of data associate with it's x label is retrieved. If this value is between the premise's \lstinline{xMin} and \lstinline{xMax} values then the premise is relevant. If the value falls outside these bounds then the parent argument and it's associated attack relations are discarded. 
+The first step in the process is to determine which arguments are activated. This is done by looking at each argument and determining if each of its premises are satisfied by the data in the row. For an individual premise the value of data associate with its x label is retrieved. If this value is between the premise's \lstinline{xMin} and \lstinline{xMax} values then the premise is relevant. If the value falls outside these bounds then the parent argument and its associated attack relations are discarded. 
 
 The sub-graph of activated arguments and their attack relations remains in the class to compute semantics for. In order to compute the semantics the Dung-o-matic Java class is wrapped in another class that allows it to read a list of arguments and attacks as a string and return the results in a similar format. The \lstinline{FrameworkRunner} class produces a string containing the IDs of the nodes in the format expected by this Java class. The Java class has been exported as an executable JAR file which is then called from PHP using the \lstinline{exec()} function and passing this simple string as an argument. The Java code returns JSON object with the name of the computed semantic as keys and the sub-graphs as an array of arrays associated with those keys.
 
 Once the semantics have been computed for an Argumentation Framework the values associated with each argument can be computed. For a given row in the data set, the results for an argument remain the same no mater what the configuration of the framework is. This allows us to cache the output value of an argument in memory rather than having to recompute the same values for each semantic. The results are computed on the server using a Bezier curve implementation. 
 
-The Bezier curve computation is implemented in a PHP class \lstinline{Bezier}. This class contains methods to compute the X and Y values for a point on the line given a list of control points and a value for \textit{t}. It provides two other methods \lstinline{yFromX} and \lstinline{xFromY} that compute a value for Y given X and vice versa. The Bezier curve implementation is based on the recursive definition given in equation~\ref{math:recursivedef}. It's implementation is given in Algorithm~\ref{alg:recursive}.
+The Bezier curve computation is implemented in a PHP class \lstinline{Bezier}. This class contains methods to compute the X and Y values for a point on the line given a list of control points and a value for \textit{t}. It provides two other methods \lstinline{yFromX} and \lstinline{xFromY} that compute a value for Y given X and vice versa. The Bezier curve implementation is based on the recursive definition given in equation~\ref{math:recursivedef}. its implementation is given in Algorithm~\ref{alg:recursive}.
 
 \begin{algorithm}[H]
 \label{alg:recursive}
@@ -266,7 +266,7 @@ The Bezier curve computation is implemented in a PHP class \lstinline{Bezier}. T
 \caption{Computing a point on the curve for a given value of \textit{t}}
 \end{algorithm}
 
-For a given membership function with fixed values for it's control points any point on the curve can be described by a value t between 0 and 1. By passing t into the function we obtain a value for x and y. As it is not possible to simply pass in an x value and obtain a corresponding y value we must search for y by varying the parameter t. This is done efficiently using a binary search algorithm. For each iteration we pass in two values of t to get two values of x and compare them with our target x value. We continue to search a space closer and smaller to x until we arrive at a value that is within a threshold we consider to be satisfactory. From this point we can obtain the Y value. The pseudocode for this algorithm is given in Algorithm~\ref{alg:bin_search}.
+For a given membership function with fixed values for its control points any point on the curve can be described by a value t between 0 and 1. By passing t into the function we obtain a value for x and y. As it is not possible to simply pass in an x value and obtain a corresponding y value we must search for y by varying the parameter t. This is done efficiently using a binary search algorithm. For each iteration we pass in two values of t to get two values of x and compare them with our target x value. We continue to search a space closer and smaller to x until we arrive at a value that is within a threshold we consider to be satisfactory. From this point we can obtain the Y value. The pseudocode for this algorithm is given in Algorithm~\ref{alg:bin_search}.
 
 \begin{algorithm}[H]
 \SetAlgoLined
@@ -322,51 +322,12 @@ In order to generate the results of running a knowledge base on a whole data set
 
 The second part of the research question was then answered by running machine learning algorithms on the experiment data using Weka. In order to assess regression algorithms task time was chosen as the dependant variable. Classification algorithms were testing using task ID as the dependent variable.
 
-The regression algorithms used were additive regression, decision stump, k-star, linear regression, multilayer perceptron, regression by discretization, simple linear regression and zero r.
-These results were collected for each regression algorithm: correlation coefficient, mean absolute error, root means squared error, relative absolute error and root relative squared error.
+The regression algorithms used were additive regression, k-star, linear regression, multilayer perceptron, regression by simple linear regression and additive regression. These results were collected for each regression algorithm: correlation coefficient, mean absolute error, root means squared error, relative absolute error and root relative squared error.
 
 In order to run classification algorithms on data, Weka requires the dependent variable to be in a string format. A simple python script was written to create a new column in the data set that would have the task numbers represented as letters $(1 \leftarrow A, 2 \leftarrow B, \ldots)$.
-The classification algorithms used were bayes net, decision table, k-star, linear regression, logistic regression, naive bayes, random forest, random tree and zero r. The following metrics for these algorithms were collected: percentage of correctly classified instances, percentage of incorrectly classified instances, Kappa statistic, mean absolute error, root mean squared error, relative absolute error and root relative squared error. Confusion Matrices and a breakdown of accuracy by class (including TP Rate, FP Rate, Precision, Recall, F-Measure and ROC Area) was also collected for each model.
+The classification algorithms used were bayes net, decision table, logistic regression, naive bayes and multilayer perceptron. The following metrics for these algorithms were collected: percentage of correctly classified instances, percentage of incorrectly classified instances, Kappa statistic, mean absolute error, root mean squared error, relative absolute error and root relative squared error. Confusion Matrices and a breakdown of accuracy by class (including TP Rate, FP Rate, Precision, Recall, F-Measure and ROC Area) was also collected for each model.
 
 In order to determine the concurrent validity of the defeasible MWL models two regressions needed to be run on each model. The first regression is a linear regression using the values for MWL against time. The second is a logistic regression using the values for MWL against task number. Lastly in order to determine the convergent validity of the MWL values the Pearson co-relation of the values with other measured of MWL was determined.
-
-\subsection{Time to Compute}
-
-The performance of the techniques can be evaluated by looking at the time taken to compute results for the whole data-set \ref{tab:timeperformance}.
-
-\begin{table}[!htbp]
-\centering
-\begin{tabular}{|c|c|}
-\hline
- & Time to compute results \\ \hline
-Regression Techniques & \\ \hline
-Simple Linear Regression & 0m0.001s\\
-Decision Table & 0m0.71s\\
-K Star & 0m0.001s\\
-Additive Regression & 0m0.05s\\
-Linear Regression & 0m0.01s\\ \hline
-Classification Techniques & \\ \hline
-Bayes Net &0m0.02s \\
-Decision Table & 0m0.08s\\  
-Logistic Regression & 0m01.37s\\ 
-Naive Bayes & 0m0.02s\\ 
-Random Tree & 0m0.03s\\ \hline
-Defeasible Reasoning & \\ \hline
-Peter KB & 1m4.041s\\
-Luca KB & 1m44.001s\\
-\hline
-\end{tabular}
-\caption{Time to compute results of techniques}
-\label{tab:timeperformance}
-\end{table}
-
-There are a number of contributing factors that explain the poor performance of the defeasible reasoning system that could be resolved in future implementations. 
-
-There are a number of performance issues specific to this implementation. In order to compute the semantics of an AF the PHP code uses exec to start a new Java process. Creating a new process for each iteration is resource consuming and has a costly overhead associated with it. This could be solved in future implementation by developing the whole server application in Java or by creating a separate long running Java service that can compute the semantics on demand. The implementation trades some performance for speed of development by using PHP as a server side language. The process of determining output values for membership and output functions also adds an overhead to the computation. This has been reduced somewhat by caching previously computed values for nodes. 
-
-The other culprit that is diminishing performance in the implementation is the Dung-o-matic. It has been highlighted by \cite{cerutti2014generating} that the Dung-o-matic implementation doesn't perform as well as other implementations. It is unfortunate that the other implementations are unavailable and it would be interesting to evaluate the performance of the system using a different argumentation engine. It is important to keep in mind that the computation of these semantics is an NP complete problem. The time to compute the results grows massively with the number of nodes in the knowledge base. It would be interesting to evaluate the performance and accuracy of the approach if the expert was instructed to restrain the size of their knowledge base by merging some arguments.
-
-While the above results demonstrate a trade off between machine learning techniques and defeasible reasoning ones, the defeasible reasoning system isn't obsolete as a result of the performance overhead. 
 
 \section{Conclusions}
 

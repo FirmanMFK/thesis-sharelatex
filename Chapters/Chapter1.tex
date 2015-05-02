@@ -14,9 +14,9 @@ Modern organisations solve difficult problems that require complex decision maki
 
 The rapid evolution of technology is increasing the amount of data that can be gathered about these problems. Product sentiment information can be gathered from social media; improved patient monitoring gives doctors better insight into a patient’s condition; government agencies gather information from emails and phone calls. The abundance of information associated with these problems make unaided decision making difficult and reasoning a non-trivial task. Decisions Support Systems (DSS) attempt to aid decision makers in solving these problems by presenting information in a manner that makes it easier to reason about. \cite{turban2005decision} explain that the central purpose of Decision Support Systems is to support and improve decision making. Many Decision Support Systems make use of intelligent components to provide an improved understanding of the problem at hand to decision makers. \textit{The purpose of this research study is to investigate two of the approaches used in the design of these intelligent components; learning based approaches and knowledge based ones}.
 
-Learning based approaches modify their underlying models for data based on experience. Supervised machine learning makes predictions based on a labeled training set of data. Machine learning techniques can provide reasonable predictions based on data, however, they often fall short in presenting their process to the user. As machine learning is automatic it is unsuitable for the representation of complex constructs such as an expert's knowledge.
+\textit{Learning based} approaches modify their underlying models for data based on experience. Supervised machine learning makes predictions based on a labeled training set of data. Machine learning techniques can provide reasonable predictions based on data, however, they often fall short in presenting their process to the user. As machine learning is automatic it is unsuitable for the representation of complex constructs such as an expert's knowledge.
 
-Knowledge based approaches focus on the acquisition and representation of knowledge as well as the modeling of processes of reasoning about that knowledge. Defeasible reasoning is one such approach. An expert in a field typically doesn't look at some variables and apply a function to them. She considers the information at hand and reasons about it in the context of what she already knows. Within her reasoning process she may make assumptions that get changed as a result of the reasoning process. This reasoning process is better reflected in Defeasible Reasoning which offers a solution to the short comings of the automatic process of ML.
+\textit{Knowledge based} approaches focus on the acquisition and representation of knowledge as well as the modeling of processes of reasoning about that knowledge. Defeasible reasoning is one such approach. An expert in a field typically doesn't look at some variables and apply a function to them. She considers the information at hand and reasons about it in the context of what she already knows. Within her reasoning process she may make assumptions that get changed as a result of the reasoning process. This reasoning process is better reflected in Defeasible Reasoning which offers a solution to the short comings of the automatic process of ML.
 
 %----------------------------------------------------------------------------------------
 %	BACKGROUND
@@ -26,22 +26,21 @@ Knowledge based approaches focus on the acquisition and representation of knowle
 
 The process by which humans reason has typically been examined in the fields of Philosophy and Psychology but has been further investigated by the field of computer science in the last 30 years or so. This investigation began in order to develop ``expert systems'': systems that attempt to model and elicit the reasoning of an expert in a computer. In an expert system a knowledge engineer typically uses a number of knowledge elicitation techniques to compile expertise in a particular domain. The knowledge engineer inputs this knowledge into the system in the form of rule sets. These rule sets can be used by an inference engine to produce useful output based on input data. 
 
-Expert Systems have evolved in the last few decades with computer scientists looking to Psychology and Philosophy to develop a greater understanding of how reasoning works. Several mechanisms by which humans reason have identified.
+\textit{Expert Systems} have evolved in the last few decades with computer scientists looking to Psychology and Philosophy to develop a greater understanding of how reasoning works. Several mechanisms by which humans reason have identified.
 
-On one hand is deductive reasoning; reasoning in which conclusions logically follow from a set of premises falls into a category known as monotonic reasoning(\cite{baroni1997full}). In monotonic reasoning proof of the conclusions is embedded in the premises.
+On one hand is \textit{deductive reasoning}; reasoning in which conclusions logically follow from a set of premises falls into a category known as \textit{monotonic reasoning}(\cite{baroni1997full}). In monotonic reasoning proof of the conclusions is embedded in the premises and the conclusions remain true in the presence of new evidence.
 
-On the other hand is defeasible reasoning (DR), defined by \cite{pollock1987defeasible} as reasoning in which ``the premises taken by themselves may justify accepting the conclusion, but when additional information is added, that conclusion is no longer justified.'' Non-monotonic reasoning is more suitable for modelling human reasoning, which is non-monotonic, and for implementation in DSS.
+On the other hand is \textit{defeasible reasoning} (DR), defined by \cite{pollock1987defeasible} as reasoning in which \textit{``the premises taken by themselves may justify accepting the conclusion, but when additional information is added, that conclusion is no longer justified.''} \textit{Non-monotonic} reasoning is more suitable for modelling human reasoning, which is non-monotonic, and for implementation in DSS.
 
 As a result of recent advances, it is possible to model defeasible reasoning using argumentation theory, a computational technique to model non-monotonic reasoning. Argumentation theory allows us to model arguments and the interactions between them. An overview of this technique is given in Chapter 2.
 
-Knowledge based argumentation systems have many other characteristics that make their use in decision support systems advantageous. Argumentation systems can implement reasoning based on incomplete or corrupt data as well as conflicting information and explain how an algorithm arrived at a conclusion. Through the process of visualising a knowledge base using an argumentation tool an expert may gain insight into his own ideas and refine them. 
+Knowledge based argumentation systems have many other characteristics that make their use in decision support systems advantageous. Argumentation systems can implement reasoning based on incomplete or corrupt data as well as conflicting information and explain how a reasoning process arrived at a conclusion. Through the process of visualising a knowledge base using an argumentation tool an expert may gain insight into his/her own ideas and refine the rules of his/her reasoning process. 
 
-Knowledge based approaches accrue their insights and advantages by having a human expert interacting with the system. These benefits are lacking in machine learning based systems. 
+Knowledge based approaches accrue their insights and advantages by having a human expert interacting with the system. These benefits are less prevalent in machine learning based systems. 
 
-On one hand, ML provides us with an approach that is automatable and can provide insights into data that it is unlikely any human would find sifting through large amounts of data by hand. ML is a better approach to solving classification problems such as natural language processing as well as image and handwriting recognition; tasks where it is difficult for a human to encode their understanding in a way that a machine can process.
+On one hand, ML provides us with an approach that is automatable and can provide insights into data that it is unlikely any human would find sifting through large amounts of data by hand. ML is a better approach to solving classification problems such as natural language processing as well as image and handwriting recognition; tasks where it is difficult for a human to encode their understanding in a way that a machine can process. It is suitable for automatically extracting knowledge and rules from complex and unknown data.
 
-On the other hand, ML is not always suited to modelling constructs, as human expertise is not accounted for. Knowledge based approaches are better suited to defining new measures for intelligence, depression, personality, or mental workload. These constructs are ill defined concepts that are difficult to measure and assess.
-
+On the other hand, ML is not always suited to modelling constructs, as human expertise is not accounted often for. Knowledge based approaches are better suited to representing ill defined concepts, constructs such as intelligence, mental workload and personality, that are difficult to measure and assess. 
 %-----------------------------------
 %	RESEARCH Project
 %-----------------------------------
@@ -50,14 +49,13 @@ On the other hand, ML is not always suited to modelling constructs, as human exp
 
 %highlight the problem and the research question.
 
-This research project aims to provide a comparison between an implementation of DR (argumentation theory) and a type of machine learning (supervised ML). The aim is to outline the strengths of both techniques and provide guidelines on what problems a particular approach may be suited for. 
+This research project aims to provide a comparison between an implementation of DR (via argumentation theory) and a type of machine learning (supervised ML). The aim is to outline the strengths of both techniques and provide guidelines on what problems a particular approach may be suited for. 
 
 The comparison will build on previous research by evaluating the ability of the approaches to model a construct, to measure and assess it and determine the capacity of these assessments to be used in prediction tasks. 
 
-The research question is formally defined:
+The research question (RQ) is formally defined:
 
-``To what extent can an implementation of Defeasible Reasoning enhance the representation of a construct (mental workload) and support prediction capacity in comparison with Machine Learning?''
-
+\textit{\textbf{``To what extent can an implementation of Defeasible Reasoning enhance the representation of a construct (mental workload) and support inference in comparison with Machine Learning?''}}
 
 %-----------------------------------
 %	RESEARCH OBJECTIVES
@@ -65,14 +63,14 @@ The research question is formally defined:
 
 \section{Research Objectives}
 
-The objective of this project is to provide an overview of the differences and similarities in learning based and knowledge based approaches and to investigate the strengths and weaknesses of these approaches, in relation to construct modelling, assessment and prediction capacity.
+The objective of this project is to provide an overview of the differences and similarities in learning based and knowledge based approaches and to investigate their strengths and weaknesses, in relation to \textit{construct modelling}, assessment and prediction capacity.
 
 The goals of the research project are outlined as follows:
 
 \begin{enumerate}
-  \item To gain knowledge of Defeasible Reasoning and it's implementation techniques and also to to gain knowledge of and define relevant concepts in machine learning.
+  \item To gain insight about knowledge-based inference approaches and learning based inference methods. The focus will be on defeasible reasoning, argumentation theory and supervised machine learning in relation to construct modelling.
   \item To design a computable model of DR for construct representation as well as a structured experiment.
-  \item To implement this model in software and execute the experiments.
+  \item To implement the designed computational model as software in order to execute the experiments.
   \item To evaluate the designed model.
 \end{enumerate}
 
@@ -82,14 +80,13 @@ The goals of the research project are outlined as follows:
 
 \section{Research Methodology}
 
-
-This project will use a mixed research methodology - a combination of both qualitative and quantitative methods. 
+This project will use a mixed research methodology - a combination of both qualitative and quantitative methods. The study begins with secondary research (literature review) to develop gather understanding that supports the primary research (the design and implementation of an experiment).
 
 \begin{enumerate}
-  \item A literature review is carried out to outline the strengths and weaknesses of the techniques.
-  \item The output of the review is used to inform the design of an experiment.
-  \item This will utilise a software implementation of argumentation theory and machine learning tools. 
-  \item  The output of this experiment is qualitatively analysed using evaluation metrics as emerged from the literature review. Statistical methods are used on the results produced in the experiment to analyse the predictive capacity of the designed model of DR against the one of selected supervised machine learning classifiers.
+  \item A literature review is carried out to outline the strengths and weaknesses of the techniques mentioned in objective 1.
+  \item The output of the literature review is used to inform the theoretical solution and design of an experiment to tackle objective 2.
+  \item The theoretical solution will be implemented as a piece of software employing state-of-the-art technologies in the field of web development. This will be used to perform the designed experiments and accomplish objective 3.
+  \item  The output of this experiment is quantitatively analysed using evaluation metrics as emerged from the literature review. Statistical methods are used on the results produced in the experiment to empirically demonstrate the predictive capacity of the designed model of DR against the one of selected supervised machine learning classifiers.
 \end{enumerate}
 
 %----------------------------------------------------------------------------------------
@@ -98,9 +95,14 @@ This project will use a mixed research methodology - a combination of both quali
 
 \section{Scope and Limitations}
 
-The project scope is that of a single construct. Mental Workload has been modeled as a defeasible construct in previous work by Dr. Longo who has provided his knowledge base for the purpose of the experiment. 
+\begin{itemize}
+\item The project scope is that of a single construct. Mental Workload has been modeled as a defeasible construct in previous work by Dr. Longo who has provided his knowledge base for the purpose of the experiment. 
+\item Further constructs could not be adopted due to limited avaiblable time for research. 
+\item Similarly, although planned, it was not possible to interview other experts (in MWL) and translate their expertise in computable terms.
+\item The project is limited by the size of the data set that has been used and provided by Dr. Longo.
+\item The implemented software has not been fully documented according to best practices because this task is beyond the scope of the RQ.
+\end{itemize}
 
-The project is limited by the size of the data set that has been used and provided by Dr. Longo. As there are only 440 rows in the data set the training of the machine learning models will not be thorough. 
 
 \section{Document Outline}
 
@@ -108,10 +110,10 @@ This thesis is organised into the following sections:
 
 \begin{itemize}
 
-  \item Chapter 2 provides a review of the literature relevant to argumentation theory and machine learning including cutting-edge research in the area.
-  \item Chapter 3 outlines the design of the DR implementation and the experiment and the justification of those design decisions in the context of the research methodology
-  \item Chapter 4 details the implementation of the software and the experiments; the implementation and deployment of relevant software artifacts, their use and the overall execution of the experiments.
-  \item Chapter 5 presents and discusses the results of the experiments.
-  \item Chapter 6 summarises the thesis, highlighting it's main contribution to the body of knowledge. Future work and recommendations are suggested.
+  \item Chapter 2 provides a review of the literature relevant to defeasible reasoning, argumentation theory and machine learning including cutting-edge research in the area.
+  \item Chapter 3 outlines the design of the DR implementation and the experiment and the justification of those design choices in the context of the research methodology
+  \item Chapter 4 details the implementation of the software and the experiments; the implementation and deployment of relevant software artifacts, their use and the overall execution of the experiments are described as well.
+  \item Chapter 5 presents and critically discusses the results of the experiments highlighting the main findings, strengths and limitations.
+  \item Chapter 6 summarises the thesis, highlighting its main contribution to the body of knowledge. Future work and recommendations are suggested.
 
 \end{itemize}
