@@ -10,10 +10,10 @@ This chapter revisits the aims of the projects. The key results of the research 
 
 \section{Problem Definition and Research Overview}
 
+The central motive of this project is to compare and contrast machine learning with an implementation of defeasible reasoning. This research was motivated by a lack of comparison between knowledge based approaches and learning based approaches. Specifically, the project examined the ability of the two techniques to measure a construct; in this case mental workload. Constructs by their nature are abstract and difficult to measure, so evaluating the performance of the techniques empirically is also a challenge. In order to determine that the techniques performed well two measures were taken which are widely used to assess the accuracy of measures; concurrent validity and convergent validity. Neither of these measures can conclusively tell us that the results are correct; they can only suggest to us that we are on the right path.
+
 
 \section{Experimentation, Evaluation and Limitations}
-
-The central motive of this project is to compare and contrast machine learning with an implementation of defeasible reasoning. Specifically, the project examined the ability of the two techniques to measure a construct; in this case mental workload. Constructs by their nature are abstract and difficult to measure, so evaluating the performance of the techniques empirically is also a challenge. In order to determine that the techniques performed well two measures were taken which are widely used to assess the accuracy of measures; concurrent validity and convergent validity. Neither of these measures can conclusively tell us that the results are correct; they can only suggest to us that we are on the right path.
 
 Although there was a limited amount of data to train and evaluate the techniques with, the results from the experiment can still provide us with some insight into the question posed at the start of the project. A core finding of this thesis is that supervised machine learning techniques are limited to learning to make predictions based on labeled training data. The only way to predict construct measures is to choose a field in the data and decide that this accurately measures the construct we are interested in. In the experiment, it was decided that MWL could be modeled using an objective performance measure, time. This approach was flawed, as it was shown that time had a poor convergent validity as a measure for MWL. From a practical point of view, this would suggest that if machine learning is to be used in an application to predict a construct, the data should be labeled or a column with a high convergent validity with other measures of the construct should be used. 
 
@@ -29,14 +29,21 @@ The implementation of defeasible reasoning used in this project is (to my knowle
 
 \section{Contributions to the body of knowledge}
 
-This project has highlighted a shortcoming of machine learning, the measurement of constructs, that can be better accomplished using a DR based approach. A key strength of argumentation theory over machine learning has been highlighted; that AT can allow experts to develop and evaluate constructs in an intuitive way.
+The contributions of this work are outlined as follows:
 
-The project provides a generalisable implementation of defeasible reasoning that is user friendly. It is the first implementation (to my knowledge) that integrates an argument diagramming approach with the computation of results. This implementation and its design can provide guidance to engineers and academics that seek to integrate these approaches into applications or their research.
+\begin{itemize}
+\item This project has highlighted a shortcoming of machine learning, the measurement of constructs, that can be better accomplished using a DR based approach.
+\item A key strength of argumentation theory over machine learning has been highlighted; that AT can allow experts to develop and evaluate constructs in an intuitive way.
+\item The project provides a generalisable implementation of defeasible reasoning that is user friendly. It is the first implementation (to my knowledge) that integrates an argument diagramming approach with the computation of results.
+\item This implementation and its design can provide guidance to engineers and academics that seek to integrate these approaches into applications or their research.
+\end{itemize}
 
 \section{Future Work and Research}
 
-In order to provide greater insight into the problem at hand the experiment could be carried out again with larger data sets across using different constructs. Further steps should be taken to optimised the DR implementation, including possible research into the efficient computation of argument semantics.
+\begin{itemize}
+\item In order to provide greater insight into the problem at hand the experiment could be carried out again with larger data sets across using different constructs.
+\item Further steps should be taken to optimised the DR implementation, including possible research into the efficient computation of argument semantics.
+\item This project focused exclusively on supervised machine learning. An exploration of construct representation with unsupervised machine learning might provide new insights that have been ignored in this research.
+\item The application developed in this project could itself be the subject of further research. The usability of the interface could be examined and whether it provides advantages in the elicitation of knowledge bases. In a similar manner to the work conducted by \cite{twardy2004argument} it could be interesting to examine whether or not an expert's understanding of their domain was improved through the knowledge elicitation process.
+\end{itemize}
 
-This project focused exclusively on supervised machine learning. An exploration of construct representation with unsupervised machine learning might provide new insights that have been ignored in this research.
-
-The application developed in this project could itself be the subject of further research. The usability of the interface could be examined and whether it provides advantages in the elicitation of knowledge bases. In a similar manner to the work conducted by \cite{twardy2004argument} it could be interesting to examine whether or not an expert's understanding of their domain was improved through the knowledge elicitation process.

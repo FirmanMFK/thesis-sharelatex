@@ -40,4 +40,39 @@ There are a number of performance issues specific to this implementation. In ord
 
 The other culprit that is diminishing performance in the implementation is the Dung-o-matic. It has been highlighted by \cite{cerutti2014generating} that the Dung-o-matic implementation doesn't perform as well as other implementations. It is unfortunate that the other implementations are unavailable and it would be interesting to evaluate the performance of the system using a different argumentation engine. It is important to keep in mind that the computation of these semantics is an NP complete problem. The time to compute the results grows massively with the number of nodes in the knowledge base. It would be interesting to evaluate the performance and accuracy of the approach if the expert was instructed to restrain the size of their knowledge base by merging some arguments.
 
-While the above results demonstrate a trade off between machine learning techniques and defeasible reasoning ones, the defeasible reasoning system isn't obsolete as a result of the performance overhead. This will be clarified in the next chapter.
+One of the shortcomings of the machine learning approach for modeling constructs, is that a value must already exist in the data set that has a strong convergent validity with the construct being modeled. It was possible to predict task time most accurately using linear regression, however, this prediction is not useful to an expert if it doesn't have a high convergent validity with MWL. The only way to predict the value for a construct using machine learning is to have an expert label the data by hand. Labeling this data is a time consuming process as it will have to be done for very large data sets in order for the model to be trained accurately. As this work is tedious it may be difficult to guarantee that the expert has devoted equal attention to labeling all instances accurately. Moreover, the time that the expert spends labeling the data is taken away from their real work which may make many experts hesitant to get involved with such projects.
+
+One situation in which this approach might be advantageous is to use the defeasible reasoning system to `label' the data instead of an expert having to endure the labour of labeling the data by hand. The implementation can be used to elicit a knowledge base from the expert and then run on training data applying labels to each row. Machine learning can then be used to determine the values for a construct in future instances of the data. This hybrid approach offers the best of both worlds as the expert can still obtain feedback about his knowledge base while the implementation can benefit from the speed and automatic computation of machine learning. Tables ~\ref{tab:mlhybrid1} and ~\ref{tab:mlhybrid2} show that ML can predict values for MWL well when provided with a labeled training set of data.
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+                            & Simple Linear Regression   & decisionTable  & kstar\\ \hline
+Correlation coefficient     & 0.6508        & 0.5861         & 0.2428       \\
+Mean absolute error         & 9.991        & 10.7846        & 93.6672       \\
+Root mean squared error     & 12.4932      & 13.6643       & 130.8713       \\
+Relative absolute error     & 73.8692\%    & 79.7374\%        & 111.5627\%  \\
+Root relative squared error & 75.8265\%     & 82.9345\%      & 111.5565\%   \\
+\hline
+\end{tabular}
+\caption{Error and correlation results for prediciting MWL values according to expert's prefered extension (1)}
+\label{tab:mlhybrid1}
+\end{table}
+
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+                            & additiveregression & Linear Regression\\ \hline
+Correlation coefficient     & 0.8447    & 0.9392 \\
+Mean absolute error         & 7.446      & 3.8686 \\
+Root mean squared error     & 9.5961    & 5.6552  \\
+Relative absolute error     & 55.0526\% & 28.6028\%\\
+Root relative squared error & 58.2429\%  & 34.3239\%\\
+\hline
+\end{tabular}
+\caption{Error and correlation results for predicting MWL values according to expert's prefered extension (2)}
+\label{tab:mlhybrid2}
+\end{table}

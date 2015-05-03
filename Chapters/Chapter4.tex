@@ -42,7 +42,7 @@ In order to speed up the development process a number of open source frameworks 
 
 The graphical input of argumentation frameworks and membership functions is achieved using the  D3 library\footnote{\url{d3js.org}} developed by Bostock et al.\cite{2011-d3} D3.js is a data visualisation library that allows developers and designers to interact with data in the browser. Data can be loaded from urls in multiple formats such as JSON and CSV. Data points can be ``attached'' to DOM elements which provides useful functions. The styling of the DOM element can be linked to the value of the data and the data can be manipulated by user interactions. D3 is most commonly used with SVG\footnote{\url{www.w3.org/Graphics/SVG/}} (Scalable Vector Graphics) a markup language for implementing vector graphics. SVG has been an open standard for more than 10 years now, as a result it has been widely implemented and there is currently more support for it than other graphics alternatives such as HTML5 Canvas. Two key features of D3 that are used in the implementation of the experiment software are its implementation of Bezier curves and its force directed graph implementation.
 
-The server implementation requires Argumentation semantics to be computed based on the input of a Dung Argumentation Framework. Computing these semantics efficiently requires a deep understanding of argumentation theory, graph theory and algorithms. This implementation is specialised and a number of libraries have been explored in the literature review for its implementation. Dung-o-matic, an implementation of these algorithms has been made available by the University of Dundee under the Apache License, Version 2.0. The Dung-o-matic\footnote{\url{www.arg-tech.org/index.php/projects/dung-o-matic/}} was found not to be the most efficient implementation for the computation of semantics by a number of studies (see \ref{sec:dr_implementations}). However, its source code is freely available and can be run on any platform provided the platform has Java installed. Moreover, the advantage of using Java is that as one of the world's most popular programming languages there is abundant documentation available to assist in its integration. The source code for both dynPARTIX and ConArg2 are unavailable and cannot be used for implementation in this project. It could be possible to integrate ASPARTIX for a more efficient implementation, however, this requires an answer set programming solver to be installed. It is anticipated that the integration of such a solver could be laborious and time consuming without adding much value to the project. For these reasons the Dung-o-matic was chosen despite performance concerns.
+The server implementation requires Argumentation semantics to be computed based on the input of a Dung Argumentation Framework. Computing these semantics efficiently requires a deep understanding of argumentation theory, graph theory and algorithms. This implementation is specialised and a number of libraries have been explored in the literature review for its implementation. Dung-o-matic, an implementation of these algorithms has been made available by the University of Dundee under the Apache License, Version 2.0. The Dung-o-matic\footnote{\url{www.arg-tech.org/index.php/projects/dung-o-matic/}} was found not to be the most efficient implementation for the computation of semantics by a number of studies. However, its source code is freely available and can be run on any platform provided the platform has Java installed. Moreover, the advantage of using Java is that as one of the world's most popular programming languages there is abundant documentation available to assist in its integration. The source code for both dynPARTIX and ConArg2 are unavailable and cannot be used for implementation in this project. It could be possible to integrate ASPARTIX for a more efficient implementation, however, this requires an answer set programming solver to be installed. It is anticipated that the integration of such a solver could be laborious and time consuming without adding much value to the project. For these reasons the Dung-o-matic was chosen despite performance concerns.
 
 The technologies outlined in this section are manifested in the application architecture in figure~\ref{fig:AppArch}. With these underlying technologies established a number of implementation challenges remain. The solutions to these challenges are the focus of the following chapters.
 
@@ -88,14 +88,15 @@ knowledge_base {
 
 D3 expects the data as an array of node objects and an array of links which contain references to the nodes. It adds x and y values to the nodes to track their position in the viewport and updates theses values at a fixed interval in order to animate the graph. The id of the last node added to the viewport is stored in the \lstinline{lastNodeId} variable. This is important for creating new nodes as nodes are tracked based on their IDs, not their array indexes. 
 
-Three types of attack relation must be modeled by the interface for correct implementation of the system. These attacks are undercutting attacks, rebutting attacks and mitigating arguments. Undercutting attacks are implemented simply as an arrow from the attacking node to the attacked node. In the data structure this is modeled as a link with the value for either `right' or `left' equal to true. In a rebuttal attack both arguments attack each other. This link is visualised as an arrow with two ends. In the data structure this is represented by setting both `right' and `left' equal to true. Examples of these arguments visualised using the tool are shown in figure~\ref{fig:undercutting} and figure~\ref{fig:rebuttal}. Mitigating arguments are modeled the same as undercutting arguments but are represented in the system by labeling their output functions as ``mitigating arguments''.
+Three types of attack relation must be modeled by the interface for correct implementation of the system. These attacks are undercutting attacks, rebutting attacks and mitigating arguments. Undercutting attacks are implemented simply as an arrow from the attacking node to the attacked node. In the data structure this is modeled as a link with the value for either `right' or `left' equal to true. In a rebuttal attack both arguments attack each other. This link is visualised as an arrow with two ends. In the data structure this is represented by setting both `right' and `left' equal to true. Examples of these arguments visualised using the tool are shown in figure~\ref{fig:undercutting}. Mitigating arguments are modeled the same as undercutting arguments but are represented in the system by labeling their output functions as ``mitigating arguments''.
 
 \begin{figure}
-\subfloat[An undercutting attack\label{fig:undercutting}]
+\subfloat[An undercutting attack]
   {\includegraphics[width=.49\linewidth]{undercutting}}\hfill
-\subfloat[A rebuttal attack\label{fig:rebuttal}]
+\subfloat[A rebuttal attack]
   {\includegraphics[width=.49\linewidth]{rebuttal}}\hfill
 \caption{Examples of different attacks drawn using the interface}
+\label{fig:undercutting}
 \end{figure}
 
 By selecting a node in the graph a user can then define membership functions representing the internal premises of the argument and an output function representing the contribution of the truth of this argument to the overall value of the construct. It was decided in the system design phase that the user should be able to draw these functions using the interface. It was decided to utilise Bezier curves to achieve this in a manner that is simple to implement, usable and that would facitiate easy representation, storage and serialisation of membership functions. 
@@ -117,10 +118,10 @@ where $\mathbf{B}_{\mathbf{P}_0}(t) = \mathbf{P}_0}$ and $\mathbf{B}_{\mathbf{P}
 D3 provides methods for manipulating SVG, which defines its `paths' (Bezier curves) using control points. By providing the user with a collection of control point the can drag it is possible for them to define curves however they please. It also provides the advantage of allowing membership functions and output functions to be  defined simply as control points in the data model. As bezier curves exist within the range 0 and 1 on the x and y axis the associated values must be scaled to the users desires. Users can input minimum and maximum values that are used to scale the graph. These are stored with the membership function in the JSON data structure for later processing. From this a single argument can be defined in JSON as in listing~\ref{lst:arg_memfunc}. In order to allow users to create membership functions quickly functionality was implemented to allow the user to save previously used functions as template functions as can be seen in figure~\ref{fig:membfunc}.
 
 \begin{figure}[!h]
-\label{fig:membfunc}
 \centering
 \includegraphics[width=1\textwidth]{membershipfunction}
 \caption{An interface that allows a user to `draw' a membership function using Bezier curves}
+\label{fig:membfunc}
 \end{figure}
 
 
@@ -169,47 +170,47 @@ D3 provides methods for manipulating SVG, which defines its `paths' (Bezier curv
 There is a flaw in this approach that should be noted. In order to compute the users beliefs accurately the membership function should follow the strict mathematical definition of a function; that it should only output a single value for any input. Bezier curves do not obey this rule as they are parametrised by \textit{t} and as a result it is possible for users to draw functions like in figure~\ref{fig:badness}. It is also possible for users to define functions with no corresponding output for a given figure. If a user does the system will compute an incorrect value for the premise and the result will be compromised. Participants in the experiment are made aware of this before undertaking the experiment.
 
 \begin{figure}[h]
-\label{fig:badness}
   {\includegraphics[width=.3\linewidth]{badness1}}\hfill
   {\includegraphics[width=.3\linewidth]{badness2}}\hfill
   {\includegraphics[width=.3\linewidth]{badness3}}\hfill
 \caption{Examples of Bezier curves that can be drawn that are not functions}
+\label{fig:badness}
 \end{figure}
 
 With the argumentation framework and membership function finally implemented the web interface appears as in figure~\ref{fig:finalUI}.
 
 \begin{figure}[!h]
-\label{fig:finalUI}
 \centering
 \includegraphics[width=1\textwidth]{Fullscreen}
 \caption{The fully developed tool for eliciting knowledge bases}
+\label{fig:finalUI}
 \end{figure}
 
-Once a knowledge base has been elicited from a user they can test their with the system by computing results. They can download a sample data set which is displayed as in figure~\cite{fig:sampleData}.
+Once a knowledge base has been elicited from a user they can test their with the system by computing results. They can download a sample data set which is displayed as in figure~\ref{fig:sampleData}.
 
 \begin{figure}[!h]
-\label{fig:sampleData}
 \centering
 \includegraphics[width=1\textwidth]{data}
 \caption{A selection of data for the user to test their knowledge base with}
+\label{fig:sampleData}
 \end{figure}
 
-For a single row in the data the user can choose from a selection of semantics to run on the data (see figure~\cite{fig:semantics}).
+For a single row in the data the user can choose from a selection of semantics to run on the data (see figure~\ref{fig:semantics}).
 
 \begin{figure}[!h]
-\label{fig:semantics}
 \centering
 \includegraphics[width=1\textwidth]{options}
 \caption{A list of options for semantics that can be computed by the system}
+\label{fig:semantics}
 \end{figure}
 
-The results of running the semantics are then presented to the user in the form given in figure~\cite{fig:semantics_results}. The results present an overall value for the construct as well as the total degree of truth of the semantic. Each argument that contribute to the semantic is returned as well as a degree of truth value and the value of the construct computed for that value. This extra information allows the user to scrutinise their knowledge base and its associated results further.
+The results of running the semantics are then presented to the user in the form given in figure~\ref{fig:semantics_results}. The results present an overall value for the construct as well as the total degree of truth of the semantic. Each argument that contribute to the semantic is returned as well as a degree of truth value and the value of the construct computed for that value. This extra information allows the user to scrutinise their knowledge base and its associated results further.
 
 \begin{figure}[!h]
-\label{fig:semantics_results}
 \centering
 \includegraphics[width=1\textwidth]{results}
 \caption{Results of computing the semantics on the framework. (Undefined values belong to mitigating arguments)}
+\label{fig:semantics_results}
 \end{figure}
 
 \subsection{Application Back-End Implementation}
@@ -218,16 +219,17 @@ The application back-end implements a REST architecture that allows the front-en
 
 \begin{table}[]
 \centering
-\begin{tabular}{|l|l|L{5cm}|}
- URL & Request Method & Functionality \hline \\
- \lstinline{/} & POST & Compute the Knowledge Base result for a given row of data
- \lstinline{/knowledgebases/} & GET & Return a list of Knowledge Bases saved on the server
- \lstinline{/knowledgebases/:filename} & GET & Retrieve a specific knowledge base named \lstinline{:filename}
- \lstinline{/knowledgebases/:filename} & POST & Save a knowledge base in a JSON file named \lstinline{:filename}
- \lstinline{/datasets/} & GET & Return a list of data sets saved on the server
- \lstinline{/datasets/:filename} & GET & Retrieve a specific data set csv file named \lstinline{:filename}
+\begin{tabular}{|l|l|p{5cm}|}
+\hline
+ URL & Request Method & Functionality\\ \hline 
+ \lstinline{/} & POST & Compute the Knowledge Base result for a given row of data \\
+ \lstinline{/knowledgebases/} & GET & Return a list of Knowledge Bases saved on the server \\
+ \lstinline{/knowledgebases/:filename} & GET & Retrieve a specific knowledge base named  \lstinline{:filename} \\
+ \lstinline{/knowledgebases/:filename} & POST & Save a knowledge base in a JSON file named \lstinline{:filename} \\
+ \lstinline{/datasets/} & GET & Return a list of data sets saved on the server \\
+ \lstinline{/datasets/:filename} & GET & Retrieve a specific data set csv file named \lstinline{:filename} \\ \hline
 \end{tabular}
-\caption{Caption}
+\caption{Documentation of the Application REST routes}
 \label{tab:rest_routes}
 \end{table}
 
@@ -239,10 +241,9 @@ The sub-graph of activated arguments and their attack relations remains in the c
 
 Once the semantics have been computed for an Argumentation Framework the values associated with each argument can be computed. For a given row in the data set, the results for an argument remain the same no mater what the configuration of the framework is. This allows us to cache the output value of an argument in memory rather than having to recompute the same values for each semantic. The results are computed on the server using a Bezier curve implementation. 
 
-The Bezier curve computation is implemented in a PHP class \lstinline{Bezier}. This class contains methods to compute the X and Y values for a point on the line given a list of control points and a value for \textit{t}. It provides two other methods \lstinline{yFromX} and \lstinline{xFromY} that compute a value for Y given X and vice versa. The Bezier curve implementation is based on the recursive definition given in equation~\ref{math:recursivedef}. its implementation is given in Algorithm~\ref{alg:recursive}.
+The Bezier curve computation is implemented in a PHP class \lstinline{Bezier}. This class contains methods to compute the X and Y values for a point on the line given a list of control points and a value for \textit{t}. It provides two other methods \lstinline{yFromX} and \lstinline{xFromY} that compute a value for Y given X and vice versa. The Bezier curve implementation is based on the recursive definition given in equation~\ref{math:recursivedef}. Its implementation is given in Algorithm~\ref{alg:recursive}.
 
 \begin{algorithm}[H]
-\label{alg:recursive}
 \SetAlgoLined
 \KwData{A list of control points $L = \mathbf{P}_0\mathbf{P}_1\ldots\mathbf{P}_n$ and a value $t$}
 \KwResult{A point $P = (X,Y)$ corresponding to \textit{t}}
@@ -264,6 +265,7 @@ The Bezier curve computation is implemented in a PHP class \lstinline{Bezier}. T
         \KwRet $(X, Y)$\;}{}
         }
 \caption{Computing a point on the curve for a given value of \textit{t}}
+\label{alg:recursive}
 \end{algorithm}
 
 For a given membership function with fixed values for its control points any point on the curve can be described by a value t between 0 and 1. By passing t into the function we obtain a value for x and y. As it is not possible to simply pass in an x value and obtain a corresponding y value we must search for y by varying the parameter t. This is done efficiently using a binary search algorithm. For each iteration we pass in two values of t to get two values of x and compare them with our target x value. We continue to search a space closer and smaller to x until we arrive at a value that is within a threshold we consider to be satisfactory. From this point we can obtain the Y value. The pseudocode for this algorithm is given in Algorithm~\ref{alg:bin_search}.
@@ -315,6 +317,11 @@ In order two provide a comparison of the ability of the defeasible approach to m
 \caption{The Argumentation Framework developed by the expert using the tool}
 \end{figure}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{non-expert-kb}
+\caption{The Argumentation Framework developed by the non-expert using the tool}
+\end{figure}
 
 As computing the semantics for an AF is an NP complete problem computing the results for a whole data set carries a large overhead for time. The time is considerably larger than the time of a typical HTTP request-response cycle so it was not feasible to compute all of the results for the data set in the web application format. 
 
@@ -331,6 +338,12 @@ In order to determine the concurrent validity of the defeasible MWL models two r
 
 \section{Conclusions}
 
-This chapter outlined the implementation of an experiment and software to answer the research question posed by this project. The process of realising a tool used to elicit and perform computations on a defeasible knowledge base was described. Additional steps that needed to be taken in order that the software could be used to answer the question were explained.
+This chapter outlined the deployment of a piece of software and an experiment to implement in practice the theoretical model designed in Chapter 3. Additionally, an experiment that uses this software has been executed. The process of realising a tool used to elicit and perform computations on a defeasible knowledge base was not a trivial task. Several challenges were encountered: 
+
+\begin{itemize}
+\item The implementation of membership functions required that functions could be defined graphically. This required that the view rendering logic be decoupled from the client data. An implementation of Bezier curve calculations were required on the server.
+\item As time and resources (implementations of semantic computation) were limited the project required that Java and PHP were integrated in the same application. This required writing wrappers for the Java code and a more complex deployment process.
+\item As the application initially performed poorly when comuting a number of semantics, performance bottlenecks were identified. One was the computation of Bezier curves. This was improved by caching the previously computed results for the curves. 
+\end{itemize}
 
 The chapter briefly discussed the implementation of an experiment using the software and the machine learning work-bench Weka. Finally, the collection of extra data to analyse the experiment results was briefly discussed. The analyses of the information that has been gathered is the subject of the next chapter.
