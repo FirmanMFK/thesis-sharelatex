@@ -10,13 +10,13 @@ This chapter discusses the ability of an implementation of defeasible reasoning 
 
 \section{Results}
 
-The research question posed at the start of this project is focused on the ability of two techniques to represent a construct and make predictions based on this representation. The predictive capacity of the techniques is presented here. In order to determine how these new measures perform, the concurrent and convergent validity of the new values is calculated using existing measures of the construct. 
+The research question posed at the start of this project is focused on the ability of two techniques to represent a construct and make predictions based on this representation. The predictive capacity of the techniques is presented here. In order to determine how these new measures perform, the concurrent and convergent validity of the new values is calculated using existing measures of mental workload. 
 
 \subsection{Predictive Capacity - Numeric}
 
 In order to compare the predictive capacity of the approaches each technique was used to compute the value of an objective performance measure: time. The mean absolute error for time prediction was taken for each technique. In order to gather a wider comparison the size of the data used for training and testing was adjusted by varying the number of folds and percentage of split. Figure ~\ref{fig:mae_time} displays the results of the experiment. Immediately obvious in this graph is the poor performance of Artificial Neural Networks. According to \cite{silvert2000can} ANNs typically require large ammount of data for training. The performance of the ANN could be improved by pre-processing the data. It is also possible that the ANN has overfit the training data. This could be determined by evaluating the minimum description length of the model, however, this is is beyond the scope of the thesis as it is not possible to compare that measure with the knowledge based approach.
 
-The performance of the machine learning algorithms vary dramatically. It is interesting to note that simple linear regression using one variable doesn't out perform the regression based on the non-expert knowledge base. Decision table, kstar and additive regression have error rates higher than the expert knowledge base. Decision table and kstar don't correlate well with time although additive regression performs nearly as well as the expert knowledge base. A linear regression outperforms all of the techniques and can predict task time with the strongest correlation. With the exception of linear regression, the machine learning techniques all show a large variability based on the amount of data that is available for training. KStar and additive regression are outperformed by linear regression. 
+The performance of the machine learning algorithms vary dramatically. It is interesting to note that simple linear regression using one variable doesn't out perform the regression based on the non-expert knowledge base which is also based on one variable. Decision table, kstar and additive regression have error rates higher than the expert knowledge base. Decision table and kstar don't correlate well with time although additive regression performs nearly as well as the expert knowledge base. A linear regression outperforms all of the techniques and can predict task time with the strongest correlation. With the exception of linear regression, the machine learning techniques all show a large variability based on the amount of data that is available for training. KStar and additive regression are outperformed by linear regression. 
 
 \begin{figure}[!h]
 \centering
@@ -136,4 +136,36 @@ non-expertPref1       & 0.5518035 & 0.5648483 \\
 
 \section{Summary and Final Recommendations}
 
-This chapter presented the results obtained in the experiment. Overall it is seen that linear regression performed best when presented with a prediction problem, however, it is limited to predicting features already present in the training data. This is a strong limitation of machine learning generally. In the case of MWL the value for time was chosen to represent the construct. The values for MWL developed from the experts knowledge base were found to have a strong convergent validity with another measure for MWL, NASA-TLX. It was noted that the DR implementation performed slowly and measures that could be taken in future implementations were described. Finally it was noted that the DR system could be used to label a training set used in machine learning in a hybrid approach. 
+The results presented in this chapter were collected in order to test the designed hypotheses:
+
+\begin{enumerate}
+  \item The defeasible measure of a construct created by an expert is better at predicting objective performance values than machine learning approaches.
+  \item The construct measure of an expert will have a high concurrent validity with objective measures related to the construct.
+  \item The construct measure of an expert will have a high convergent validity with existing measures for the construct.
+\end{enumerate}
+
+\subsection{First Hypothesis}
+
+The first hypothesis was examined by comparing the capacity of the techniques to make predictions of two objective values: task time and task ID.  
+
+In the case of task time, the knowledge base of the expert proved to be the best for prediction. This supports the hypothesis. On the other hand the knowledge based approach performed worse for the prediction of task membership. These contradictory results require further investigation. The time prediction experiment should be further refined by including a greater number of knowledge bases and learners. A more statistically valid comparison of the task ID and MWL value could be performed, for example by examining the distribution of MWL values with respect to the task ID.
+
+As the expert and non-expert knowledge bases perform similarly, it is difficult to tell why the approaches perform the way they do. It is possible that as regressions are performed, the use of one independent variable is more useful than using many. Future work might include a comparison between knowledge bases that use intentionally bad premises to model MWL and expert ones.
+
+\subsection{Second Hypothesis}
+
+The second hypothesis was examined by determining the concurrent validity of the measures of mental workload with time, an objective performance measure. It was found that the knowledge base of the expert had a statistically significant correlation with time, however, it was not a very strong one. This can be explained by considering the construct of MWL as a defeasible phenomenon. The time spent on a task could be high, however, the participant may not be very motivated or may be distracted. In this case the MWL would in fact be low. A short coming of machine learning is highlighted here. If we do not believe time to accurately model MWL in all cases we must create a new model. This would require an expert to apply labels to the data in a time consuming procedure.
+
+\subsection{Third Hypothesis}
+
+The third hypothesis was examined by determining the convergent validity of the measures of MWL with other existing measures of MWL: NASA-TLX and Workload Profile. It was found that the construct measure developed by the expert had a high convergent validity with existing measures of MWL. It was also found that the construct measure of the expert had a higher convergent validity than that of a non-expert. This reinforces our belief that the defeasible modeling of the construct is working effectively. Again, it should be pointed out that this modeling is not possible in supervised machine learning without applying labels to the data. An underlying flaw in this approach is that it is assumed that the existing measures correctly model the construct. These measures may be proven invalid in the future and so if such a system were to be adopted it is important to consider this. The accuracy of the diagnoses made by the knowledge based system are entirely influenced by the knowledge used. The system cannot automatically detect that the mappings from premises to conclusions are incorrect. On the other hand, it is hoped that through using the system and obtaining visual feedback a user might improve their understanding in their area of expertise.
+
+\subsection{Recommendations}
+
+These finding support the case for the implementation of defeasible reasoning as an alternative to learning based approaches. 
+
+The main advantage of learning based systems is that the learning is automatic. If given enough data and enough computing power machine learning can tackle many problems well. However, the available data sets are often not comprehensive enough or representative of the wider picture. This can result in models that are too localised and unable to predict exceptional cases. Data often must be cleaned and labeled, a time consuming and expensive process. Knowledge based approaches offer and alternative to this. The results of the experiments suggest that knowledge based approaches offer a viable alternative for prediction. While the time to input a knowledge base is non-trivial, it is less than the time required for labeling in many cases.
+
+One of the shortcomings of using convergent validity for assessment is that the existing measures of the construct must also model the construct accurately. This means that while in this particular instance we have shown a strong concurrent validity with existing constructs, this may not always be the case. In order to further verify that the system is working as intended more experiments need to be performed with a wider variety of knowledge bases and data sets. If it is then verified that the system works as intended it may then be used to develop alternative measures for constructs that deviate from previous measures. 
+
+What has not been examined is the role that the system feedback could play in improving an expert's understanding. the machine learning techniques typically represent their findings as numeric and mathematical models. In the DR system it is possible to represent these visually. Comparing these representations and how helpful they are in assisting an expert could be the subject of future work.
